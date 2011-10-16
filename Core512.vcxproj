@@ -58,6 +58,12 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>hge.lib;hgehelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>CopyRes.bat</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Update Debug\Res from Res</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -90,6 +96,7 @@
   <ItemGroup>
     <None Include="Res\Ship.png">
       <FileType>Document</FileType>
+      <DeploymentContent>false</DeploymentContent>
     </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -11,7 +11,7 @@ void ShipInit()
 {
 	int Width, Height;
 
-	hTex = lpHGE->Texture_Load("Ship.png");
+	hTex = lpHGE->Texture_Load("Res\\Ship.png");
 
 	Width = lpHGE->Texture_GetWidth(hTex, true);
 	Height = lpHGE->Texture_GetHeight(hTex, true);
