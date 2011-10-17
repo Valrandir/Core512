@@ -91,3 +91,9 @@ void ShipTick()
 
 	QuadSet(x, y, Quad);
 }
+
+void ShipGetCenterPos(float& x, float& y)
+{
+	x = ::x + Width / 2;
+	y = ::y + Height / 2;
+}

@@ -76,10 +76,17 @@ bool CoreTick()
 	return false;
 }
 
+float rot = 0.0f;
+
 bool CoreDraw()
 {
   lpHGE->Gfx_BeginScene();
   lpHGE->Gfx_Clear(0);
+	float x, y;
+	ShipGetCenterPos(x, y);
+	rot += 0.1f;
+	if(rot > 6.2831853072) rot = 0;
+	lpHGE->Gfx_SetTransform(x, y, 0.0f, 0.0f, rot, 1.0f, 1.0f);
   ShipDraw();
   lpHGE->Gfx_EndScene();
 	return false;
