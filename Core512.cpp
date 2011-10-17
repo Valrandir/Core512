@@ -26,9 +26,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 	lpHGE->System_SetState(HGE_LOGFILE, "LogFile.txt");
 
 	lpHGE->System_SetState(HGE_WINDOWED, true);
-  lpHGE->System_SetState(HGE_SCREENWIDTH, Window_Width);
-  lpHGE->System_SetState(HGE_SCREENHEIGHT, Window_Height);
-  lpHGE->System_SetState(HGE_SCREENBPP, 32);
+	lpHGE->System_SetState(HGE_SCREENWIDTH, Window_Width);
+	lpHGE->System_SetState(HGE_SCREENHEIGHT, Window_Height);
+	lpHGE->System_SetState(HGE_SCREENBPP, 32);
 	//lpHGE->System_SetState(HGE_FPS, 60);
 	lpHGE->System_SetState(HGE_FPS, HGEFPS_VSYNC);
 	//lpHGE->System_SetState(HGE_FPS, HGEFPS_UNLIMITED);
