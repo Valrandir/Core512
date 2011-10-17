@@ -12,8 +12,8 @@ void CoreUnload();
 bool CoreTick();
 bool CoreDraw();
 
-int Window_Width = 800*2;
-int Window_Height = 600*2;
+int Window_Width = 800;
+int Window_Height = 600;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
