@@ -61,6 +61,21 @@ void QuadCreate(float Width, float Height, hgeQuad& Quad)
 	ptr->ty = 1.0f;
 }
 
+void QuadSet(float x, float y, hgeQuad& Quad)
+{
+	hgeVertex* ptr;
+	int i;
+
+	float ox = x - Quad.v[0].x;
+	float oy = y - Quad.v[0].y;
+
+	for(i = 0, ptr = Quad.v; i < 4; i++, ptr++)
+	{
+		ptr->x += ox;
+		ptr->y += oy;
+	}
+}
+
 void QuadOffset(float x, float y, hgeQuad& Quad)
 {
 	hgeVertex* ptr;
@@ -71,4 +86,9 @@ void QuadOffset(float x, float y, hgeQuad& Quad)
 		ptr->x += x;
 		ptr->y += y;
 	}
+}
+
+float Abs(float val)
+{
+	return val > 0 ? val : -val;
 }
