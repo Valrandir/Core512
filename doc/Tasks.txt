@@ -1,3 +1,7 @@
+Data Structure
+- Define a RECT structure with x1 x2 y1 y2 width height cx cy (center x y)
+  - Initialize it using Center x y
+
 Immediate
 - Ship Direction Vector
 - Abstraction and Rewrite

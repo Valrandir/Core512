@@ -13,7 +13,7 @@ int Width, Height;
 float x, y; //Position
 float vx, vy; //Velocity
 float fx, fy; //Force
-float EngineForce; //Engice Force
+float EngineForce; //Engine Force
 
 void ShipInit()
 {
@@ -44,7 +44,7 @@ void ShipUnload()
 
 void ShipDraw()
 {
-	lpHGE->Gfx_RenderQuad(&Quad);
+	//lpHGE->Gfx_RenderQuad(&Quad);
 }
 
 //direction must be -1, 0, or 1

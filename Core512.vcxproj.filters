@@ -5,11 +5,23 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Tools.cpp" />
+    <ClCompile Include="Core\Body.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Vertex.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Tools.h" />
+    <ClInclude Include="Core\Body.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Vertex.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Res">
@@ -17,6 +29,9 @@
     </Filter>
     <Filter Include="doc">
       <UniqueIdentifier>{402a3d07-9667-48ff-a754-4222039e4b08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{a86c9300-e2a1-4146-9171-45d2f8726782}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

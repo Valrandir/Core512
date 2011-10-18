@@ -87,11 +87,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core512.cpp" />
+    <ClCompile Include="Core\Body.cpp" />
+    <ClCompile Include="Core\Vertex.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Tools.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Body.h" />
+    <ClInclude Include="Core\Vertex.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Tools.h" />

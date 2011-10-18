@@ -76,6 +76,15 @@ void QuadSet(float x, float y, hgeQuad& Quad)
 	}
 }
 
+void QuadSetCenter(Vertex Center, hgeQuad& Quad)
+{
+	float w = Quad.v[1].x - Quad.v[0].x;
+	float h = Quad.v[3].y - Quad.v[0].y;
+	float cx = Center.x - w / 2;
+	float cy = Center.y - h / 2;
+	QuadSet(cx, cy, Quad);
+}
+
 void QuadOffset(float x, float y, hgeQuad& Quad)
 {
 	hgeVertex* ptr;

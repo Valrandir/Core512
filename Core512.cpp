@@ -4,16 +4,18 @@
 #include "Tools.h"
 #include "Ship.h"
 #include "Input.h"
-
-HGE* lpHGE;
+#include "Core\Body.h"
 
 void CoreLoad();
 void CoreUnload();
 bool CoreTick();
 bool CoreDraw();
 
-int Window_Width = 800;
-int Window_Height = 600;
+HGE* lpHGE;
+int Window_Width = 800 / 2;
+int Window_Height = 600 / 2;
+
+Body* lpBody = NULL;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
@@ -53,19 +55,25 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 void CoreLoad()
 {
 	ShipInit();
+
+	lpBody = new Body(Vertex(200, 200), 10, 10);
 }
 
 void CoreUnload()
 {
 	ShipUnload();
+
+	if(lpBody)
+	{
+		delete(lpBody);
+		lpBody = NULL;
+	}
 }
 
 bool CoreTick()
 {
 	if(lpHGE->Input_GetKeyState(HGEK_ESCAPE))
 		return true;
-
-	//Sleep(10);
 
 	int dx, dy;
 	InputGetDirection(dx, dy);
@@ -80,14 +88,22 @@ float rot = 0.0f;
 
 bool CoreDraw()
 {
-  lpHGE->Gfx_BeginScene();
-  lpHGE->Gfx_Clear(0);
+	lpHGE->Gfx_BeginScene();
+	lpHGE->Gfx_Clear(ARGB(0xFF, 0x80, 0x80, 0x80));
+
+/*
 	float x, y;
 	ShipGetCenterPos(x, y);
 	rot += 0.1f;
 	if(rot > 6.2831853072) rot = 0;
 	lpHGE->Gfx_SetTransform(x, y, 0.0f, 0.0f, rot, 1.0f, 1.0f);
-  ShipDraw();
-  lpHGE->Gfx_EndScene();
+*/
+
+	lpBody->Draw();
+
+	ShipDraw();
+
+	lpHGE->Gfx_EndScene();
+
 	return false;
 }
