@@ -1,0 +1,19 @@
+Immediate
+- Ship Direction Vector
+- Abstraction and Rewrite
+- Propulsion Particle Effect
+- Turn Animation
+- Add error headers from a past project
+
+Upgrades
+- Radar to display some minimap
+- Different kind of radars and minimaps for different tasks.
+- Each radar is specialized but can still be configured
+
+Ideas
+- DF like survival and base building using
+	- Day/Night cycle as the sun is hidden by a planet or moon
+	- Build a base to hide from the sun during the "day"
+	- Most active at "night"
+	- Once the base is built enought, add solar panels to harvest sun energy
+	- Upgrades to allow operations when the sun is not hidden

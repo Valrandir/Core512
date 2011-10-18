@@ -15,10 +15,16 @@
     <Filter Include="Res">
       <UniqueIdentifier>{9d753d29-4e05-4ce7-aed0-e9be9efb4fba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="doc">
+      <UniqueIdentifier>{402a3d07-9667-48ff-a754-4222039e4b08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\Ship.png">
       <Filter>Res</Filter>
+    </None>
+    <None Include="doc\Tasks.txt">
+      <Filter>doc</Filter>
     </None>
   </ItemGroup>
 </Project>
