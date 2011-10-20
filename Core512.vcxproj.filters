@@ -11,6 +11,9 @@
     <ClCompile Include="Core\Vertex.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Rect.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input.h" />
@@ -20,6 +23,9 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\Vertex.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Rect.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

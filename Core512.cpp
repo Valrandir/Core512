@@ -56,7 +56,8 @@ void CoreLoad()
 {
 	ShipInit();
 
-	lpBody = new Body(Vertex(200, 200), 10, 10);
+	lpBody = new Body(Vertex(200, 200), 16, 16);
+	lpBody->SetTexture(lpHGE->Texture_Load("Res\\Body.png"));
 }
 
 void CoreUnload()
@@ -89,7 +90,7 @@ float rot = 0.0f;
 bool CoreDraw()
 {
 	lpHGE->Gfx_BeginScene();
-	lpHGE->Gfx_Clear(ARGB(0xFF, 0x80, 0x80, 0x80));
+	lpHGE->Gfx_Clear(ARGB(0xFF, 0xFF, 0xFF, 0xFF));
 
 /*
 	float x, y;
