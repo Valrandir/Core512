@@ -54,5 +54,8 @@
     <None Include="doc\Tasks.txt">
       <Filter>doc</Filter>
     </None>
+    <None Include="Res\Body.png">
+      <Filter>Res</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <hge.h>
+#include <hgesprite.h>
 #include "Tools.h"
 #include "Ship.h"
 #include "Input.h"
@@ -21,6 +22,7 @@ int Window_Height = 600 / 2;
 HTEXTURE hDefaultBodyTexture = NULL;
 Body* lpBody = NULL;
 DynBody* lpDynBody = NULL;
+hgeSprite* lpSprite = NULL;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
@@ -66,6 +68,11 @@ void CoreLoad()
 
 	lpDynBody = new DynBody(Vertex(220, 150), 16, 16);
 	lpDynBody->SetTexture(hDefaultBodyTexture);
+
+	//lpSprite = new hgeSprite(hDefaultBodyTexture, 5, 5, 5, 5);
+	lpSprite = new hgeSprite(NULL, 0, 0, 16, 16);
+	lpSprite->SetColor(0xFFFF0000);
+	lpSprite->SetHotSpot(8, 8);
 }
 
 void CoreUnload()
@@ -74,6 +81,7 @@ void CoreUnload()
 
 	DeleteNull(lpBody)
 	DeleteNull(lpDynBody)
+	DeleteNull(lpSprite)
 
 	if(hDefaultBodyTexture)
 	{
@@ -118,6 +126,7 @@ bool CoreDraw()
 	lpBody->Draw();
 	lpDynBody->Draw();
 
+	//lpSprite->Render(10, 10);
 	ShipDraw();
 
 	lpHGE->Gfx_EndScene();
