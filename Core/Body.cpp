@@ -1,7 +1,5 @@
-#include <hge.h>
+#include "../Core512.h"
 #include "Body.h"
-
-extern HGE* lpHGE;
 
 void QuadFromRect(Rect& r, hgeQuad& q);
 
@@ -9,6 +7,22 @@ Body::Body(Vertex Center, float Width, float Height)
 {
 	Rect.SetByCenter(Center.x, Center.y, Width, Height);
 	QuadFromRect(Rect, Quad);
+}
+
+Body::Body(Vertex Center, HTEXTURE hTexture)
+{
+	float Width = (float)lpHGE->Texture_GetWidth(hTexture, true);
+	float Height = (float)lpHGE->Texture_GetHeight(hTexture, true);
+	Body(Center, Width, Height);
+}
+
+void Body::Move(float cx, float cy)
+{
+	HTEXTURE hTex;
+	Rect.Move(cx, cy);
+	hTex = Quad.tex;
+	QuadFromRect(Rect, Quad);
+	Quad.tex = hTex;
 }
 
 void Body::SetTexture(HTEXTURE hTexture)

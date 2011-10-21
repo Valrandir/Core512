@@ -25,3 +25,8 @@ void Rect::SetByPoints(float x1, float y1, float x2, float y2)
 	this->cx = x1 + this->w / 2;
 	this->cy = y1 + this->h / 2;
 }
+
+void Rect::Move(float cx, float cy)
+{
+	SetByCenter(cx, cy, w, h);
+}

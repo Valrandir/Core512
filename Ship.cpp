@@ -1,8 +1,7 @@
-#include <hge.h>
+#include "Core512.h"
 #include "Tools.h"
 #include "Ship.h"
 
-extern HGE* lpHGE;
 extern int Window_Width;
 extern int Window_Height;
 

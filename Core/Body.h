@@ -9,6 +9,8 @@ struct Body
 	hgeQuad Quad;
 
 	Body(Vertex Center, float Width, float Height);
+	Body(Vertex Center, HTEXTURE hTexture);
+	void Move(float cx, float cy);
 	void SetTexture(HTEXTURE hTexture);
 	void Draw();
 };

@@ -1,6 +1,7 @@
 Data Structure
-- Define a RECT structure with x1 x2 y1 y2 width height cx cy (center x y)
-  - Initialize it using Center x y
+- Add Operators to Vertex
+- Always use Vertex instead of x y
+- Review Quad and Rect init and updates
 
 Immediate
 - Ship Direction Vector
@@ -9,7 +10,10 @@ Immediate
 - Turn Animation
 - Add error headers from a past project
 
-Upgrades
+Resources
+- Run HGE "PNG Optimizer" pngopt.exe *.png
+
+Design - Upgrades
 - Radar to display some minimap
 - Different kind of radars and minimaps for different tasks.
 - Each radar is specialized but can still be configured

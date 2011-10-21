@@ -1,7 +1,5 @@
-#include <hge.h>
+#include "Core512.h"
 #include "Input.h"
-
-extern HGE* lpHGE;
 
 void InputGetDirection(int& dx, int& dy)
 {

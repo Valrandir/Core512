@@ -1,7 +1,5 @@
-#include <hge.h>
+#include "Core512.h"
 #include "Tools.h"
-
-extern HGE* lpHGE;
 
 void RenderSquare(float x, float y, float size)
 {
