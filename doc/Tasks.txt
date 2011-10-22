@@ -15,6 +15,7 @@ Immediate
 - Add error headers from a past project
 
 Resources
+- Create INI file
 - Run HGE "PNG Optimizer" pngopt.exe *.png
 
 Design - Upgrades

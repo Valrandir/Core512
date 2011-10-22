@@ -48,15 +48,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 	lpHGE->System_SetState(HGE_USESOUND, false);
 	lpHGE->System_SetState(HGE_SHOWSPLASH, false);
 	lpHGE->System_SetState(HGE_HIDEMOUSE, false);
-	lpHGE->System_SetState(HGE_LOGFILE, "LogFile.txt");
 
 	lpHGE->System_SetState(HGE_WINDOWED, true);
 	lpHGE->System_SetState(HGE_SCREENWIDTH, Window_Width);
 	lpHGE->System_SetState(HGE_SCREENHEIGHT, Window_Height);
 	lpHGE->System_SetState(HGE_SCREENBPP, 32);
 	lpHGE->System_SetState(HGE_FPS, HGEFPS_VSYNC);
-	//lpHGE->System_SetState(HGE_FPS, 100);
-	
+
 	lpHGE->System_SetState(HGE_FRAMEFUNC, CoreUpdate);
 	lpHGE->System_SetState(HGE_RENDERFUNC, CoreRender);
 
