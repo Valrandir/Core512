@@ -16,21 +16,8 @@ bool CoreUpdate();
 bool CoreRender();
 
 HGE* lpHGE;
-
-//#define small
-//#define medium
-#define big
-
-#ifdef small
-	int Window_Width = 400;
-	int Window_Height = 300;
-#elif defined medium
-	int Window_Width = 1024;
-	int Window_Height = 768;
-#elif defined big
-	int Window_Width = 1920;
-	int Window_Height = 1200;
-#endif
+int WindowWidth = 640;
+int WindowHeight = 480;
 
 HTEXTURE hDefaultBodyTexture = NULL;
 HTEXTURE hShipTexture = NULL;
@@ -40,8 +27,17 @@ DynBody* lpDynBody = NULL;
 hgeSprite* lpSprite = NULL;
 Font* lpFont = NULL;
 
+//Size is 75% of screen size
+void CalculateAppSize(int& Width, int& Height)
+{
+	Width = GetSystemMetrics(SM_CXSCREEN) * 0.75;
+	Height = GetSystemMetrics(SM_CYSCREEN) * 0.75;
+}
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
+	CalculateAppSize(WindowWidth, WindowHeight);
+
 	lpHGE = hgeCreate(HGE_VERSION);
 
 	lpHGE->System_SetState(HGE_TITLE, "Core512");
@@ -50,8 +46,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 	lpHGE->System_SetState(HGE_HIDEMOUSE, false);
 
 	lpHGE->System_SetState(HGE_WINDOWED, true);
-	lpHGE->System_SetState(HGE_SCREENWIDTH, Window_Width);
-	lpHGE->System_SetState(HGE_SCREENHEIGHT, Window_Height);
+	lpHGE->System_SetState(HGE_SCREENWIDTH, WindowWidth);
+	lpHGE->System_SetState(HGE_SCREENHEIGHT, WindowHeight);
 	lpHGE->System_SetState(HGE_SCREENBPP, 32);
 	lpHGE->System_SetState(HGE_FPS, HGEFPS_VSYNC);
 
@@ -91,8 +87,8 @@ void CoreLoad()
 
 void CoreInit()
 {
-	float cx = float(Window_Width >> 1);
-	float cy = float(Window_Height >> 1);
+	float cx = float(WindowWidth >> 1);
+	float cy = float(WindowHeight >> 1);
 	lpShip->Move(cx, cy);
 }
 
@@ -121,8 +117,8 @@ bool CoreUpdate()
 	int Command = InputGetCommand();
 	if(Command == CMD_SHIP_RESET)
 	{
-		float cx = float(Window_Width >> 1);
-		float cy = float(Window_Height >> 1);
+		float cx = float(WindowWidth >> 1);
+		float cy = float(WindowHeight >> 1);
 		lpShip->Move(cx, cy);
 		lpShip->HardStop();
 	}
