@@ -9,4 +9,5 @@ struct Font
 	~Font();
 
 	void Render(float x, float y, const char* Text);
+	void RenderFPS(float x, float y);
 };

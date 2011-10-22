@@ -55,6 +55,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 	lpHGE->System_SetState(HGE_SCREENHEIGHT, Window_Height);
 	lpHGE->System_SetState(HGE_SCREENBPP, 32);
 	lpHGE->System_SetState(HGE_FPS, HGEFPS_VSYNC);
+	//lpHGE->System_SetState(HGE_FPS, 100);
 	
 	lpHGE->System_SetState(HGE_FRAMEFUNC, CoreUpdate);
 	lpHGE->System_SetState(HGE_RENDERFUNC, CoreRender);
@@ -147,7 +148,8 @@ bool CoreRender()
 	lpDynBody->Render();
 	lpSprite->Render(10, 0x20);
 	lpShip->Render();
-	lpFont->Render(8, 8, "Core512 is best.\n\nControls:\n- Thrust -> Up Arrow / Down Arrow / Mouse Buttons\n- Rotate -> Left Arrow / Right Arrow / D / F\n- Reset Ship -> Space\n- Quit -> Escape");
+	lpFont->Render(8, 8, "Core512 is best.\n\nControls :\n- Thrust -> Up Arrow / Down Arrow / Mouse Buttons\n- Rotate -> Left Arrow / Right Arrow / D / F\n- Reset Ship -> Space\n- Quit -> Escape");
+	lpFont->RenderFPS(8, 220);
 
 	lpHGE->Gfx_EndScene();
 
