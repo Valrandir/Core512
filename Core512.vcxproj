@@ -94,9 +94,9 @@
     <ClCompile Include="Core\Body.cpp" />
     <ClCompile Include="Core\DynBody.cpp" />
     <ClCompile Include="Core\Rect.cpp" />
+    <ClCompile Include="Core\Ship.cpp" />
     <ClCompile Include="Core\Vertex.cpp" />
     <ClCompile Include="Input.cpp" />
-    <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Tools.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -104,9 +104,9 @@
     <ClInclude Include="Core\Body.h" />
     <ClInclude Include="Core\DynBody.h" />
     <ClInclude Include="Core\Rect.h" />
+    <ClInclude Include="Core\Ship.h" />
     <ClInclude Include="Core\Vertex.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="Ship.h" />
     <ClInclude Include="Tools.h" />
   </ItemGroup>
   <ItemGroup>

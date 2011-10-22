@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/DynBody.h"
+#include "DynBody.h"
 
 class Ship : public DynBody
 {

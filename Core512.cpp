@@ -5,7 +5,7 @@
 #include <hgesprite.h>
 #include "Input.h"
 #include "Tools.h"
-#include "Ship.h"
+#include "Core/Ship.h"
 #include "Core/Body.h"
 #include "Core/DynBody.h"
 

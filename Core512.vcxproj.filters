@@ -16,7 +16,9 @@
     <ClCompile Include="Core\DynBody.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="Core\Ship.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input.h" />
@@ -34,7 +36,9 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core512.h" />
-    <ClInclude Include="Ship.h" />
+    <ClInclude Include="Core\Ship.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Res">
