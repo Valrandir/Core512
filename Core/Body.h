@@ -6,13 +6,21 @@
 
 struct Body
 {
+	private:
+	float RotationGradient;
+
+	public:
 	Rect Rect;
 	hgeSprite* lpSprite;
 
+	void Init(Vertex Center, float Width, float Height, HTEXTURE hTexture);
 	Body(Vertex Center, float Width, float Height);
 	Body(Vertex Center, HTEXTURE hTexture);
 	~Body();
+
+	void TextureSet(HTEXTURE hTexture);
+	void RotationSet(float RotationGradient);
+	void RotationOffset(float OffsetGradient);
 	void Move(float cx, float cy);
-	void SetTexture(HTEXTURE hTexture);
-	void Draw();
+	void Render();
 };

@@ -2,7 +2,7 @@
 
 void ShipInit();
 void ShipUnload();
-void ShipDraw();
+void ShipRender();
 
 void ShipThrust(int dx, int dy);
 void ShipTick();

@@ -12,11 +12,19 @@
 void CoreLoad();
 void CoreUnload();
 bool CoreTick();
-bool CoreDraw();
+bool CoreRender();
 
 HGE* lpHGE;
-int Window_Width = 800 / 2;
-int Window_Height = 600 / 2;
+
+//#define small
+
+#ifdef small
+	int Window_Width = 800 / 2;
+	int Window_Height = 600 / 2;
+#else
+	int Window_Width = 1920;
+	int Window_Height = 1200;
+#endif
 
 HTEXTURE hDefaultBodyTexture = NULL;
 Body* lpBody = NULL;
@@ -40,7 +48,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 	lpHGE->System_SetState(HGE_FPS, HGEFPS_VSYNC);
 	
 	lpHGE->System_SetState(HGE_FRAMEFUNC, CoreTick);
-	lpHGE->System_SetState(HGE_RENDERFUNC, CoreDraw);
+	lpHGE->System_SetState(HGE_RENDERFUNC, CoreRender);
 
 	lpHGE->System_Initiate();
 
@@ -63,15 +71,13 @@ void CoreLoad()
 	hDefaultBodyTexture = lpHGE->Texture_Load("Res\\Body.png");
 
 	lpBody = new Body(Vertex(200, 200), 16, 16);
-	lpBody->SetTexture(hDefaultBodyTexture);
+	lpBody->TextureSet(hDefaultBodyTexture);
 
 	lpDynBody = new DynBody(Vertex(220, 150), 16, 16);
-	lpDynBody->SetTexture(hDefaultBodyTexture);
+	lpDynBody->TextureSet(hDefaultBodyTexture);
 
 	lpSprite = new hgeSprite(hDefaultBodyTexture, 0, 0, 16, 16);
-	//lpSprite = new hgeSprite(NULL, 0, 0, 16, 16);
 	lpSprite->SetColor(0xFFFF0000);
-	//lpSprite->SetHotSpot(8, 8);
 }
 
 void CoreUnload()
@@ -96,6 +102,7 @@ bool CoreTick()
 
 	Vertex Force(1.0f, 0.0f);
 	lpDynBody->ApplyForce(Force);
+	lpDynBody->RotationOffset(0.1f);
 	lpDynBody->Update();
 
 	int dx, dy;
@@ -107,26 +114,15 @@ bool CoreTick()
 	return false;
 }
 
-float rot = 0.0f;
-
-bool CoreDraw()
+bool CoreRender()
 {
 	lpHGE->Gfx_BeginScene();
 	lpHGE->Gfx_Clear(ARGB(0xFF, 0xFF, 0xFF, 0xFF));
 
-/*
-	float x, y;
-	ShipGetCenterPos(x, y);
-	rot += 0.1f;
-	if(rot > 6.2831853072) rot = 0;
-	lpHGE->Gfx_SetTransform(x, y, 0.0f, 0.0f, rot, 1.0f, 1.0f);
-*/
-
-	lpBody->Draw();
-	lpDynBody->Draw();
-
+	lpBody->Render();
+	lpDynBody->Render();
 	lpSprite->Render(10, 0x20);
-	ShipDraw();
+	ShipRender();
 
 	lpHGE->Gfx_EndScene();
 
