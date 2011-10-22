@@ -33,6 +33,11 @@ void Body::TextureSet(HTEXTURE hTexture)
 
 void Body::RotationSet(float RotationGradient)
 {
+	if(RotationGradient < 0)
+		RotationGradient = CorePI2 + RotationGradient;
+
+	if(RotationGradient > CorePI2)
+		RotationGradient = RotationGradient - CorePI2;
 
 	if(RotationGradient < 0 || RotationGradient > CorePI2)
 		RotationGradient = 0;
@@ -53,7 +58,7 @@ void Body::Move(float cx, float cy)
 void Body::Render()
 {
 	if(RotationGradient)
-		lpSprite->RenderEx(Rect.x1, Rect.y1, RotationGradient);
+		lpSprite->RenderEx(Rect.cx, Rect.cy, RotationGradient);
 	else
-		lpSprite->Render(Rect.x1, Rect.y1);
+		lpSprite->Render(Rect.cx, Rect.cy);
 }

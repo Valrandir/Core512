@@ -1,9 +1,15 @@
 #pragma once
+#include "Core/DynBody.h"
 
-void ShipInit();
-void ShipUnload();
-void ShipRender();
+class Ship : public DynBody
+{
+	HTEXTURE hTexture;
 
-void ShipThrust(int dx, int dy);
-void ShipTick();
-void ShipGetCenterPos(float& x, float& y);
+	public:
+	float EngineForce;
+
+	Ship(HTEXTURE hTexture);
+	void Thrust(int dx, int dy);
+	void Update();
+	void Render();
+};

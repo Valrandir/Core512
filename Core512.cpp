@@ -3,11 +3,11 @@
 #include "Core512.h"
 #include <hge.h>
 #include <hgesprite.h>
+#include "Input.h"
 #include "Tools.h"
 #include "Ship.h"
-#include "Input.h"
-#include "Core\Body.h"
-#include "Core\DynBody.h"
+#include "Core/Body.h"
+#include "Core/DynBody.h"
 
 void CoreLoad();
 void CoreUnload();
@@ -27,6 +27,8 @@ HGE* lpHGE;
 #endif
 
 HTEXTURE hDefaultBodyTexture = NULL;
+HTEXTURE hShipTexture = NULL;
+Ship* lpShip = NULL;
 Body* lpBody = NULL;
 DynBody* lpDynBody = NULL;
 hgeSprite* lpSprite = NULL;
@@ -66,15 +68,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 
 void CoreLoad()
 {
-	ShipInit();
-
 	hDefaultBodyTexture = lpHGE->Texture_Load("Res\\Body.png");
+	hShipTexture = lpHGE->Texture_Load("Res\\Ship.png");
 
-	lpBody = new Body(Vertex(200, 200), 16, 16);
-	lpBody->TextureSet(hDefaultBodyTexture);
-
-	lpDynBody = new DynBody(Vertex(220, 150), 16, 16);
-	lpDynBody->TextureSet(hDefaultBodyTexture);
+	lpShip = new Ship(hShipTexture);
+	lpBody = new Body(Vertex(200, 200), hDefaultBodyTexture);
+	lpDynBody = new DynBody(Vertex(220, 150), hDefaultBodyTexture);
 
 	lpSprite = new hgeSprite(hDefaultBodyTexture, 0, 0, 16, 16);
 	lpSprite->SetColor(0xFFFF0000);
@@ -82,17 +81,13 @@ void CoreLoad()
 
 void CoreUnload()
 {
-	ShipUnload();
-
+	DeleteNull(lpShip)
 	DeleteNull(lpBody)
 	DeleteNull(lpDynBody)
 	DeleteNull(lpSprite)
 
-	if(hDefaultBodyTexture)
-	{
-		lpHGE->Texture_Free(hDefaultBodyTexture);
-		hDefaultBodyTexture = NULL;
-	}
+	DeleteHgeTexture(hDefaultBodyTexture)
+	DeleteHgeTexture(hShipTexture)
 }
 
 bool CoreTick()
@@ -108,8 +103,8 @@ bool CoreTick()
 	int dx, dy;
 	InputGetDirection(dx, dy);
 
-	ShipThrust(dx, dy);
-	ShipTick();
+	lpShip->Thrust(dx, dy);
+	lpShip->Update();
 
 	return false;
 }
@@ -122,7 +117,7 @@ bool CoreRender()
 	lpBody->Render();
 	lpDynBody->Render();
 	lpSprite->Render(10, 0x20);
-	ShipRender();
+	lpShip->Render();
 
 	lpHGE->Gfx_EndScene();
 
