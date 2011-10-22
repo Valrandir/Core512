@@ -19,6 +19,7 @@
     <ClCompile Include="Core\Ship.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="TextOut.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input.h" />
@@ -39,6 +40,7 @@
     <ClInclude Include="Core\Ship.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="TextOut.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Res">

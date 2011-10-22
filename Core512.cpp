@@ -7,8 +7,10 @@
 #include "Core/Ship.h"
 #include "Core/Body.h"
 #include "Core/DynBody.h"
+#include "TextOut.h"
 
 void CoreLoad();
+void CoreInit();
 void CoreUnload();
 bool CoreUpdate();
 bool CoreRender();
@@ -36,6 +38,7 @@ Ship* lpShip = NULL;
 Body* lpBody = NULL;
 DynBody* lpDynBody = NULL;
 hgeSprite* lpSprite = NULL;
+Font* lpFont = NULL;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
@@ -59,6 +62,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 	lpHGE->System_Initiate();
 
 	CoreLoad();
+	CoreInit();
 
 	lpHGE->System_Start();
 
@@ -82,6 +86,15 @@ void CoreLoad()
 
 	lpSprite = new hgeSprite(hDefaultBodyTexture, 0, 0, 16, 16);
 	lpSprite->SetColor(0xFFFF0000);
+
+	lpFont = new Font();
+}
+
+void CoreInit()
+{
+	float cx = float(Window_Width >> 1);
+	float cy = float(Window_Height >> 1);
+	lpShip->Move(cx, cy);
 }
 
 void CoreUnload()
@@ -90,6 +103,7 @@ void CoreUnload()
 	DeleteNull(lpBody)
 	DeleteNull(lpDynBody)
 	DeleteNull(lpSprite)
+	DeleteNull(lpFont)
 
 	DeleteHgeTexture(hDefaultBodyTexture)
 	DeleteHgeTexture(hShipTexture)
@@ -133,6 +147,7 @@ bool CoreRender()
 	lpDynBody->Render();
 	lpSprite->Render(10, 0x20);
 	lpShip->Render();
+	lpFont->Render(8, 8, "Core512 is best.\n\nControls:\n- Thrust -> Up Arrow / Down Arrow / Mouse Buttons\n- Rotate -> Left Arrow / Right Arrow / D / F\n- Reset Ship -> Space\n- Quit -> Escape");
 
 	lpHGE->Gfx_EndScene();
 
