@@ -3,6 +3,7 @@
 
 struct DynBody : public Body
 {
+	static float GlobalFriction;
 	Vertex Velocity;
 
 	DynBody(Vertex Center, float Width, float Height);

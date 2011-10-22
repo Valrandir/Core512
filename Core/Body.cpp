@@ -13,7 +13,9 @@ Body::Body(Vertex Center, HTEXTURE hTexture)
 {
 	float Width = (float)lpHGE->Texture_GetWidth(hTexture, true);
 	float Height = (float)lpHGE->Texture_GetHeight(hTexture, true);
-	Body(Center, Width, Height);
+	Rect.SetByCenter(Center.x, Center.y, Width, Height);
+	QuadFromRect(Rect, Quad);
+	Quad.tex = hTexture;
 }
 
 void Body::Move(float cx, float cy)

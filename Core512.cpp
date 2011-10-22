@@ -1,5 +1,6 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include "Core512.h"
 #include <hge.h>
 #include <hgesprite.h>
 #include "Tools.h"
@@ -7,8 +8,6 @@
 #include "Input.h"
 #include "Core\Body.h"
 #include "Core\DynBody.h"
-
-#define DeleteNull(ptr)if(ptr){delete (ptr);(ptr)=NULL;}
 
 void CoreLoad();
 void CoreUnload();
@@ -69,10 +68,10 @@ void CoreLoad()
 	lpDynBody = new DynBody(Vertex(220, 150), 16, 16);
 	lpDynBody->SetTexture(hDefaultBodyTexture);
 
-	//lpSprite = new hgeSprite(hDefaultBodyTexture, 5, 5, 5, 5);
-	lpSprite = new hgeSprite(NULL, 0, 0, 16, 16);
+	lpSprite = new hgeSprite(hDefaultBodyTexture, 0, 0, 16, 16);
+	//lpSprite = new hgeSprite(NULL, 0, 0, 16, 16);
 	lpSprite->SetColor(0xFFFF0000);
-	lpSprite->SetHotSpot(8, 8);
+	//lpSprite->SetHotSpot(8, 8);
 }
 
 void CoreUnload()
@@ -126,7 +125,7 @@ bool CoreDraw()
 	lpBody->Draw();
 	lpDynBody->Draw();
 
-	//lpSprite->Render(10, 10);
+	lpSprite->Render(10, 0x20);
 	ShipDraw();
 
 	lpHGE->Gfx_EndScene();

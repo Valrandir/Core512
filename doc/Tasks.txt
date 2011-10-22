@@ -1,3 +1,6 @@
+Data Arch
+- Consider passing structs as const reference instead of by value
+
 Data Structure
 - Add Operators to Vertex
 - Always use Vertex instead of x y
