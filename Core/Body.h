@@ -6,10 +6,7 @@
 
 struct Body
 {
-	private:
 	float RotationGradient;
-
-	public:
 	Rect Rect;
 	hgeSprite* lpSprite;
 

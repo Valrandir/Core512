@@ -4,14 +4,13 @@
 #include <hge.h>
 #include <hgesprite.h>
 #include "Input.h"
-#include "Tools.h"
 #include "Core/Ship.h"
 #include "Core/Body.h"
 #include "Core/DynBody.h"
 
 void CoreLoad();
 void CoreUnload();
-bool CoreTick();
+bool CoreUpdate();
 bool CoreRender();
 
 HGE* lpHGE;
@@ -49,7 +48,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 	lpHGE->System_SetState(HGE_SCREENBPP, 32);
 	lpHGE->System_SetState(HGE_FPS, HGEFPS_VSYNC);
 	
-	lpHGE->System_SetState(HGE_FRAMEFUNC, CoreTick);
+	lpHGE->System_SetState(HGE_FRAMEFUNC, CoreUpdate);
 	lpHGE->System_SetState(HGE_RENDERFUNC, CoreRender);
 
 	lpHGE->System_Initiate();
@@ -72,6 +71,8 @@ void CoreLoad()
 	hShipTexture = lpHGE->Texture_Load("Res\\Ship.png");
 
 	lpShip = new Ship(hShipTexture);
+	lpShip->Align(Vertex(0, 1));
+
 	lpBody = new Body(Vertex(200, 200), hDefaultBodyTexture);
 	lpDynBody = new DynBody(Vertex(220, 150), hDefaultBodyTexture);
 
@@ -90,7 +91,7 @@ void CoreUnload()
 	DeleteHgeTexture(hShipTexture)
 }
 
-bool CoreTick()
+bool CoreUpdate()
 {
 	if(lpHGE->Input_GetKeyState(HGEK_ESCAPE))
 		return true;
@@ -100,9 +101,10 @@ bool CoreTick()
 	lpDynBody->RotationOffset(0.1f);
 	lpDynBody->Update();
 
-	int dx, dy;
-	InputGetDirection(dx, dy);
+	int dx, dy, dRotate;
+	InputGetDirection(dx, dy, dRotate);
 
+	lpShip->Turn(dRotate);
 	lpShip->Thrust(dx, dy);
 	lpShip->Update();
 

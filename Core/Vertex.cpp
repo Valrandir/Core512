@@ -2,13 +2,8 @@
 
 #define Abs(val)((val) > 0 ? (val) : -(val))
 
-Vertex::Vertex() : x(0.0f), y(0.0f)
-{
-}
-
-Vertex::Vertex(float x, float y) : x(x), y(y)
-{
-}
+Vertex::Vertex() : hgeVector() {}
+Vertex::Vertex(float x, float y) : hgeVector(x, y) {}
 
 void Vertex::StabilizeEpsilon()
 {

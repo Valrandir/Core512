@@ -7,4 +7,4 @@
 #define CMD_MOVE DOWN 3
 */
 
-void InputGetDirection(int& dx, int& dy);
+void InputGetDirection(int& dx, int& dy, int& dRotate);

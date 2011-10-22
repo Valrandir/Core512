@@ -1,10 +1,8 @@
 #pragma once
+#include <hgevector.h>
 
-struct Vertex
+struct Vertex : hgeVector
 {
-	float x;
-	float y;
-
 	Vertex();
 	Vertex(float x, float y);
 
