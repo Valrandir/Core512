@@ -4,38 +4,42 @@
 Ship::Ship(HTEXTURE hTexture) : DynBody(Vertex(), hTexture), hTexture(hTexture)
 {
 	EngineForce = 100.0f;
-	//hTex = lpHGE->Texture_Load("Res\\Ship.png");
-	Move(Rect.w, Rect.h);
-}
-
-void Ship::Align(Vertex Alignment)
-{
-	this->Alignment = Alignment;
-	//Body::RotationSet(Alignment.Angle());
+	Alignment.x = 0;
+	Alignment.y = 1;
+	Body::Move(Rect.w, Rect.h);
 }
 
 void Ship::Turn(int dRotate)
 {
-	const float RotateSpeed = 0.05f;
-	//float Delta = lpHGE->Timer_GetDelta();
+	float RotateRad = CoreRad32 * 60;
+	float Delta = lpHGE->Timer_GetDelta();
+
 	if(dRotate)
 	{
-		Body::RotationOffset(dRotate * RotateSpeed/* * Delta*/);
+		RotateRad *= dRotate * Delta;
 		Alignment.x = 0;
 		Alignment.y = 1;
-		Alignment.Rotate(Body::RotationGradient);
+
+		Body::RotationOffset(RotateRad);
+		RotateRad = Body::RotationRadian;
+
+		Alignment.Rotate(RotateRad);
+		Alignment.StabilizeEpsilon();
 	}
 }
 
 //direction cound be -1, 0, or 1
-void Ship::Thrust(int dx, int dy)
+void Ship::Thrust(int ForceDirection)
 {
 	Vertex Force;
-	//Force.x = dx * EngineForce * Alignment.x;
-	//Force.y = dy * EngineForce * Alignment.y;
-	Force.x = dx * EngineForce;
-	Force.y = dy * EngineForce;
-	ApplyForce(Force);
+
+	if(ForceDirection)
+	{
+		Force.x = ForceDirection * EngineForce * Alignment.x;
+		Force.y = ForceDirection * EngineForce * Alignment.y;
+
+		ApplyForce(Force);
+	}
 }
 
 void Ship::Update()

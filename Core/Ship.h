@@ -10,9 +10,8 @@ class Ship : public DynBody
 	Vertex Alignment;
 
 	Ship(HTEXTURE hTexture);
-	void Align(Vertex Alignment);
 	void Turn(int dRotate);
-	void Thrust(int dx, int dy);
+	void Thrust(int ForceDirection);
 	void Update();
 	void Render();
 };

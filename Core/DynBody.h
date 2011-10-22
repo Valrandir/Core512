@@ -10,5 +10,6 @@ struct DynBody : public Body
 	DynBody(Vertex Center, HTEXTURE hTexture);
 
 	void ApplyForce(Vertex Force);
+	void HardStop();
 	void Update();
 };

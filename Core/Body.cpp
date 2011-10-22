@@ -3,7 +3,7 @@
 
 void Body::Init(Vertex Center, float Width, float Height, HTEXTURE hTexture)
 {
-	RotationGradient = 0.0f;
+	RotationRadian = 0.0f;
 	Rect.SetByCenter(Center.x, Center.y, Width, Height);
 	lpSprite = new hgeSprite(hTexture, 0, 0, Width, Height);
 	lpSprite->SetHotSpot(Width / 2, Height / 2);
@@ -31,23 +31,23 @@ void Body::TextureSet(HTEXTURE hTexture)
 	lpSprite->SetTexture(hTexture);
 }
 
-void Body::RotationSet(float RotationGradient)
+void Body::RotationSet(float RotationRadian)
 {
-	if(RotationGradient < 0)
-		RotationGradient = CorePI2 + RotationGradient;
+	if(RotationRadian < 0)
+		RotationRadian = CoreRad1 + RotationRadian;
 
-	if(RotationGradient > CorePI2)
-		RotationGradient = RotationGradient - CorePI2;
+	if(RotationRadian > CoreRad1)
+		RotationRadian = RotationRadian - CoreRad1;
 
-	if(RotationGradient < 0 || RotationGradient > CorePI2)
-		RotationGradient = 0;
+	if(RotationRadian < 0 || RotationRadian > CoreRad1)
+		RotationRadian = 0;
 
-	this->RotationGradient = RotationGradient;
+	this->RotationRadian = RotationRadian;
 }
 
-void Body::RotationOffset(float OffsetGradient)
+void Body::RotationOffset(float OffsetRadian)
 {
-	RotationSet(RotationGradient + OffsetGradient);
+	RotationSet(RotationRadian + OffsetRadian);
 }
 
 void Body::Move(float cx, float cy)
@@ -57,8 +57,8 @@ void Body::Move(float cx, float cy)
 
 void Body::Render()
 {
-	if(RotationGradient)
-		lpSprite->RenderEx(Rect.cx, Rect.cy, RotationGradient);
+	if(RotationRadian)
+		lpSprite->RenderEx(Rect.cx, Rect.cy, RotationRadian);
 	else
 		lpSprite->Render(Rect.cx, Rect.cy);
 }

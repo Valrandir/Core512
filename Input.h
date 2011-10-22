@@ -1,10 +1,6 @@
 #pragma once
 
-/*
-#define CMD_MOVE_LEFT 0
-#define CMD_MOVE_RIGHT 1
-#define CMD_MOVE_UP 2
-#define CMD_MOVE DOWN 3
-*/
+#define CMD_SHIP_RESET 1
 
-void InputGetDirection(int& dx, int& dy, int& dRotate);
+int InputGetCommand();
+void InputGetDirection(int& ForceDirection, int& RotationDirection);

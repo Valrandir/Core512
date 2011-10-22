@@ -1,23 +1,25 @@
 #include "Core512.h"
 #include "Input.h"
 
-void InputGetDirection(int& dx, int& dy, int& dRotate)
+int InputGetCommand()
 {
-	dx = 0;
-	if(lpHGE->Input_GetKeyState(HGEK_LEFT))
-		dx += -1;
-	if(lpHGE->Input_GetKeyState(HGEK_RIGHT))
-		dx += 1;
+	if(lpHGE->Input_GetKeyState(HGEK_SPACE))
+		return CMD_SHIP_RESET;
 
-	dy = 0;
+	return 0;
+}
+
+void InputGetDirection(int& ForceDirection, int& RotationDirection)
+{
+	ForceDirection = 0;
 	if(lpHGE->Input_GetKeyState(HGEK_UP) || lpHGE->Input_GetKeyState(HGEK_LBUTTON))
-		dy += -1;
+		ForceDirection += -1;
 	if(lpHGE->Input_GetKeyState(HGEK_DOWN) || lpHGE->Input_GetKeyState(HGEK_RBUTTON))
-		dy += 1;
+		ForceDirection += 1;
 
-	dRotate = 0;
-	if(lpHGE->Input_GetKeyState(HGEK_D))
-		dRotate += -1;
-	if(lpHGE->Input_GetKeyState(HGEK_F))
-		dRotate += 1;
+	RotationDirection = 0;
+	if(lpHGE->Input_GetKeyState(HGEK_LEFT) || lpHGE->Input_GetKeyState(HGEK_D))
+		RotationDirection += -1;
+	if(lpHGE->Input_GetKeyState(HGEK_RIGHT) || lpHGE->Input_GetKeyState(HGEK_F))
+		RotationDirection += 1;
 }

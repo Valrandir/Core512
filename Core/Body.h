@@ -6,7 +6,7 @@
 
 struct Body
 {
-	float RotationGradient;
+	float RotationRadian;
 	Rect Rect;
 	hgeSprite* lpSprite;
 
@@ -16,8 +16,8 @@ struct Body
 	~Body();
 
 	void TextureSet(HTEXTURE hTexture);
-	void RotationSet(float RotationGradient);
-	void RotationOffset(float OffsetGradient);
+	void RotationSet(float RotationRadian);
+	void RotationOffset(float OffsetRadian);
 	void Move(float cx, float cy);
 	void Render();
 };

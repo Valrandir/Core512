@@ -1,7 +1,7 @@
 #include "../Core512.h"
 #include "DynBody.h"
 
-float DynBody::GlobalFriction = 0.9f;
+float DynBody::GlobalFriction = 0.97f;
 
 DynBody::DynBody(Vertex Center, float Width, float Height) : Body(Center, Width, Height)
 {
@@ -16,6 +16,12 @@ void DynBody::ApplyForce(Vertex Force)
 	Velocity.x += Force.x;
 	Velocity.y += Force.y;
 	Velocity.StabilizeEpsilon();
+}
+
+void DynBody::HardStop()
+{
+	Velocity.x = 0;
+	Velocity.y = 0;
 }
 
 void DynBody::Update()

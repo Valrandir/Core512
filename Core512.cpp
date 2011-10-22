@@ -16,11 +16,16 @@ bool CoreRender();
 HGE* lpHGE;
 
 //#define small
+//#define medium
+#define big
 
 #ifdef small
-	int Window_Width = 800 / 2;
-	int Window_Height = 600 / 2;
-#else
+	int Window_Width = 400;
+	int Window_Height = 300;
+#elif defined medium
+	int Window_Width = 1024;
+	int Window_Height = 768;
+#elif defined big
 	int Window_Width = 1920;
 	int Window_Height = 1200;
 #endif
@@ -71,7 +76,6 @@ void CoreLoad()
 	hShipTexture = lpHGE->Texture_Load("Res\\Ship.png");
 
 	lpShip = new Ship(hShipTexture);
-	lpShip->Align(Vertex(0, 1));
 
 	lpBody = new Body(Vertex(200, 200), hDefaultBodyTexture);
 	lpDynBody = new DynBody(Vertex(220, 150), hDefaultBodyTexture);
@@ -101,11 +105,20 @@ bool CoreUpdate()
 	lpDynBody->RotationOffset(0.1f);
 	lpDynBody->Update();
 
-	int dx, dy, dRotate;
-	InputGetDirection(dx, dy, dRotate);
+	int Command = InputGetCommand();
+	if(Command == CMD_SHIP_RESET)
+	{
+		float cx = float(Window_Width >> 1);
+		float cy = float(Window_Height >> 1);
+		lpShip->Move(cx, cy);
+		lpShip->HardStop();
+	}
 
-	lpShip->Turn(dRotate);
-	lpShip->Thrust(dx, dy);
+	int ForceDirection, RotationDirection;
+	InputGetDirection(ForceDirection, RotationDirection);
+
+	lpShip->Turn(RotationDirection);
+	lpShip->Thrust(ForceDirection);
 	lpShip->Update();
 
 	return false;
