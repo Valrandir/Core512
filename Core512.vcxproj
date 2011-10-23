@@ -96,6 +96,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="Core512.cpp" />
     <ClCompile Include="Core\Body.cpp" />
     <ClCompile Include="Core\DynBody.cpp" />
@@ -108,6 +109,7 @@
     <ClCompile Include="Tools.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h" />
     <ClInclude Include="Core512.h" />
     <ClInclude Include="Core\Body.h" />
     <ClInclude Include="Core\DynBody.h" />
@@ -116,12 +118,20 @@
     <ClInclude Include="Core\Vertex.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Music.h" />
+    <ClInclude Include="Particle.h" />
     <ClInclude Include="TextOut.h" />
     <ClInclude Include="Tools.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="doc\Tasks.txt" />
+    <None Include="Res\Background1.png" />
+    <None Include="Res\Background2.png" />
+    <None Include="Res\Background3.png" />
+    <None Include="Res\Background4.png" />
+    <None Include="Res\Background5.png" />
     <None Include="Res\Body.png" />
+    <None Include="Res\HgeFont.fnt" />
+    <None Include="Res\HgeFont.png" />
     <None Include="Res\Ship.png">
       <FileType>Document</FileType>
       <DeploymentContent>false</DeploymentContent>

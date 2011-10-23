@@ -9,9 +9,12 @@
 #include "Core/DynBody.h"
 #include "TextOut.h"
 #include "Music.h"
+#include "Background.h"
+#include "Particle.h"
 
 void CoreLoad();
 void CoreInit();
+void CoreInput();
 void CoreUnload();
 bool CoreUpdate();
 bool CoreRender();
@@ -19,6 +22,8 @@ bool CoreRender();
 HGE* lpHGE;
 int WindowWidth = 640;
 int WindowHeight = 480;
+
+const char* HelpText = "Core512 is best.\n\nControls :\n- Thrust -> Up Arrow / Down Arrow / Mouse Buttons\n- Rotate -> Left Arrow / Right Arrow / D / F\n- Reset Ship -> Space\n- Toggle Background -> T\n- Quit -> Escape";
 
 HTEXTURE hDefaultBodyTexture = NULL;
 HTEXTURE hShipTexture = NULL;
@@ -28,6 +33,8 @@ DynBody* lpDynBody = NULL;
 hgeSprite* lpSprite = NULL;
 Font* lpFont = NULL;
 Music* lpMusic = NULL;
+Background* lpBackground = NULL;
+ParticleSys* lpParticleSys = NULL;
 
 //Size is 75% of screen size
 void CalculateAppSize(int& Width, int& Height)
@@ -90,6 +97,8 @@ void CoreLoad()
 
 	lpFont = new Font();
 	lpMusic = new Music();
+	lpBackground = new Background();
+	lpParticleSys = new ParticleSys();
 }
 
 void CoreInit()
@@ -99,6 +108,8 @@ void CoreInit()
 	lpShip->Move(cx, cy);
 
 	lpMusic->Play();
+
+	MessageBox(lpHGE->System_GetState(HGE_HWND), HelpText, "Core512", MB_OK | MB_ICONINFORMATION);
 }
 
 void CoreUnload()
@@ -109,22 +120,17 @@ void CoreUnload()
 	DeleteNull(lpSprite)
 	DeleteNull(lpFont)
 	DeleteNull(lpMusic)
+	DeleteNull(lpBackground);
+	DeleteNull(lpParticleSys)
 
 	DeleteHgeTexture(hDefaultBodyTexture)
 	DeleteHgeTexture(hShipTexture)
 }
 
-bool CoreUpdate()
+void CoreInput()
 {
-	if(lpHGE->Input_GetKeyState(HGEK_ESCAPE))
-		return true;
-
-	Vertex Force(1.0f, 0.0f);
-	lpDynBody->ApplyForce(Force);
-	lpDynBody->RotationOffset(0.1f);
-	lpDynBody->Update();
-
 	int Command = InputGetCommand();
+
 	if(Command == CMD_SHIP_RESET)
 	{
 		float cx = float(WindowWidth >> 1);
@@ -132,6 +138,22 @@ bool CoreUpdate()
 		lpShip->Move(cx, cy);
 		lpShip->HardStop();
 	}
+
+	if(Command == CMD_BACKGROUND_TOGGLE)
+		lpBackground->Toggle();
+}
+
+bool CoreUpdate()
+{
+	if(lpHGE->Input_GetKeyState(HGEK_ESCAPE))
+		return true;
+
+	CoreInput();
+
+	Vertex Force(1.0f, 0.0f);
+	lpDynBody->ApplyForce(Force);
+	lpDynBody->RotationOffset(0.1f);
+	lpDynBody->Update();
 
 	int ForceDirection, RotationDirection;
 	InputGetDirection(ForceDirection, RotationDirection);
@@ -148,12 +170,13 @@ bool CoreRender()
 	lpHGE->Gfx_BeginScene();
 	lpHGE->Gfx_Clear(ARGB(0xFF, 0xFF, 0xFF, 0xFF));
 
+	lpBackground->Render((float)WindowWidth, (float)WindowHeight);
 	lpBody->Render();
 	lpDynBody->Render();
 	lpSprite->Render(10, 0x20);
 	lpShip->Render();
-	lpFont->Render(8, 8, "Core512 is best.\n\nControls :\n- Thrust -> Up Arrow / Down Arrow / Mouse Buttons\n- Rotate -> Left Arrow / Right Arrow / D / F\n- Reset Ship -> Space\n- Quit -> Escape");
-	lpFont->RenderFPS(8, 220);
+	lpFont->Render(8, 8, HelpText);
+	lpFont->RenderFPS(8, 250);
 
 	lpHGE->Gfx_EndScene();
 

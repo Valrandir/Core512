@@ -21,6 +21,7 @@
     </ClCompile>
     <ClCompile Include="TextOut.cpp" />
     <ClCompile Include="Music.cpp" />
+    <ClCompile Include="Background.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input.h" />
@@ -43,6 +44,8 @@
     </ClInclude>
     <ClInclude Include="TextOut.h" />
     <ClInclude Include="Music.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="Background.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Res">
@@ -63,6 +66,27 @@
       <Filter>doc</Filter>
     </None>
     <None Include="Res\Body.png">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="Res\Background1.png">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="Res\Background2.png">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="Res\Background3.png">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="Res\Background4.png">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="Res\Background5.png">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="Res\HgeFont.png">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="Res\HgeFont.fnt">
       <Filter>Res</Filter>
     </None>
   </ItemGroup>

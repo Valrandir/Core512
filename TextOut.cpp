@@ -4,7 +4,7 @@
 Font::Font()
 {
 	lpFont = new hgeFont("Res/HgeFont.fnt");
-	lpFont->SetColor(0xFF000000);
+	lpFont->SetColor(0xFF0000FF);
 }
 
 Font::~Font()
