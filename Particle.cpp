@@ -1,7 +1,6 @@
 #include "Core512.h"
 #include "Particle.h"
 
-
 ParticleSys::ParticleSys()
 {
 	hgeParticleSystemInfo psi = {0};
