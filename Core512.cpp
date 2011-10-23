@@ -10,7 +10,6 @@
 #include "TextOut.h"
 #include "Music.h"
 #include "Background.h"
-#include "Particle.h"
 
 void CoreLoad();
 void CoreInit();
@@ -34,7 +33,6 @@ hgeSprite* lpSprite = NULL;
 Font* lpFont = NULL;
 Music* lpMusic = NULL;
 Background* lpBackground = NULL;
-ParticleSys* lpParticleSys = NULL;
 
 //Size is 75% of screen size
 void CalculateAppSize(int& Width, int& Height)
@@ -98,7 +96,6 @@ void CoreLoad()
 	lpFont = new Font();
 	lpMusic = new Music();
 	lpBackground = new Background();
-	lpParticleSys = new ParticleSys();
 }
 
 void CoreInit()
@@ -121,7 +118,6 @@ void CoreUnload()
 	DeleteNull(lpFont)
 	DeleteNull(lpMusic)
 	DeleteNull(lpBackground);
-	DeleteNull(lpParticleSys)
 
 	DeleteHgeTexture(hDefaultBodyTexture)
 	DeleteHgeTexture(hShipTexture)
@@ -162,8 +158,6 @@ bool CoreUpdate()
 	lpShip->Thrust(ForceDirection);
 	lpShip->Update();
 
-	lpParticleSys->Update(lpShip->Rect.cx, lpShip->Rect.cy, lpShip->RotationRadian + CoreRad4);
-
 	return false;
 }
 
@@ -177,7 +171,6 @@ bool CoreRender()
 	lpDynBody->Render();
 	lpSprite->Render(10, 0x20);
 	lpShip->Render();
-	lpParticleSys->Render();
 	lpFont->Render(8, 8, HelpText);
 	lpFont->RenderFPS(8, 250);
 

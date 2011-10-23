@@ -33,7 +33,7 @@ ParticleSys::ParticleSys()
 	psi.fSpinEnd = CoreRad1;
 	psi.fSpinVar = 1.0f;
 	psi.colColorStart = 0xA0FF4000;
-	psi.colColorEnd = 0x00808080;
+	psi.colColorEnd = 0x25000000;
 	psi.fColorVar = 0.125;
 	psi.fAlphaVar = 0.125;
 
