@@ -8,6 +8,7 @@
 #include "Core/Body.h"
 #include "Core/DynBody.h"
 #include "TextOut.h"
+#include "Music.h"
 
 void CoreLoad();
 void CoreInit();
@@ -26,12 +27,13 @@ Body* lpBody = NULL;
 DynBody* lpDynBody = NULL;
 hgeSprite* lpSprite = NULL;
 Font* lpFont = NULL;
+Music* lpMusic = NULL;
 
 //Size is 75% of screen size
 void CalculateAppSize(int& Width, int& Height)
 {
-	Width = GetSystemMetrics(SM_CXSCREEN) * 0.75;
-	Height = GetSystemMetrics(SM_CYSCREEN) * 0.75;
+	Width = int(GetSystemMetrics(SM_CXSCREEN) * 0.75);
+	Height = int(GetSystemMetrics(SM_CYSCREEN) * 0.75);
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
@@ -41,9 +43,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 	lpHGE = hgeCreate(HGE_VERSION);
 
 	lpHGE->System_SetState(HGE_TITLE, "Core512");
-	lpHGE->System_SetState(HGE_USESOUND, false);
+	lpHGE->System_SetState(HGE_USESOUND, true);
 	lpHGE->System_SetState(HGE_SHOWSPLASH, false);
 	lpHGE->System_SetState(HGE_HIDEMOUSE, false);
+
+	#ifdef _DEBUG
+		lpHGE->System_SetState(HGE_LOGFILE, "LogFile.txt");
+	#endif
 
 	lpHGE->System_SetState(HGE_WINDOWED, true);
 	lpHGE->System_SetState(HGE_SCREENWIDTH, WindowWidth);
@@ -83,6 +89,7 @@ void CoreLoad()
 	lpSprite->SetColor(0xFFFF0000);
 
 	lpFont = new Font();
+	lpMusic = new Music();
 }
 
 void CoreInit()
@@ -90,6 +97,8 @@ void CoreInit()
 	float cx = float(WindowWidth >> 1);
 	float cy = float(WindowHeight >> 1);
 	lpShip->Move(cx, cy);
+
+	lpMusic->Play();
 }
 
 void CoreUnload()
@@ -99,6 +108,7 @@ void CoreUnload()
 	DeleteNull(lpDynBody)
 	DeleteNull(lpSprite)
 	DeleteNull(lpFont)
+	DeleteNull(lpMusic)
 
 	DeleteHgeTexture(hDefaultBodyTexture)
 	DeleteHgeTexture(hShipTexture)

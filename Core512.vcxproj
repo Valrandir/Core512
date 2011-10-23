@@ -103,6 +103,7 @@
     <ClCompile Include="Core\Ship.cpp" />
     <ClCompile Include="Core\Vertex.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="TextOut.cpp" />
     <ClCompile Include="Tools.cpp" />
   </ItemGroup>
@@ -114,6 +115,7 @@
     <ClInclude Include="Core\Ship.h" />
     <ClInclude Include="Core\Vertex.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="TextOut.h" />
     <ClInclude Include="Tools.h" />
   </ItemGroup>
