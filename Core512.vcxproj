@@ -105,6 +105,7 @@
     <ClCompile Include="Core\Vertex.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Music.cpp" />
+    <ClCompile Include="Particle.cpp" />
     <ClCompile Include="TextOut.cpp" />
     <ClCompile Include="Tools.cpp" />
   </ItemGroup>

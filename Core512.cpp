@@ -162,6 +162,8 @@ bool CoreUpdate()
 	lpShip->Thrust(ForceDirection);
 	lpShip->Update();
 
+	lpParticleSys->Update(lpShip->Rect.cx, lpShip->Rect.cy, lpShip->RotationRadian + CoreRad4);
+
 	return false;
 }
 
@@ -175,6 +177,7 @@ bool CoreRender()
 	lpDynBody->Render();
 	lpSprite->Render(10, 0x20);
 	lpShip->Render();
+	lpParticleSys->Render();
 	lpFont->Render(8, 8, HelpText);
 	lpFont->RenderFPS(8, 250);
 

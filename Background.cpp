@@ -30,7 +30,7 @@ void Background::Toggle()
 		if(Tick - TickLastToggle < 250)
 			return;
 
-	if(++Index >= BackgroundCount)
+	if(++Index > BackgroundCount)
 		Index = 0;
 
 	TickLastToggle = Tick;
@@ -38,7 +38,8 @@ void Background::Toggle()
 
 void Background::Render(float Width, float Height)
 {
-	lpSprite[Index]->Render4V(0.0f, 0.0f, Width, 0.0f, Width, Height, 0.0f, Height);
+	if(Index)
+		lpSprite[Index - 1]->Render4V(0.0f, 0.0f, Width, 0.0f, Width, Height, 0.0f, Height);
 }
 
 hgeSprite* Background::LoadAsSprite(HTEXTURE hTexture)
