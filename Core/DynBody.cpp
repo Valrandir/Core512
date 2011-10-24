@@ -26,7 +26,7 @@ void DynBody::HardStop()
 
 void DynBody::Update()
 {
-	float Delta = lpHGE->Timer_GetDelta();
+	float Delta = exHGE->Timer_GetDelta();
 	float x = Rect.cx;
 	float y = Rect.cy;
 

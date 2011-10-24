@@ -3,11 +3,11 @@
 
 Background::Background() : Index(0), TickLastToggle(0)
 {
-	hTexture[0] = lpHGE->Texture_Load("Res\\Background1.png");
-	hTexture[1] = lpHGE->Texture_Load("Res\\Background2.png");
-	hTexture[2] = lpHGE->Texture_Load("Res\\Background3.png");
-	hTexture[3] = lpHGE->Texture_Load("Res\\Background4.png");
-	hTexture[4] = lpHGE->Texture_Load("Res\\Background5.png");
+	hTexture[0] = exResources.GetTexture("Res\\Background1.png")->hTexture;
+	hTexture[1] = exResources.GetTexture("Res\\Background2.png")->hTexture;
+	hTexture[2] = exResources.GetTexture("Res\\Background3.png")->hTexture;
+	hTexture[3] = exResources.GetTexture("Res\\Background4.png")->hTexture;
+	hTexture[4] = exResources.GetTexture("Res\\Background5.png")->hTexture;
 
 	for(int i = 0; i < BackgroundCount; ++i)
 		lpSprite[i] = LoadAsSprite(hTexture[i]);
@@ -44,7 +44,7 @@ void Background::Render(float Width, float Height)
 
 hgeSprite* Background::LoadAsSprite(HTEXTURE hTexture)
 {
-	float width = lpHGE->Texture_GetWidth(hTexture);
-	float height = lpHGE->Texture_GetHeight(hTexture);
+	float width, height;
+	Texture::GetSize(hTexture, width, height);
 	return new hgeSprite(hTexture, 0, 0, width, height);
 }

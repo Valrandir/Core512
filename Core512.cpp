@@ -1,7 +1,6 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include "Core512.h"
-#include <hge.h>
 #include <hgesprite.h>
 #include "Input.h"
 #include "Core/Ship.h"
@@ -18,7 +17,10 @@ void CoreUnload();
 bool CoreUpdate();
 bool CoreRender();
 
-HGE* lpHGE;
+HGE* exHGE;
+Config exConfig;
+Resources exResources;
+
 int WindowWidth = 640;
 int WindowHeight = 480;
 
@@ -45,45 +47,45 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
 	CalculateAppSize(WindowWidth, WindowHeight);
 
-	lpHGE = hgeCreate(HGE_VERSION);
+	exHGE = hgeCreate(HGE_VERSION);
 
-	lpHGE->System_SetState(HGE_TITLE, "Core512");
-	lpHGE->System_SetState(HGE_USESOUND, true);
-	lpHGE->System_SetState(HGE_SHOWSPLASH, false);
-	lpHGE->System_SetState(HGE_HIDEMOUSE, false);
+	exHGE->System_SetState(HGE_TITLE, "Core512");
+	exHGE->System_SetState(HGE_USESOUND, true);
+	exHGE->System_SetState(HGE_SHOWSPLASH, false);
+	exHGE->System_SetState(HGE_HIDEMOUSE, false);
 
 	#ifdef _DEBUG
-		lpHGE->System_SetState(HGE_LOGFILE, "LogFile.txt");
+		exHGE->System_SetState(HGE_LOGFILE, "LogFile.txt");
 	#endif
 
-	lpHGE->System_SetState(HGE_WINDOWED, true);
-	lpHGE->System_SetState(HGE_SCREENWIDTH, WindowWidth);
-	lpHGE->System_SetState(HGE_SCREENHEIGHT, WindowHeight);
-	lpHGE->System_SetState(HGE_SCREENBPP, 32);
-	lpHGE->System_SetState(HGE_FPS, HGEFPS_VSYNC);
+	exHGE->System_SetState(HGE_WINDOWED, true);
+	exHGE->System_SetState(HGE_SCREENWIDTH, WindowWidth);
+	exHGE->System_SetState(HGE_SCREENHEIGHT, WindowHeight);
+	exHGE->System_SetState(HGE_SCREENBPP, 32);
+	exHGE->System_SetState(HGE_FPS, HGEFPS_VSYNC);
 
-	lpHGE->System_SetState(HGE_FRAMEFUNC, CoreUpdate);
-	lpHGE->System_SetState(HGE_RENDERFUNC, CoreRender);
+	exHGE->System_SetState(HGE_FRAMEFUNC, CoreUpdate);
+	exHGE->System_SetState(HGE_RENDERFUNC, CoreRender);
 
-	lpHGE->System_Initiate();
+	exHGE->System_Initiate();
 
 	CoreLoad();
 	CoreInit();
 
-	lpHGE->System_Start();
+	exHGE->System_Start();
 
 	CoreUnload();
 
-	lpHGE->System_Shutdown();
-	lpHGE->Release();
+	exHGE->System_Shutdown();
+	exHGE->Release();
 
 	return 0;
 }
 
 void CoreLoad()
 {
-	hDefaultBodyTexture = lpHGE->Texture_Load("Res\\Body.png");
-	hShipTexture = lpHGE->Texture_Load("Res\\Ship.png");
+	hDefaultBodyTexture = exResources.GetTexture("Res\\Body.png")->hTexture;
+	hShipTexture = exResources.GetTexture("Res\\Ship.png")->hTexture;
 
 	lpShip = new Ship(hShipTexture);
 
@@ -106,7 +108,7 @@ void CoreInit()
 
 	lpMusic->Play();
 
-	MessageBox(lpHGE->System_GetState(HGE_HWND), HelpText, "Core512", MB_OK | MB_ICONINFORMATION);
+	MessageBox(exHGE->System_GetState(HGE_HWND), HelpText, "Core512", MB_OK | MB_ICONINFORMATION);
 }
 
 void CoreUnload()
@@ -118,9 +120,6 @@ void CoreUnload()
 	DeleteNull(lpFont)
 	DeleteNull(lpMusic)
 	DeleteNull(lpBackground);
-
-	DeleteHgeTexture(hDefaultBodyTexture)
-	DeleteHgeTexture(hShipTexture)
 }
 
 void CoreInput()
@@ -141,7 +140,7 @@ void CoreInput()
 
 bool CoreUpdate()
 {
-	if(lpHGE->Input_GetKeyState(HGEK_ESCAPE))
+	if(exHGE->Input_GetKeyState(HGEK_ESCAPE))
 		return true;
 
 	CoreInput();
@@ -163,8 +162,8 @@ bool CoreUpdate()
 
 bool CoreRender()
 {
-	lpHGE->Gfx_BeginScene();
-	lpHGE->Gfx_Clear(ARGB(0xFF, 0xFF, 0xFF, 0xFF));
+	exHGE->Gfx_BeginScene();
+	exHGE->Gfx_Clear(ARGB(0xFF, 0xFF, 0xFF, 0xFF));
 
 	lpBackground->Render((float)WindowWidth, (float)WindowHeight);
 	lpBody->Render();
@@ -174,7 +173,7 @@ bool CoreRender()
 	lpFont->Render(8, 8, HelpText);
 	lpFont->RenderFPS(8, 250);
 
-	lpHGE->Gfx_EndScene();
+	exHGE->Gfx_EndScene();
 
 	return false;
 }

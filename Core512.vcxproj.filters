@@ -4,49 +4,67 @@
     <ClCompile Include="Core512.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Tools.cpp" />
-    <ClCompile Include="Core\Body.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Vertex.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Rect.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\DynBody.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Ship.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="TextOut.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="Core\Body.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Vertex.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Config.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\DynBody.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Rect.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Resources.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Ship.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Texture.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input.h" />
     <ClInclude Include="Tools.h" />
-    <ClInclude Include="Core\Body.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Vertex.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Rect.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\DynBody.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Core512.h" />
-    <ClInclude Include="Core\Ship.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="TextOut.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Core\Body.h">
+      <Filter>Core\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Config.h">
+      <Filter>Core\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\DynBody.h">
+      <Filter>Core\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Rect.h">
+      <Filter>Core\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Resources.h">
+      <Filter>Core\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Ship.h">
+      <Filter>Core\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Texture.h">
+      <Filter>Core\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Vertex.h">
+      <Filter>Core\Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Res">
@@ -57,6 +75,14 @@
     </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{a86c9300-e2a1-4146-9171-45d2f8726782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Include">
+      <UniqueIdentifier>{ba222e11-22be-47de-8712-6610747e7ab1}</UniqueIdentifier>
+      <Extensions>
+      </Extensions>
+    </Filter>
+    <Filter Include="Core\Src">
+      <UniqueIdentifier>{417308a7-0a87-44e5-a1b6-b918a916f0a4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

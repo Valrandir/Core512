@@ -19,6 +19,6 @@ void Font::Render(float x, float y, const char* Text)
 
 void Font::RenderFPS(float x, float y)
 {
-	int FPS = 1 + lpHGE->Timer_GetFPS();
+	int FPS = 1 + exHGE->Timer_GetFPS();
 	lpFont->printf(x, y, HGETEXT_LEFT, "FPS : %d", FPS);
 }

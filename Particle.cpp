@@ -3,11 +3,13 @@
 
 ParticleSys::ParticleSys()
 {
+	Texture* lpTexture;
+	float width, height;
 	hgeParticleSystemInfo psi = {0};
 
-	hTexture = lpHGE->Texture_Load("Res\\Particle.png");
-	float width = (float)lpHGE->Texture_GetWidth(hTexture);
-	float height = (float)lpHGE->Texture_GetHeight(hTexture);
+	lpTexture = exResources.GetTexture("Res\\Particle.png");
+	lpTexture->GetSize(width, height);
+	hTexture = lpTexture->hTexture;
 	lpSprite = new hgeSprite(hTexture, 0, 0, width, height);
 	lpSprite->SetHotSpot(width / 2, height / 2);
 
@@ -49,7 +51,7 @@ ParticleSys::~ParticleSys()
 
 void ParticleSys::Update(float x, float y, float DirectionRad)
 {
-	float Delta = lpHGE->Timer_GetDelta();
+	float Delta = exHGE->Timer_GetDelta();
 
 	lpSys->info.fDirection = DirectionRad;
 	lpSys->FireAt(x, y);

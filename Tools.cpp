@@ -13,7 +13,7 @@ void RenderSquare(float x, float y, float size)
 	Quad.v[2].col = 0xFFFF0000;
 	Quad.v[3].col = 0xFFFFFFFF;
 
-	lpHGE->Gfx_RenderQuad(&Quad);
+	exHGE->Gfx_RenderQuad(&Quad);
 }
 
 void QuadCreate(float Width, float Height, hgeQuad& Quad)

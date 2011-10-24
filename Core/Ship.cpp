@@ -20,7 +20,7 @@ Ship::~Ship()
 void Ship::Turn(int dRotate)
 {
 	float RotateRad = CoreRad32 * 60;
-	float Delta = lpHGE->Timer_GetDelta();
+	float Delta = exHGE->Timer_GetDelta();
 
 	if(dRotate)
 	{

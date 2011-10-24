@@ -16,8 +16,8 @@ Body::Body(Vertex Center, float Width, float Height)
 
 Body::Body(Vertex Center, HTEXTURE hTexture)
 {
-	float Width = (float)lpHGE->Texture_GetWidth(hTexture, true);
-	float Height = (float)lpHGE->Texture_GetHeight(hTexture, true);
+	float Width, Height;
+	Texture::GetSize(hTexture, Width, Height, true);
 	Init(Center, Width, Height, hTexture);
 }
 
