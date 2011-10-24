@@ -36,7 +36,7 @@ void Ship::Turn(int dRotate)
 	}
 }
 
-//direction cound be -1, 0, or 1
+//direction cound be -1, or 1
 void Ship::Thrust(int ForceDirection)
 {
 	Vertex Force;
@@ -55,22 +55,26 @@ void Ship::Update()
 	DynBody::Update();
 
 	Vertex pp[2];
-	pp[0].x = Rect.cx;
-	pp[0].y = Rect.cy;
-	pp[1].x = Rect.cx;
-	pp[1].y = Rect.cy;
-	//pp[0].x = Rect.x1 + 16;
-	//pp[0].y = Rect.y2 - 8;
-	//pp[1].x = Rect.x2 - 16;
-	//pp[1].y = Rect.y2 - 8;
+	pp[0].x = Rect.x1 - Rect.cx + 16;
+	pp[0].y = Rect.y2 - Rect.cy - 8;
+	pp[1].x = Rect.x2 - Rect.cx - 16;
+	pp[1].y = Rect.y2 - Rect.cy - 8;
 
-	lpParticle[0]->Update(pp[0].x, pp[0].y, RotationRadian + CoreRad4 - CoreRad16);
-	lpParticle[1]->Update(pp[1].x, pp[1].y, RotationRadian + CoreRad4 + CoreRad16);
+	pp[0].Rotate(RotationRadian);
+	pp[1].Rotate(RotationRadian);
+
+	pp[0].x += Rect.cx;
+	pp[0].y += Rect.cy;
+	pp[1].x += Rect.cx;
+	pp[1].y += Rect.cy;
+
+	lpParticle[0]->Update(pp[0].x, pp[0].y, RotationRadian + CoreRad4 + CoreRad16);
+	lpParticle[1]->Update(pp[1].x, pp[1].y, RotationRadian + CoreRad4 - CoreRad16);
 }
 
 void Ship::Render()
 {
+	Body::Render();
 	lpParticle[0]->Render();
 	lpParticle[1]->Render();
-	Body::Render();
 }
