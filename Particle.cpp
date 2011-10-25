@@ -46,7 +46,6 @@ ParticleSys::~ParticleSys()
 	lpSys->Stop();
 	DeleteNull(lpSys);
 	DeleteNull(lpSprite);
-	DeleteHgeTexture(hTexture);
 }
 
 void ParticleSys::Update(float x, float y, float DirectionRad)

@@ -39,7 +39,7 @@ void Background::Toggle()
 
 void Background::Clear() const
 {
-	exHGE->Gfx_Clear(0xFF000000);
+	exHGE->Gfx_Clear(exConfig.BackGroundColor);
 }
 
 void Background::Render(int ScreenWidth, int ScreenHeight) const

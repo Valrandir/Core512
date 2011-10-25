@@ -51,11 +51,15 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -74,12 +78,16 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -106,6 +114,7 @@
     <ClCompile Include="Core\Ship.cpp" />
     <ClCompile Include="Core\Texture.cpp" />
     <ClCompile Include="Core\Vertex.cpp" />
+    <ClCompile Include="FileINI.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="Particle.cpp" />
@@ -123,6 +132,7 @@
     <ClInclude Include="Core\Ship.h" />
     <ClInclude Include="Core\Texture.h" />
     <ClInclude Include="Core\Vertex.h" />
+    <ClInclude Include="FileINI.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Particle.h" />
@@ -130,6 +140,8 @@
     <ClInclude Include="Tools.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Core512.ico" />
+    <None Include="Core512.ini" />
     <None Include="doc\Tasks.txt" />
     <None Include="Res\Background1.png" />
     <None Include="Res\Background2.png" />
@@ -139,10 +151,14 @@
     <None Include="Res\Body.png" />
     <None Include="Res\HgeFont.fnt" />
     <None Include="Res\HgeFont.png" />
+    <None Include="Res\Particle.png" />
     <None Include="Res\Ship.png">
       <FileType>Document</FileType>
       <DeploymentContent>false</DeploymentContent>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinRes.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -32,6 +32,7 @@
     <ClCompile Include="Core\Vertex.cpp">
       <Filter>Core\Src</Filter>
     </ClCompile>
+    <ClCompile Include="FileINI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input.h" />
@@ -65,6 +66,7 @@
     <ClInclude Include="Core\Vertex.h">
       <Filter>Core\Include</Filter>
     </ClInclude>
+    <ClInclude Include="FileINI.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Res">
@@ -116,5 +118,13 @@
     <None Include="Res\HgeFont.fnt">
       <Filter>Res</Filter>
     </None>
+    <None Include="Res\Particle.png">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="Core512.ico" />
+    <None Include="Core512.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinRes.rc" />
   </ItemGroup>
 </Project>

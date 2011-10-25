@@ -10,6 +10,7 @@
 #include "Music.h"
 #include "Background.h"
 
+void CalculateAppSize(int& Width, int& Height);
 void CoreLoad();
 void CoreInit();
 void CoreInput();
@@ -20,9 +21,6 @@ bool CoreRender();
 HGE* exHGE;
 Config exConfig;
 Resources exResources;
-
-int WindowWidth = 640;
-int WindowHeight = 480;
 
 const char* HelpText = "Core512 is best.\n\nControls :\n- Thrust -> Up Arrow / Down Arrow / Mouse Buttons\n- Rotate -> Left Arrow / Right Arrow / D / F\n- Reset Ship -> Space\n- Toggle Background -> T\n- Quit -> Escape";
 
@@ -36,31 +34,26 @@ Font* lpFont = NULL;
 Music* lpMusic = NULL;
 Background* lpBackground = NULL;
 
-//Size is 75% of screen size
-void CalculateAppSize(int& Width, int& Height)
-{
-	Width = int(GetSystemMetrics(SM_CXSCREEN) * 0.75);
-	Height = int(GetSystemMetrics(SM_CYSCREEN) * 0.75);
-}
-
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
-	CalculateAppSize(WindowWidth, WindowHeight);
+	exConfig.ReadFileINI();
+	if(!exConfig.Width || !exConfig.Height)
+		CalculateAppSize(exConfig.Width, exConfig.Height);
 
 	exHGE = hgeCreate(HGE_VERSION);
 
 	exHGE->System_SetState(HGE_TITLE, "Core512");
-	exHGE->System_SetState(HGE_USESOUND, true);
-	exHGE->System_SetState(HGE_SHOWSPLASH, false);
 	exHGE->System_SetState(HGE_HIDEMOUSE, false);
+	exHGE->System_SetState(HGE_SHOWSPLASH, false);
+	exHGE->System_SetState(HGE_USESOUND, true);
 
 	#ifdef _DEBUG
-		exHGE->System_SetState(HGE_LOGFILE, "LogFile.txt");
+		exHGE->System_SetState(HGE_LOGFILE, "Core512.Log.txt");
 	#endif
 
 	exHGE->System_SetState(HGE_WINDOWED, true);
-	exHGE->System_SetState(HGE_SCREENWIDTH, WindowWidth);
-	exHGE->System_SetState(HGE_SCREENHEIGHT, WindowHeight);
+	exHGE->System_SetState(HGE_SCREENWIDTH, exConfig.Width);
+	exHGE->System_SetState(HGE_SCREENHEIGHT, exConfig.Height);
 	exHGE->System_SetState(HGE_SCREENBPP, 32);
 	exHGE->System_SetState(HGE_FPS, HGEFPS_VSYNC);
 
@@ -80,6 +73,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 	exHGE->Release();
 
 	return 0;
+}
+
+//Size is 75% of screen size
+void CalculateAppSize(int& Width, int& Height)
+{
+	Width = int(GetSystemMetrics(SM_CXSCREEN) * 0.75);
+	Height = int(GetSystemMetrics(SM_CYSCREEN) * 0.75);
 }
 
 void CoreLoad()
@@ -102,8 +102,8 @@ void CoreLoad()
 
 void CoreInit()
 {
-	float cx = float(WindowWidth >> 1);
-	float cy = float(WindowHeight >> 1);
+	float cx = float(exConfig.Width >> 1);
+	float cy = float(exConfig.Height >> 1);
 	lpShip->Move(cx, cy);
 
 	lpMusic->Play();
@@ -128,8 +128,8 @@ void CoreInput()
 
 	if(Command == CMD_SHIP_RESET)
 	{
-		float cx = float(WindowWidth >> 1);
-		float cy = float(WindowHeight >> 1);
+		float cx = float(exConfig.Width >> 1);
+		float cy = float(exConfig.Height >> 1);
 		lpShip->Move(cx, cy);
 		lpShip->HardStop();
 	}
@@ -165,7 +165,7 @@ bool CoreRender()
 	exHGE->Gfx_BeginScene();
 	exHGE->Gfx_Clear(ARGB(0xFF, 0xFF, 0xFF, 0xFF));
 
-	lpBackground->RenderMosaic(WindowWidth, WindowHeight);
+	lpBackground->RenderMosaic(exConfig.Width, exConfig.Height);
 	lpBody->Render();
 	lpDynBody->Render();
 	lpSprite->Render(10, 0x20);
