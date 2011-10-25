@@ -15,7 +15,9 @@ class Background
 	Background();
 	~Background();
 	void Toggle();
-	void Render(float Width, float Height);
+	void Clear() const;
+	void Render(int ScreenWidth, int ScreenHeight) const;
+	void RenderMosaic(int ScreenWidth, int ScreenHeight) const;
 
 	private:
 	hgeSprite* LoadAsSprite(HTEXTURE hTexture);

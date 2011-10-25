@@ -11,9 +11,6 @@
     <ClCompile Include="Core\Body.cpp">
       <Filter>Core\Src</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Vertex.cpp">
-      <Filter>Core\Src</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Config.cpp">
       <Filter>Core\Src</Filter>
     </ClCompile>
@@ -30,6 +27,9 @@
       <Filter>Core\Src</Filter>
     </ClCompile>
     <ClCompile Include="Core\Texture.cpp">
+      <Filter>Core\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Vertex.cpp">
       <Filter>Core\Src</Filter>
     </ClCompile>
   </ItemGroup>

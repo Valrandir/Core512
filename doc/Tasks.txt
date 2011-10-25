@@ -8,7 +8,7 @@ Data Structure
 - Review Quad and Rect init and updates
 
 Immediate
-- DONE - Ship Direction Vector
+- DONE - Ship Direction Vertex
 - Abstraction and Rewrite
 - DONE - Propulsion Particle Effect
 - Turn Animation

@@ -165,7 +165,7 @@ bool CoreRender()
 	exHGE->Gfx_BeginScene();
 	exHGE->Gfx_Clear(ARGB(0xFF, 0xFF, 0xFF, 0xFF));
 
-	lpBackground->Render((float)WindowWidth, (float)WindowHeight);
+	lpBackground->RenderMosaic(WindowWidth, WindowHeight);
 	lpBody->Render();
 	lpDynBody->Render();
 	lpSprite->Render(10, 0x20);

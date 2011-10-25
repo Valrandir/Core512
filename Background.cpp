@@ -1,4 +1,5 @@
 #include "Core512.h"
+#include "Core/Vertex.h"
 #include "Background.h"
 
 Background::Background() : Index(0), TickLastToggle(0)
@@ -36,10 +37,37 @@ void Background::Toggle()
 	TickLastToggle = Tick;
 }
 
-void Background::Render(float Width, float Height)
+void Background::Clear() const
 {
-	if(Index)
-		lpSprite[Index - 1]->Render4V(0.0f, 0.0f, Width, 0.0f, Width, Height, 0.0f, Height);
+	exHGE->Gfx_Clear(0xFF000000);
+}
+
+void Background::Render(int ScreenWidth, int ScreenHeight) const
+{
+	if(!Index)
+		Clear();
+	else
+		lpSprite[Index - 1]->RenderStretch(0.0f, 0.0f, (float)ScreenWidth, (float)ScreenHeight);
+}
+
+void Background::RenderMosaic(int ScreenWidth, int ScreenHeight) const
+{
+	Vertex tex, i;
+	hgeSprite* spr;
+
+	if(!Index)
+	{
+		Clear();
+		return;
+	}
+
+	spr = lpSprite[Index - 1];
+	tex.x = spr->GetWidth();
+	tex.y = spr->GetHeight();
+
+	for(i.y = 0; i.y < ScreenHeight; i.y += tex.y)
+		for(i.x = 0; i.x < ScreenWidth; i.x += tex.x)
+			spr->Render(i.x, i.y);
 }
 
 hgeSprite* Background::LoadAsSprite(HTEXTURE hTexture)
