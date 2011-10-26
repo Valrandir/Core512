@@ -113,6 +113,7 @@
     <None Include="Res\Background4.png" />
     <None Include="Res\Background5.png" />
     <None Include="Res\Body.png" />
+    <None Include="Res\Explosion.png" />
     <None Include="Res\HgeFont.fnt" />
     <None Include="Res\HgeFont.png" />
     <None Include="Res\Particle.png" />
@@ -132,6 +133,7 @@
     <ClInclude Include="src\DynBody.h" />
     <ClInclude Include="src\ErrExit.h" />
     <ClInclude Include="src\ErrExitHGE.h" />
+    <ClInclude Include="src\Explosion.h" />
     <ClInclude Include="src\FileINI.h" />
     <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\Music.h" />
@@ -151,6 +153,7 @@
     <ClCompile Include="src\Core512.cpp" />
     <ClCompile Include="src\DynBody.cpp" />
     <ClCompile Include="src\ErrExit.cpp" />
+    <ClCompile Include="src\Explosion.cpp" />
     <ClCompile Include="src\FileINI.cpp" />
     <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Music.cpp" />

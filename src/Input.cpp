@@ -6,6 +6,9 @@ int InputGetCommand()
 	if(exHGE->Input_GetKeyState(HGEK_SPACE))
 		return CMD_SHIP_RESET;
 
+	if(exHGE->Input_GetKeyState(HGEK_X))
+		return CMD_SHIP_EXPLODE;
+
 	if(exHGE->Input_GetKeyState(HGEK_T))
 		return CMD_BACKGROUND_TOGGLE;
 

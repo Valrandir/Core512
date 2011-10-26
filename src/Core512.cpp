@@ -9,6 +9,7 @@
 #include "TextOut.h"
 #include "Music.h"
 #include "Background.h"
+#include "Explosion.h"
 
 void CalculateAppSize(int& Width, int& Height);
 void CoreLoad();
@@ -22,7 +23,7 @@ HGE* exHGE;
 Config exConfig;
 Resources exResources;
 
-const char* HelpText = "Core512 is best.\n\nControls :\n- Thrust -> Up Arrow / Down Arrow / Mouse Buttons\n- Rotate -> Left Arrow / Right Arrow / D / F\n- Reset Ship -> Space\n- Toggle Background -> T\n- Quit -> Escape";
+const char* HelpText = "Core512 is best.\n\nControls :\n- Thrust -> Up Arrow / Down Arrow / Mouse Buttons\n- Rotate -> Left Arrow / Right Arrow / D / F\n- Reset Ship -> Space\n- Toggle Background -> T\n- Explode -> X\n- Quit -> Escape";
 
 HTEXTURE hDefaultBodyTexture = NULL;
 HTEXTURE hShipTexture = NULL;
@@ -134,6 +135,9 @@ void CoreInput()
 		lpShip->HardStop();
 	}
 
+	if(Command == CMD_SHIP_EXPLODE)
+		lpShip->Explode();
+
 	if(Command == CMD_BACKGROUND_TOGGLE)
 		lpBackground->Toggle();
 }
@@ -172,7 +176,6 @@ bool CoreRender()
 	lpShip->Render();
 	lpFont->Render(8, 8, HelpText);
 	lpFont->RenderFPS(8, 250);
-
 	exHGE->Gfx_EndScene();
 
 	return false;

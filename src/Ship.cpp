@@ -9,12 +9,14 @@ Ship::Ship(HTEXTURE hTexture) : DynBody(Vertex(), hTexture), hTexture(hTexture)
 	Body::Move(Rect.w, Rect.h);
 	lpParticle[0] = new ParticleSys();
 	lpParticle[1] = new ParticleSys();
+	lpExplosion = new Explosion();
 }
 
 Ship::~Ship()
 {
 	DeleteNull(lpParticle[0]);
 	DeleteNull(lpParticle[1]);
+	DeleteNull(lpExplosion);
 }
 
 void Ship::Turn(int dRotate)
@@ -70,6 +72,12 @@ void Ship::Update()
 
 	lpParticle[0]->Update(pp[0].x, pp[0].y, RotationRadian + CoreRad4 + CoreRad16);
 	lpParticle[1]->Update(pp[1].x, pp[1].y, RotationRadian + CoreRad4 - CoreRad16);
+	lpExplosion->Update();
+}
+
+void Ship::Explode()
+{
+	lpExplosion->Play();
 }
 
 void Ship::Render()
@@ -77,4 +85,7 @@ void Ship::Render()
 	Body::Render();
 	lpParticle[0]->Render();
 	lpParticle[1]->Render();
+
+	if(lpExplosion->IsPlaying())
+		lpExplosion->Render(Rect.cx, Rect.cy);
 }
