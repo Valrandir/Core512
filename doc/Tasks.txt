@@ -1,32 +1,75 @@
-Data Arch
+Tasks
+- DONE - Create INI file
+- DONE - Ship Direction Vertex
+- DONE - Propulsion Particle Effect
+- Turn Animation
+- Half Done - Add error headers from a past project
+- Consider automatically running HGE "PNG Optimizer" "pngopt.exe *.png"
+  in Exec folder after a release build
+
+Next Feature
+- Expand the world past the visible window rectangle
+- Scroll only when the ship is about to move outside of a center rectangle sized at 50% of screen size.
+- Give some HitPoints to the ship and display them on screen as a % value
+- Make the ship explode when HP are <= 0, reset the ship after the explosion animation.
+- Add two border zones to the world.
+- When the ship is in the first border zone it loses HP over time.
+- When the ship is in the second border zone, set HP to zero.
+- In the lose hp zone, Alpha degrade background color/texture to black
+  Up to the middle of the zone, then to while up to the start of the
+  explode zone.
+
+*-ship explodes past this-*
+|                         |
+|         lose hp         |
+|    *---------------*    |
+|    |     scroll    |    |
+|    |    *-----*    |    |
+|    |    | no  |    |    |
+|    |    |scroll    |    |
+|    |    *-----*    |    |
+|    |               |    |
+|    *---------------*    |
+|                         |
+*-------------------------*
+
+- Next add 3 asteroids which are made of 16x16 blocks
+*-------------------------*
+|                         |
+|   ....                  |
+|  .    .         ...     |
+|  .    .       ..   ..   |
+|   ....       .       .  |
+|              .       .  |
+|   ....       .       .  |
+|  .    .      .       .  |
+|  .    .      .       .  |
+|   ....        ..   ..   |
+|                 ...     |
+*-------------------------*
+
+- Make the ship rebound a little and take a % damage when it touch them, or something
+- Make the ship shoot kind of hybrid plasma
+- Shooting the asteroids make some blocks disappears.
+
+This could mean making a explosion list manager, and a dynbody list manager to handle all the projectiles.
+Also need to move the directional vector out of the ship class and into dynbody
+
+
+Possible Code Improvement
 - Consider passing structs as const reference instead of by value
 - Apply const correctness
-
-Data Structure
 - Add Operators to Vertex
 - Always use Vertex instead of x y
 - Review Quad and Rect init and updates
 
-Immediate
-- DONE - Ship Direction Vertex
-- Abstraction and Rewrite
-- DONE - Propulsion Particle Effect
-- Turn Animation
-- Add error headers from a past project
-
-Resources
-- Create INI file
-- Run HGE "PNG Optimizer" pngopt.exe *.png
-
-Design - Upgrades
+Ideas
 - Radar to display some minimap
 - Different kind of radars and minimaps for different tasks.
 - Each radar is specialized but can still be configured
-
-Ideas
 - DF like survival and base building using
 	- Day/Night cycle as the sun is hidden by a planet or moon
 	- Build a base to hide from the sun during the "day"
 	- Most active at "night"
-	- Once the base is built enought, add solar panels to harvest sun energy
+	- Once the base is built enough, add solar panels to harvest sun energy
 	- Upgrades to allow operations when the sun is not hidden
