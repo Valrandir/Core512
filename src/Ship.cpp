@@ -1,4 +1,4 @@
-#include "../Core512.h"
+#include "Core512.h"
 #include "Ship.h"
 
 Ship::Ship(HTEXTURE hTexture) : DynBody(Vertex(), hTexture), hTexture(hTexture)

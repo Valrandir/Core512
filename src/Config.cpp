@@ -1,4 +1,4 @@
-#include "../FileINI.h"
+#include "FileINI.h"
 #include "Config.h"
 
 Config::Config()

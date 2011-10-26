@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/Vertex.h"
+#include "Vertex.h"
 
 void RenderSquare(float x, float y, float size);
 void QuadCreate(float Width, float Height, hgeQuad& Quad);

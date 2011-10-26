@@ -1,90 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Core512.cpp" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="Tools.cpp" />
-    <ClCompile Include="TextOut.cpp" />
-    <ClCompile Include="Music.cpp" />
-    <ClCompile Include="Background.cpp" />
-    <ClCompile Include="Particle.cpp" />
-    <ClCompile Include="Core\Body.cpp">
-      <Filter>Core\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Config.cpp">
-      <Filter>Core\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\DynBody.cpp">
-      <Filter>Core\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Rect.cpp">
-      <Filter>Core\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Resources.cpp">
-      <Filter>Core\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Ship.cpp">
-      <Filter>Core\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Texture.cpp">
-      <Filter>Core\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Vertex.cpp">
-      <Filter>Core\Src</Filter>
-    </ClCompile>
-    <ClCompile Include="FileINI.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Input.h" />
-    <ClInclude Include="Tools.h" />
-    <ClInclude Include="Core512.h" />
-    <ClInclude Include="TextOut.h" />
-    <ClInclude Include="Music.h" />
-    <ClInclude Include="Particle.h" />
-    <ClInclude Include="Background.h" />
-    <ClInclude Include="Core\Body.h">
-      <Filter>Core\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Config.h">
-      <Filter>Core\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\DynBody.h">
-      <Filter>Core\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Rect.h">
-      <Filter>Core\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Resources.h">
-      <Filter>Core\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Ship.h">
-      <Filter>Core\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Texture.h">
-      <Filter>Core\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Vertex.h">
-      <Filter>Core\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="FileINI.h" />
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Res">
       <UniqueIdentifier>{9d753d29-4e05-4ce7-aed0-e9be9efb4fba}</UniqueIdentifier>
     </Filter>
     <Filter Include="doc">
       <UniqueIdentifier>{402a3d07-9667-48ff-a754-4222039e4b08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core">
-      <UniqueIdentifier>{a86c9300-e2a1-4146-9171-45d2f8726782}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Include">
-      <UniqueIdentifier>{ba222e11-22be-47de-8712-6610747e7ab1}</UniqueIdentifier>
-      <Extensions>
-      </Extensions>
-    </Filter>
-    <Filter Include="Core\Src">
-      <UniqueIdentifier>{417308a7-0a87-44e5-a1b6-b918a916f0a4}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{0e0b50e2-658c-4280-93d2-b058d93ac10b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -126,5 +50,114 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinRes.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Body.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Config.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core512.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynBody.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ErrExit.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ErrExitHGE.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileINI.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Input.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Music.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Particle.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rect.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Resources.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ship.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TextOut.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tools.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vertex.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Background.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Config.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core512.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynBody.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ErrExit.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileINI.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Music.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Particle.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resources.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ship.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextOut.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tools.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vertex.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Background.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Body.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

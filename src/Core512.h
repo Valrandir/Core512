@@ -1,7 +1,7 @@
 #pragma once
 #include <hge.h>
-#include "Core/Config.h"
-#include "Core/Resources.h"
+#include "Config.h"
+#include "Resources.h"
 
 #define DeleteNull(ptr)if(ptr){delete (ptr);(ptr)=NULL;}
 #define DeleteHgeTexture(ptr)if(ptr){exHGE->Texture_Free(ptr);(ptr)=NULL;}

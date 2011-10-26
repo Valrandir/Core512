@@ -1,6 +1,6 @@
 #pragma once
 #include "DynBody.h"
-#include "../Particle.h"
+#include "Particle.h"
 
 class Ship : public DynBody
 {

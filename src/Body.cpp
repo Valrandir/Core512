@@ -1,4 +1,4 @@
-#include "../Core512.h"
+#include "Core512.h"
 #include "Body.h"
 
 void Body::Init(Vertex Center, float Width, float Height, HTEXTURE hTexture)

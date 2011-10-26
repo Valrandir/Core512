@@ -1,4 +1,4 @@
-#include "../Core512.h"
+#include "Core512.h"
 #include "Texture.h"
 
 Texture::Texture() : hTexture(NULL) {}

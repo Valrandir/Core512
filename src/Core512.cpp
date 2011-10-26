@@ -3,9 +3,9 @@
 #include "Core512.h"
 #include <hgesprite.h>
 #include "Input.h"
-#include "Core/Ship.h"
-#include "Core/Body.h"
-#include "Core/DynBody.h"
+#include "Ship.h"
+#include "Body.h"
+#include "DynBody.h"
 #include "TextOut.h"
 #include "Music.h"
 #include "Background.h"

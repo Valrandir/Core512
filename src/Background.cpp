@@ -1,5 +1,5 @@
 #include "Core512.h"
-#include "Core/Vertex.h"
+#include "Vertex.h"
 #include "Background.h"
 
 Background::Background() : Index(0), TickLastToggle(0)

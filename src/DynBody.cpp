@@ -1,4 +1,4 @@
-#include "../Core512.h"
+#include "Core512.h"
 #include "DynBody.h"
 
 float DynBody::GlobalFriction = 0.97f;

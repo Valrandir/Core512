@@ -1,4 +1,4 @@
-#include "../Core512.h"
+#include "Core512.h"
 #include "Texture.h"
 #include "Resources.h"
 

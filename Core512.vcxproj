@@ -104,42 +104,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Background.cpp" />
-    <ClCompile Include="Core512.cpp" />
-    <ClCompile Include="Core\Body.cpp" />
-    <ClCompile Include="Core\Config.cpp" />
-    <ClCompile Include="Core\DynBody.cpp" />
-    <ClCompile Include="Core\Rect.cpp" />
-    <ClCompile Include="Core\Resources.cpp" />
-    <ClCompile Include="Core\Ship.cpp" />
-    <ClCompile Include="Core\Texture.cpp" />
-    <ClCompile Include="Core\Vertex.cpp" />
-    <ClCompile Include="FileINI.cpp" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="Music.cpp" />
-    <ClCompile Include="Particle.cpp" />
-    <ClCompile Include="TextOut.cpp" />
-    <ClCompile Include="Tools.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Background.h" />
-    <ClInclude Include="Core512.h" />
-    <ClInclude Include="Core\Body.h" />
-    <ClInclude Include="Core\Config.h" />
-    <ClInclude Include="Core\DynBody.h" />
-    <ClInclude Include="Core\Rect.h" />
-    <ClInclude Include="Core\Resources.h" />
-    <ClInclude Include="Core\Ship.h" />
-    <ClInclude Include="Core\Texture.h" />
-    <ClInclude Include="Core\Vertex.h" />
-    <ClInclude Include="FileINI.h" />
-    <ClInclude Include="Input.h" />
-    <ClInclude Include="Music.h" />
-    <ClInclude Include="Particle.h" />
-    <ClInclude Include="TextOut.h" />
-    <ClInclude Include="Tools.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Core512.ico" />
     <None Include="Core512.ini" />
     <None Include="doc\Tasks.txt" />
@@ -159,6 +123,45 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinRes.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Background.h" />
+    <ClInclude Include="src\Body.h" />
+    <ClInclude Include="src\Config.h" />
+    <ClInclude Include="src\Core512.h" />
+    <ClInclude Include="src\DynBody.h" />
+    <ClInclude Include="src\ErrExit.h" />
+    <ClInclude Include="src\ErrExitHGE.h" />
+    <ClInclude Include="src\FileINI.h" />
+    <ClInclude Include="src\Input.h" />
+    <ClInclude Include="src\Music.h" />
+    <ClInclude Include="src\Particle.h" />
+    <ClInclude Include="src\Rect.h" />
+    <ClInclude Include="src\Resources.h" />
+    <ClInclude Include="src\Ship.h" />
+    <ClInclude Include="src\TextOut.h" />
+    <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\Tools.h" />
+    <ClInclude Include="src\Vertex.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Background.cpp" />
+    <ClCompile Include="src\Body.cpp" />
+    <ClCompile Include="src\Config.cpp" />
+    <ClCompile Include="src\Core512.cpp" />
+    <ClCompile Include="src\DynBody.cpp" />
+    <ClCompile Include="src\ErrExit.cpp" />
+    <ClCompile Include="src\FileINI.cpp" />
+    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\Music.cpp" />
+    <ClCompile Include="src\Particle.cpp" />
+    <ClCompile Include="src\Rect.cpp" />
+    <ClCompile Include="src\Resources.cpp" />
+    <ClCompile Include="src\Ship.cpp" />
+    <ClCompile Include="src\TextOut.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\Tools.cpp" />
+    <ClCompile Include="src\Vertex.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
