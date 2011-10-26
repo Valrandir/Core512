@@ -50,7 +50,7 @@ void Background::Render(int ScreenWidth, int ScreenHeight) const
 		lpSprite[Index - 1]->RenderStretch(0.0f, 0.0f, (float)ScreenWidth, (float)ScreenHeight);
 }
 
-void Background::RenderMosaic(int ScreenWidth, int ScreenHeight) const
+void Background::RenderMosaic(int ScreenWidth, int ScreenHeight, Vertex Offset) const
 {
 	Vertex tex, i;
 	hgeSprite* spr;
@@ -65,9 +65,17 @@ void Background::RenderMosaic(int ScreenWidth, int ScreenHeight) const
 	tex.x = spr->GetWidth();
 	tex.y = spr->GetHeight();
 
+	Offset.x = float((int)Offset.x % (int)tex.x);
+	Offset.y = float((int)Offset.y % (int)tex.y);
+	if(Offset.x < 0) Offset.x = tex.x + Offset.x;
+	if(Offset.y < 0) Offset.y = tex.y + Offset.y;
+
+	ScreenWidth += (int)tex.x;
+	ScreenHeight += (int)tex.y;
+
 	for(i.y = 0; i.y < ScreenHeight; i.y += tex.y)
 		for(i.x = 0; i.x < ScreenWidth; i.x += tex.x)
-			spr->Render(i.x, i.y);
+			spr->Render(i.x - Offset.x, i.y - Offset.y);
 }
 
 hgeSprite* Background::LoadAsSprite(HTEXTURE hTexture)

@@ -35,6 +35,9 @@ Font* lpFont = NULL;
 Music* lpMusic = NULL;
 Background* lpBackground = NULL;
 
+Vertex ShipInitialPosition;
+Vertex ScrollOffset;
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
 	exConfig.ReadFileINI();
@@ -103,9 +106,9 @@ void CoreLoad()
 
 void CoreInit()
 {
-	float cx = float(exConfig.Width >> 1);
-	float cy = float(exConfig.Height >> 1);
-	lpShip->Move(cx, cy);
+	ShipInitialPosition.x = float(exConfig.Width >> 1);
+	ShipInitialPosition.y = float(exConfig.Height >> 1);
+	lpShip->Move(ShipInitialPosition.x, ShipInitialPosition.y);
 
 	lpMusic->Play();
 
@@ -129,9 +132,7 @@ void CoreInput()
 
 	if(Command == CMD_SHIP_RESET)
 	{
-		float cx = float(exConfig.Width >> 1);
-		float cy = float(exConfig.Height >> 1);
-		lpShip->Move(cx, cy);
+		lpShip->Move(ShipInitialPosition.x, ShipInitialPosition.y);
 		lpShip->HardStop();
 	}
 
@@ -161,6 +162,9 @@ bool CoreUpdate()
 	lpShip->Thrust(ForceDirection);
 	lpShip->Update();
 
+	ScrollOffset.x = lpShip->Rect.cx - ShipInitialPosition.x;
+	ScrollOffset.y = lpShip->Rect.cy - ShipInitialPosition.y;
+
 	return false;
 }
 
@@ -169,7 +173,7 @@ bool CoreRender()
 	exHGE->Gfx_BeginScene();
 	exHGE->Gfx_Clear(ARGB(0xFF, 0xFF, 0xFF, 0xFF));
 
-	lpBackground->RenderMosaic(exConfig.Width, exConfig.Height);
+	lpBackground->RenderMosaic(exConfig.Width, exConfig.Height, ScrollOffset);
 	lpBody->Render();
 	lpDynBody->Render();
 	lpSprite->Render(10, 0x20);
