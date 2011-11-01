@@ -4,14 +4,13 @@
 class CoreDynBody : public CoreBody
 {
 	static float GlobalFriction;
-	CoreVector _Velocity;
+	CoreVector Velocity;
 
 	public:
-	const CoreVector& Velocity;
-
 	CoreDynBody(const CoreVector& Center, const CoreTexture& Texture);
+	virtual ~CoreDynBody();
 
 	void ApplyForce(const CoreVector& Force);
 	void HardStop();
-	void Update();
+	void Update(float Delta);
 };

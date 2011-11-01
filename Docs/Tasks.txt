@@ -57,6 +57,7 @@ Also need to move the directional vector out of the ship class and into dynbody
 
 
 Possible Code Improvement
+- Add Comment headers to each code file (Purpose, Author, see what is used thought open source projects)
 - Consider passing structs as const reference instead of by value
 - Apply const correctness
 - Add Operators to Vertex

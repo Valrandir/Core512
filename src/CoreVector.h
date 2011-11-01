@@ -33,5 +33,6 @@ class CoreVector
 	CoreVector const operator/(float v) const;
 
 	void Rotate(float Radian);
+	void Normalize();
 	void StabilizeEpsilon();
 };

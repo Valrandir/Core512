@@ -10,6 +10,9 @@
     <Filter Include="Docs">
       <UniqueIdentifier>{ca62219b-729f-4a4f-9876-6b21c20f1fd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Entity">
+      <UniqueIdentifier>{9d941605-6058-4bed-a081-28a5f13b3c58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Core512.ico" />
@@ -58,19 +61,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="WinRes.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\CoreBody.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\CoreDefs.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CoreDynBody.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CoreRect.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\CoreResource.h">
@@ -82,20 +73,32 @@
     <ClInclude Include="src\CoreTexture.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\CoreVector.h">
+    <ClInclude Include="src\ErrExit.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\ErrExit.h">
+    <ClInclude Include="src\CoreInput.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreBody.h">
+      <Filter>src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreDynBody.h">
+      <Filter>src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreRect.h">
+      <Filter>src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreVector.h">
+      <Filter>src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreRotBody.h">
+      <Filter>src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreFileINI.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CoreDynBody.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CoreRect.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\CoreResource.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -105,17 +108,35 @@
     <ClCompile Include="src\CoreTexture.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\CoreVector.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\ErrExit.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CoreBody.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Core512.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\CoreInput.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreBody.cpp">
+      <Filter>src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreDynBody.cpp">
+      <Filter>src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreRect.cpp">
+      <Filter>src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreVector.cpp">
+      <Filter>src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreRotBody.cpp">
+      <Filter>src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreFileINI.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Core512.rc" />
   </ItemGroup>
 </Project>

@@ -7,3 +7,5 @@ ipch/*
 *.suo
 *.vcxproj.user
 *.opensdf
+*.aps
+

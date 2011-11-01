@@ -6,14 +6,14 @@
 HGE* CoreGlobalHge = NULL;
 
 //Needed for static OnRender
-namespace{CoreSystem* lpCoreSystem;}
+namespace{CoreSystem* CoreGlobalSystem;}
 
 CoreSystem* CoreSystemCreate(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc)
 {
 	Stackit;
-	CoreSystem* lpCoreSystem = new CoreSystem(Title, UpdateFunc, RenderFunc);
-	Trn(lpCoreSystem == NULL);
-	return lpCoreSystem;
+	CoreSystem* CoreGlobalSystem = new CoreSystem(Title, UpdateFunc, RenderFunc);
+	Trn(CoreGlobalSystem == NULL);
+	return CoreGlobalSystem;
 }
 
 void CoreSystem::InitLogFile(const char* Title) const
@@ -29,10 +29,10 @@ void CoreSystem::InitLogFile(const char* Title) const
 bool CoreSystem::OnRender()
 {
 	bool RetVal;
-	HGE* hge = ::lpCoreSystem->Hge;
+	HGE* hge = ::CoreGlobalSystem->Hge;
 	TryH(hge->Gfx_BeginScene());
 	hge->Gfx_Clear(0xFF808080);
-	RetVal = ::lpCoreSystem->RenderFunc();
+	RetVal = ::CoreGlobalSystem->RenderFunc();
 	hge->Gfx_EndScene();
 	return RetVal;
 }
@@ -41,7 +41,10 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 {
 	Stackit;
 
-	::lpCoreSystem = this;
+	Vault = new CoreResource();
+	Trn(Vault == NULL);
+
+	::CoreGlobalSystem = this;
 	Try(Hge = hgeCreate(HGE_VERSION));
 	CoreGlobalHge = Hge;
 	Set_ErrExitHge_HgePtr(Hge);
@@ -50,6 +53,7 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 	Hge->System_SetState(HGE_HIDEMOUSE, false);
 	Hge->System_SetState(HGE_SHOWSPLASH, false);
 	Hge->System_SetState(HGE_USESOUND, false);
+	Hge->System_SetState(HGE_ICON, MAKEINTRESOURCE(100));
 
 	Hge->System_SetState(HGE_WINDOWED, true);
 	Hge->System_SetState(HGE_SCREENWIDTH, 320);
@@ -67,6 +71,7 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 
 CoreSystem::~CoreSystem()
 {
+	DeleteNull(Vault);
 	Hge->System_Shutdown();
 	Hge->Release();
 }
@@ -77,24 +82,36 @@ void CoreSystem::Execute() const
 	TryH(Hge->System_Start());
 }
 
+float CoreSystem::Delta() const
+{
+	return Hge->Timer_GetDelta();
+}
+
 CoreTexture* CoreSystem::CoreTextureCreate(const char* ResPath) const
 {
 	Stackit;
-	CoreTexture* Tex;
-
-	Tex = new CoreTexture(ResPath);
+	CoreTexture* Tex = new CoreTexture(ResPath);
 	Trn(Tex == NULL);
-
 	return Tex;
 }
 
-CoreDynBody* CoreSystem::CoreDynBodyCreate(const CoreTexture& Texture) const
+CoreDynBody* CoreSystem::CoreDynBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const
 {
 	Stackit;
-	CoreDynBody* DynBody;
-
-	DynBody = new CoreDynBody(CoreVector(), Texture);
+	CoreDynBody* DynBody = new CoreDynBody(Center, Texture);
 	Trn(DynBody == NULL);
-
 	return DynBody;
+}
+
+CoreRotBody* CoreSystem::CoreRotBodyCreate(const CoreVector& Center, const CoreVector& Alignment, const CoreTexture& Texture) const
+{
+	Stackit;
+	CoreRotBody* RotBody = new CoreRotBody(Center, Alignment, Texture);
+	Trn(RotBody == NULL);
+	return RotBody;
+}
+
+bool CoreSystem::KeyState(int Key) const
+{
+	return Hge->Input_GetKeyState(Key);
 }

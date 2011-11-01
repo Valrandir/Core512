@@ -1,6 +1,5 @@
+#include "CoreDefs.h"
 #include "CoreVector.h"
-
-#define Abs(val)((val) > 0 ? (val) : -(val))
 
 CoreVector::CoreVector() : x(Vec.x), y(Vec.y)
 {
@@ -128,13 +127,13 @@ void CoreVector::Rotate(float Radian)
 	Vec.Rotate(Radian);
 }
 
+void CoreVector::Normalize()
+{
+	Vec.Normalize();
+}
+
 void CoreVector::StabilizeEpsilon()
 {
-	const float Epsilon = 0.01f;
-
-	if(Vec.x && Abs(Vec.x) < Epsilon)
-		Vec.x = 0.0f;
-
-	if(Vec.y && Abs(Vec.y) < Epsilon)
-		Vec.y = 0.0f;
+	EpsilonStab(Vec.x);
+	EpsilonStab(Vec.y);
 }
