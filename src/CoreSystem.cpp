@@ -8,6 +8,8 @@ HGE* CoreGlobalHge = NULL;
 //Needed for static OnRender
 namespace{CoreSystem* CoreGlobalSystem;}
 
+void CalculateAppSize(int& Width, int& Height);
+
 CoreSystem* CoreSystemCreate(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc)
 {
 	Stackit;
@@ -31,15 +33,26 @@ bool CoreSystem::OnRender()
 	bool RetVal;
 	HGE* hge = ::CoreGlobalSystem->Hge;
 	TryH(hge->Gfx_BeginScene());
-	hge->Gfx_Clear(0xFF808080);
+	hge->Gfx_Clear(::CoreGlobalSystem->Config->BackGroundColor);
 	RetVal = ::CoreGlobalSystem->RenderFunc();
 	hge->Gfx_EndScene();
 	return RetVal;
 }
 
+void CoreSystem::ReadConfig()
+{
+	Config->ReadFileINI();
+
+	if(!Config->Width || !Config->Height)
+		CalculateAppSize(Config->Width, Config->Height);
+}
+
 CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc) : RenderFunc(RenderFunc)
 {
 	Stackit;
+
+	Config = new CoreConfig();
+	Trn(Config == NULL);
 
 	Vault = new CoreResource();
 	Trn(Vault == NULL);
@@ -49,6 +62,8 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 	CoreGlobalHge = Hge;
 	Set_ErrExitHge_HgePtr(Hge);
 
+	ReadConfig();
+
 	Hge->System_SetState(HGE_TITLE, Title);
 	Hge->System_SetState(HGE_HIDEMOUSE, false);
 	Hge->System_SetState(HGE_SHOWSPLASH, false);
@@ -56,8 +71,8 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 	Hge->System_SetState(HGE_ICON, MAKEINTRESOURCE(100));
 
 	Hge->System_SetState(HGE_WINDOWED, true);
-	Hge->System_SetState(HGE_SCREENWIDTH, 320);
-	Hge->System_SetState(HGE_SCREENHEIGHT, 240);
+	Hge->System_SetState(HGE_SCREENWIDTH, Config->Width);
+	Hge->System_SetState(HGE_SCREENHEIGHT, Config->Height);
 	Hge->System_SetState(HGE_SCREENBPP, 32);
 	Hge->System_SetState(HGE_FPS, HGEFPS_VSYNC);
 
@@ -72,6 +87,7 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 CoreSystem::~CoreSystem()
 {
 	DeleteNull(Vault);
+	DeleteNull(Config);
 	Hge->System_Shutdown();
 	Hge->Release();
 }
@@ -114,4 +130,11 @@ CoreRotBody* CoreSystem::CoreRotBodyCreate(const CoreVector& Center, const CoreV
 bool CoreSystem::KeyState(int Key) const
 {
 	return Hge->Input_GetKeyState(Key);
+}
+
+void CalculateAppSize(int& Width, int& Height)
+{
+	//Size is 75% of screen size
+	Width = int(GetSystemMetrics(SM_CXSCREEN) * 0.75);
+	Height = int(GetSystemMetrics(SM_CYSCREEN) * 0.75);
 }

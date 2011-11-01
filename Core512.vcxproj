@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CoreBody.h" />
+    <ClInclude Include="src\CoreConfig.h" />
     <ClInclude Include="src\CoreDefs.h" />
     <ClInclude Include="src\CoreDynBody.h" />
     <ClInclude Include="src\CoreFileINI.h" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="src\Core512.cpp" />
     <ClCompile Include="src\CoreBody.cpp" />
+    <ClCompile Include="src\CoreConfig.cpp" />
     <ClCompile Include="src\CoreDynBody.cpp" />
     <ClCompile Include="src\CoreFileINI.cpp" />
     <ClCompile Include="src\CoreInput.cpp" />

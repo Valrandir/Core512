@@ -2,6 +2,7 @@
 #include <hge.h>
 #include "CoreDefs.h"
 #include "ErrExit.h"
+#include "CoreConfig.h"
 #include "CoreResource.h"
 #include "CoreTexture.h"
 #include "CoreRotBody.h"
@@ -17,10 +18,12 @@ class CoreSystem
 	const CoreSystemFunc RenderFunc;
 	void InitLogFile(const char* Title) const;
 	static bool OnRender();
+	void ReadConfig();
 
 	CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc);
 
 	public:
+	CoreConfig* Config;
 	CoreResource* Vault;
 
 	~CoreSystem();

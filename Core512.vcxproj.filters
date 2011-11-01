@@ -13,6 +13,9 @@
     <Filter Include="src\Entity">
       <UniqueIdentifier>{9d941605-6058-4bed-a081-28a5f13b3c58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Config">
+      <UniqueIdentifier>{5b044adf-8d48-4294-9d49-fa5a9d166653}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Core512.ico" />
@@ -95,7 +98,10 @@
       <Filter>src\Entity</Filter>
     </ClInclude>
     <ClInclude Include="src\CoreFileINI.h">
-      <Filter>src</Filter>
+      <Filter>src\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreConfig.h">
+      <Filter>src\Config</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -133,7 +139,10 @@
       <Filter>src\Entity</Filter>
     </ClCompile>
     <ClCompile Include="src\CoreFileINI.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreConfig.cpp">
+      <Filter>src\Config</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
