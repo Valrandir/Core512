@@ -45,15 +45,17 @@ void Load()
 	Try(lpHelp = new HelpText());
 
 	lpCoreTexture = CoreGlobalSystem->Vault->LinkTexture("Res/Ship.png");
-	CoreVector ShipPoint(CoreGlobalSystem->Config->Width / 2.0f, CoreGlobalSystem->Config->Height / 2.0f);
-	Try(lpShip = new Ship(ShipPoint, *lpCoreTexture));
+	Try(lpShip = new Ship(CoreVector(), *lpCoreTexture));
 }
 
 void Init()
 {
 	Stackit;
+
 	CoreVector Force(500.0f, 250.0f);
 	lpCoreDynBody->ApplyForce(Force);
+
+	lpShip->CenterScreen();
 }
 
 void Execute()
@@ -74,13 +76,19 @@ void Unload()
 void UpdateInput(float Delta)
 {
 	int ForceDirection, RotateDirection;
+	int Command;
+
 	CoreInput::Direction(ForceDirection, RotateDirection);
+	Command = CoreInput::Command();
 
 	if(RotateDirection)
 		lpShip->Turn(RotateDirection, Delta);
 
 	if(ForceDirection)
 		lpShip->Thrust(ForceDirection);
+
+	if(Command == CoreInput_ShipReset)
+		lpShip->CenterScreen();
 }
 
 bool Update()

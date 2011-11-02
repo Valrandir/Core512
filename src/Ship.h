@@ -12,4 +12,5 @@ class Ship : public CoreRotBody
 	void Thrust(int ForceDirection);
 	void Update(float Delta);
 	void Render();
+	void CenterScreen();
 };

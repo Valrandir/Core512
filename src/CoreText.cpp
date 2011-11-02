@@ -25,6 +25,6 @@ void CoreText::Render(const CoreVector& Point, const char* Text) const
 
 void CoreText::RenderFPS(const CoreVector& Point) const
 {
-	int FPS = float(1.0f + CoreGlobalSystem->Delta());
+	int FPS = 1 + CoreGlobalHge->Timer_GetFPS();
 	Font->printf(Point.x, Point.y, HGETEXT_LEFT, "FPS : %d", FPS);
 }

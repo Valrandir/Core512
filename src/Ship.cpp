@@ -1,4 +1,7 @@
+#include "CoreSystem.h"
 #include "Ship.h"
+
+extern CoreSystem* CoreGlobalSystem;
 
 Ship::Ship(const CoreVector& Center, const CoreTexture& Texture) : CoreRotBody(Center, CoreVector(0.0f, -1.0f), Texture)
 {
@@ -24,6 +27,10 @@ void Ship::Update(float Delta)
 void Ship::Render()
 {
 	CoreBody::Render();
-	//CoreBody* b = new CoreBody(CoreVector(100, 100), CoreTexture("Res/Ship.png"));
-	//b->Render();
+}
+
+void Ship::CenterScreen()
+{
+	CoreBody::Move(CoreVector(CoreGlobalSystem->Config->Width / 2.0f, CoreGlobalSystem->Config->Height / 2.0f));
+	CoreDynBody::HardStop();
 }
