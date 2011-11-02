@@ -10,11 +10,29 @@
     <Filter Include="Docs">
       <UniqueIdentifier>{ca62219b-729f-4a4f-9876-6b21c20f1fd0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Entity">
+    <Filter Include="src\Core">
+      <UniqueIdentifier>{794c58d8-b57c-4809-90b8-337321a2cf3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core\Config">
+      <UniqueIdentifier>{5b044adf-8d48-4294-9d49-fa5a9d166653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core\Entity">
       <UniqueIdentifier>{9d941605-6058-4bed-a081-28a5f13b3c58}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Config">
-      <UniqueIdentifier>{5b044adf-8d48-4294-9d49-fa5a9d166653}</UniqueIdentifier>
+    <Filter Include="src\Core\Input">
+      <UniqueIdentifier>{45479186-4a15-4276-82d1-fd98826ce87c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core\Output">
+      <UniqueIdentifier>{756fa17c-d2f3-48a4-a0cb-dec6d30078df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core\System">
+      <UniqueIdentifier>{a23426ff-0b6d-45ec-81a8-a97bbffb878a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core\Resource">
+      <UniqueIdentifier>{b7e545f2-f564-4f58-8d49-43fc5d969af9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Current">
+      <UniqueIdentifier>{5af6c829-ceb1-43de-9bf2-7a623284f866}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -64,85 +82,97 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\CoreDefs.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CoreResource.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CoreSystem.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CoreTexture.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CoreInput.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\CoreBody.h">
-      <Filter>src\Entity</Filter>
+      <Filter>src\Core\Entity</Filter>
     </ClInclude>
     <ClInclude Include="src\CoreDynBody.h">
-      <Filter>src\Entity</Filter>
+      <Filter>src\Core\Entity</Filter>
     </ClInclude>
     <ClInclude Include="src\CoreRect.h">
-      <Filter>src\Entity</Filter>
+      <Filter>src\Core\Entity</Filter>
     </ClInclude>
     <ClInclude Include="src\CoreVector.h">
-      <Filter>src\Entity</Filter>
+      <Filter>src\Core\Entity</Filter>
     </ClInclude>
     <ClInclude Include="src\CoreRotBody.h">
-      <Filter>src\Entity</Filter>
+      <Filter>src\Core\Entity</Filter>
     </ClInclude>
     <ClInclude Include="src\CoreFileINI.h">
-      <Filter>src\Config</Filter>
+      <Filter>src\Core\Config</Filter>
     </ClInclude>
     <ClInclude Include="src\CoreConfig.h">
-      <Filter>src\Config</Filter>
+      <Filter>src\Core\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreInput.h">
+      <Filter>src\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreResource.h">
+      <Filter>src\Core\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreTexture.h">
+      <Filter>src\Core\Resource</Filter>
     </ClInclude>
     <ClInclude Include="src\CoreErrExit.h">
-      <Filter>src</Filter>
+      <Filter>src\Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreSystem.h">
+      <Filter>src\Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreText.h">
+      <Filter>src\Core\Output</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreDefs.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HelpText.h">
+      <Filter>src\Current</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CoreResource.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\CoreBody.cpp">
+      <Filter>src\Core\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="src\CoreSystem.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\CoreDynBody.cpp">
+      <Filter>src\Core\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreRect.cpp">
+      <Filter>src\Core\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreVector.cpp">
+      <Filter>src\Core\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreRotBody.cpp">
+      <Filter>src\Core\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreFileINI.cpp">
+      <Filter>src\Core\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreConfig.cpp">
+      <Filter>src\Core\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreInput.cpp">
+      <Filter>src\Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreResource.cpp">
+      <Filter>src\Core\Resource</Filter>
     </ClCompile>
     <ClCompile Include="src\CoreTexture.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Core\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreErrExit.cpp">
+      <Filter>src\Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreSystem.cpp">
+      <Filter>src\Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreText.cpp">
+      <Filter>src\Core\Output</Filter>
     </ClCompile>
     <ClCompile Include="src\Core512.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\CoreInput.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CoreBody.cpp">
-      <Filter>src\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CoreDynBody.cpp">
-      <Filter>src\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CoreRect.cpp">
-      <Filter>src\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CoreVector.cpp">
-      <Filter>src\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CoreRotBody.cpp">
-      <Filter>src\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CoreFileINI.cpp">
-      <Filter>src\Config</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CoreConfig.cpp">
-      <Filter>src\Config</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CoreErrExit.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\HelpText.cpp">
+      <Filter>src\Current</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

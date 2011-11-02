@@ -6,8 +6,7 @@ CoreBody::CoreBody(const CoreVector& Center, const CoreTexture& Texture) : Rotat
 {
 	Stackit;
 
-	lpSprite = new hgeSprite(Texture.TextureHandle, 0.0f, 0.0f, Texture.WidthF, Texture.HeightF);
-	Trn(lpSprite == NULL);
+	Try(lpSprite = new hgeSprite(Texture.TextureHandle, 0.0f, 0.0f, Texture.WidthF, Texture.HeightF));
 	lpSprite->SetHotSpot(Texture.WidthF / 2.0f, Texture.HeightF / 2.0f);
 
 	CoreRect::SetByCenter(Center, CoreVector(Texture.WidthF, Texture.HeightF));

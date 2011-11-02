@@ -1,3 +1,5 @@
+#pragma once
+
 #define DeleteNull(ptr)if(ptr){delete (ptr);ptr=0;}
 
 const float EpsilonDef = 0.01f;

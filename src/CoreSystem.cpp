@@ -13,8 +13,8 @@ void CalculateAppSize(int& Width, int& Height);
 CoreSystem* CoreSystemCreate(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc)
 {
 	Stackit;
-	CoreSystem* CoreGlobalSystem = new CoreSystem(Title, UpdateFunc, RenderFunc);
-	Trn(CoreGlobalSystem == NULL);
+	CoreSystem* CoreGlobalSystem;
+	Try(CoreGlobalSystem = new CoreSystem(Title, UpdateFunc, RenderFunc));
 	return CoreGlobalSystem;
 }
 
@@ -52,11 +52,8 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 {
 	Stackit;
 
-	Config = new CoreConfig();
-	Trn(Config == NULL);
-
-	Vault = new CoreResource();
-	Trn(Vault == NULL);
+	Try(Config = new CoreConfig());
+	Try(Vault = new CoreResource());
 
 	::CoreGlobalSystem = this;
 	Try(Hge = hgeCreate(HGE_VERSION));
@@ -107,24 +104,24 @@ float CoreSystem::Delta() const
 CoreTexture* CoreSystem::CoreTextureCreate(const char* ResPath) const
 {
 	Stackit;
-	CoreTexture* Tex = new CoreTexture(ResPath);
-	Trn(Tex == NULL);
+	CoreTexture* Tex;
+	Try(Tex = new CoreTexture(ResPath));
 	return Tex;
 }
 
 CoreDynBody* CoreSystem::CoreDynBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const
 {
 	Stackit;
-	CoreDynBody* DynBody = new CoreDynBody(Center, Texture);
-	Trn(DynBody == NULL);
+	CoreDynBody* DynBody;
+	Try(DynBody = new CoreDynBody(Center, Texture));
 	return DynBody;
 }
 
 CoreRotBody* CoreSystem::CoreRotBodyCreate(const CoreVector& Center, const CoreVector& Alignment, const CoreTexture& Texture) const
 {
 	Stackit;
-	CoreRotBody* RotBody = new CoreRotBody(Center, Alignment, Texture);
-	Trn(RotBody == NULL);
+	CoreRotBody* RotBody;
+	Try(RotBody = new CoreRotBody(Center, Alignment, Texture));
 	return RotBody;
 }
 

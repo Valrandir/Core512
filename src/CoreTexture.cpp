@@ -7,8 +7,7 @@ CoreTexture::CoreTexture(const char* ResPath) : Width(w), Height(h), WidthF(wf),
 {
 	Stackit;
 
-	hTexture = CoreGlobalHge->Texture_Load(ResPath);
-	TrnH(hTexture == NULL);
+	TryH(hTexture = CoreGlobalHge->Texture_Load(ResPath));
 
 	w = CoreGlobalHge->Texture_GetWidth(hTexture);
 	h = CoreGlobalHge->Texture_GetHeight(hTexture);

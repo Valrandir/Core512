@@ -5,7 +5,14 @@ Tasks
 - Turn Animation
 - DONE - Add error headers from a past project
 - DONE - Add Err Check in CoreConfig and CoreFileINI
-- Consider automatically running HGE "PNG Optimizer" "pngopt.exe *.png" in Exec folder after a release build
+
+Possible Code Improvement
+- Add Comment headers to each code file (Purpose, Author, see what is used thought open source projects)
+- DONE - Consider passing structs as const reference instead of by value
+- DONE - Apply const correctness
+- DONE - Add Operators to Vertex
+- DONE - Always use Vertex instead of x y
+- DONE - Review Quad and Rect init and updates
 
 Next Feature
 - Expand the world past the visible window rectangle
@@ -54,15 +61,6 @@ Next Feature
 
 This could mean making a explosion list manager, and a dynbody list manager to handle all the projectiles.
 Also need to move the directional vector out of the ship class and into dynbody
-
-
-Possible Code Improvement
-- Add Comment headers to each code file (Purpose, Author, see what is used thought open source projects)
-- DONE - Consider passing structs as const reference instead of by value
-- DONE - Apply const correctness
-- DONE - Add Operators to Vertex
-- DONE - Always use Vertex instead of x y
-- DONE - Review Quad and Rect init and updates
 
 Ideas
 - Radar to display some minimap

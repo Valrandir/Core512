@@ -132,9 +132,11 @@
     <ClInclude Include="src\CoreResource.h" />
     <ClInclude Include="src\CoreRotBody.h" />
     <ClInclude Include="src\CoreSystem.h" />
+    <ClInclude Include="src\CoreText.h" />
     <ClInclude Include="src\CoreTexture.h" />
     <ClInclude Include="src\CoreVector.h" />
     <ClInclude Include="src\CoreErrExit.h" />
+    <ClInclude Include="src\HelpText.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core512.cpp" />
@@ -147,9 +149,11 @@
     <ClCompile Include="src\CoreResource.cpp" />
     <ClCompile Include="src\CoreRotBody.cpp" />
     <ClCompile Include="src\CoreSystem.cpp" />
+    <ClCompile Include="src\CoreText.cpp" />
     <ClCompile Include="src\CoreTexture.cpp" />
     <ClCompile Include="src\CoreVector.cpp" />
     <ClCompile Include="src\CoreErrExit.cpp" />
+    <ClCompile Include="src\HelpText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Core512.rc" />

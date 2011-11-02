@@ -17,6 +17,9 @@ CoreTexture* lpCoreTexture = NULL;
 CoreDynBody* lpCoreDynBody = NULL;
 CoreRotBody* lpCoreRotBody = NULL;
 
+#include "HelpText.h"
+HelpText* lpHelp;
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
 	Stackit;
@@ -32,10 +35,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 void Load()
 {
 	Stackit;
+
 	CoreGlobalSystem = CoreSystemCreate("Corification", Update, Render);
+
 	lpCoreTexture = CoreGlobalSystem->Vault->LinkTexture("Res/Block.png");
 	lpCoreDynBody = CoreGlobalSystem->CoreDynBodyCreate(CoreVector(), *lpCoreTexture);
 	lpCoreRotBody = CoreGlobalSystem->CoreRotBodyCreate(CoreVector(25, 25), CoreVector(1, 0), *lpCoreTexture);
+
+	Try(lpHelp = new HelpText());
 }
 
 void Init()
@@ -54,6 +61,7 @@ void Execute()
 void Unload()
 {
 	Stackit;
+	DeleteNull(lpHelp);
 	DeleteNull(lpCoreDynBody)
 	DeleteNull(lpCoreRotBody)
 	DeleteNull(CoreGlobalSystem)
@@ -76,6 +84,9 @@ bool Update()
 	Stackit;
 	float Delta;
 
+	if(CoreGlobalSystem->KeyState(HGEK_ESCAPE))
+		return true;
+
 	Delta = CoreGlobalSystem->Delta();
 	UpdateInput(Delta);
 
@@ -89,5 +100,6 @@ bool Render()
 	Stackit;
 	lpCoreDynBody->Render();
 	lpCoreRotBody->Render();
+	lpHelp->Render();
 	return false;
 }
