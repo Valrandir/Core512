@@ -2,7 +2,6 @@
 #include <windows.h>
 #include "CoreSystem.h"
 #include "CoreInput.h"
-#include "CoreRotBody.h"
 
 void Load();
 void Init();
@@ -15,10 +14,12 @@ bool Render();
 CoreSystem* CoreGlobalSystem = NULL;
 CoreTexture* lpCoreTexture = NULL;
 CoreDynBody* lpCoreDynBody = NULL;
-CoreRotBody* lpCoreRotBody = NULL;
 
 #include "HelpText.h"
+#include "Ship.h"
+
 HelpText* lpHelp;
+Ship* lpShip = NULL;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
@@ -40,9 +41,12 @@ void Load()
 
 	lpCoreTexture = CoreGlobalSystem->Vault->LinkTexture("Res/Block.png");
 	lpCoreDynBody = CoreGlobalSystem->CoreDynBodyCreate(CoreVector(), *lpCoreTexture);
-	lpCoreRotBody = CoreGlobalSystem->CoreRotBodyCreate(CoreVector(25, 25), CoreVector(1, 0), *lpCoreTexture);
 
 	Try(lpHelp = new HelpText());
+
+	lpCoreTexture = CoreGlobalSystem->Vault->LinkTexture("Res/Ship.png");
+	CoreVector ShipPoint(CoreGlobalSystem->Config->Width / 2.0f, CoreGlobalSystem->Config->Height / 2.0f);
+	Try(lpShip = new Ship(ShipPoint, *lpCoreTexture));
 }
 
 void Init()
@@ -61,9 +65,9 @@ void Execute()
 void Unload()
 {
 	Stackit;
+	DeleteNull(lpShip);
 	DeleteNull(lpHelp);
 	DeleteNull(lpCoreDynBody)
-	DeleteNull(lpCoreRotBody)
 	DeleteNull(CoreGlobalSystem)
 }
 
@@ -73,10 +77,10 @@ void UpdateInput(float Delta)
 	CoreInput::Direction(ForceDirection, RotateDirection);
 
 	if(RotateDirection)
-		lpCoreRotBody->Turn(RotateDirection * Delta * 10.0f);
+		lpShip->Turn(RotateDirection, Delta);
 
 	if(ForceDirection)
-		lpCoreRotBody->Thrust(ForceDirection * 50.0f);
+		lpShip->Thrust(ForceDirection);
 }
 
 bool Update()
@@ -91,7 +95,7 @@ bool Update()
 	UpdateInput(Delta);
 
 	lpCoreDynBody->Update(Delta);
-	lpCoreRotBody->Update(Delta);
+	lpShip->Update(Delta);
 	return false;
 }
 
@@ -99,7 +103,7 @@ bool Render()
 {
 	Stackit;
 	lpCoreDynBody->Render();
-	lpCoreRotBody->Render();
+	lpShip->Render();
 	lpHelp->Render();
 	return false;
 }

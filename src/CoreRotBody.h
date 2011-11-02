@@ -10,7 +10,7 @@ class CoreRotBody : public CoreDynBody
 	CoreRotBody(const CoreVector& Center, const CoreVector& Alignment, const CoreTexture& Texture);
 	virtual ~CoreRotBody();
 
-	void Turn(float RotationRadian);
-	void Thrust(float Force);
-	void Update(float Delta);
+	virtual void Turn(float RotationRadian);
+	virtual void Thrust(float Force);
+	virtual void Update(float Delta);
 };

@@ -14,9 +14,9 @@ class CoreBody : public CoreRect
 	CoreBody(const CoreVector& Center, const CoreTexture& Texture);
 	virtual ~CoreBody();
 
-	void RotationSet(float RotationRadian);
-	void RotationOffset(float OffsetRadian);
-	void Move(const CoreVector& Center);
-	void Render();
+	virtual void RotationSet(float RotationRadian);
+	virtual void RotationOffset(float OffsetRadian);
+	virtual void Move(const CoreVector& Center);
+	virtual void Render();
 };
 

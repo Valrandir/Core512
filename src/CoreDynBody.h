@@ -10,7 +10,7 @@ class CoreDynBody : public CoreBody
 	CoreDynBody(const CoreVector& Center, const CoreTexture& Texture);
 	virtual ~CoreDynBody();
 
-	void ApplyForce(const CoreVector& Force);
-	void HardStop();
-	void Update(float Delta);
+	virtual void ApplyForce(const CoreVector& Force);
+	virtual void HardStop();
+	virtual void Update(float Delta);
 };
