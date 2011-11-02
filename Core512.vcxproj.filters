@@ -76,9 +76,6 @@
     <ClInclude Include="src\CoreTexture.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\ErrExit.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\CoreInput.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -103,6 +100,9 @@
     <ClInclude Include="src\CoreConfig.h">
       <Filter>src\Config</Filter>
     </ClInclude>
+    <ClInclude Include="src\CoreErrExit.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreResource.cpp">
@@ -112,9 +112,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\CoreTexture.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ErrExit.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Core512.cpp">
@@ -143,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="src\CoreConfig.cpp">
       <Filter>src\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreErrExit.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

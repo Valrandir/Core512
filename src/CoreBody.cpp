@@ -1,4 +1,4 @@
-#include "ErrExit.h"
+#include "CoreErrExit.h"
 #include "CoreDefs.h"
 #include "CoreBody.h"
 

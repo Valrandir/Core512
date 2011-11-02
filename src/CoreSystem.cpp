@@ -1,6 +1,6 @@
 #include <tchar.h>
 #include <hge.h>
-#include "ErrExit.h"
+#include "CoreErrExit.h"
 #include "CoreSystem.h"
 
 HGE* CoreGlobalHge = NULL;
@@ -41,6 +41,7 @@ bool CoreSystem::OnRender()
 
 void CoreSystem::ReadConfig()
 {
+	Stackit;
 	Config->ReadFileINI();
 
 	if(!Config->Width || !Config->Height)

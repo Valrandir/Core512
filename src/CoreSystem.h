@@ -1,7 +1,7 @@
 #pragma once
 #include <hge.h>
 #include "CoreDefs.h"
-#include "ErrExit.h"
+#include "CoreErrExit.h"
 #include "CoreConfig.h"
 #include "CoreResource.h"
 #include "CoreTexture.h"

@@ -1,4 +1,4 @@
-#include "ErrExit.h"
+#include "CoreErrExit.h"
 #include "CoreTexture.h"
 
 extern HGE* CoreGlobalHge;

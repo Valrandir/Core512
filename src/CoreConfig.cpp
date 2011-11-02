@@ -1,3 +1,4 @@
+#include "CoreErrExit.h"
 #include "CoreFileINI.h"
 #include "CoreConfig.h"
 
@@ -15,6 +16,7 @@ CoreConfig::CoreConfig()
 
 void CoreConfig::ReadFileINI()
 {
+	Stackit;
 	CoreFileINI FileINI("Core512.ini");
 
 	//[Core512]

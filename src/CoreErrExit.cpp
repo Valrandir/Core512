@@ -1,6 +1,6 @@
 #include <time.h>
 #include <sstream>
-#include "ErrExit.h"
+#include "CoreErrExit.h"
 
 using namespace std;
 

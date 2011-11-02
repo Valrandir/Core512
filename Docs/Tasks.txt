@@ -4,7 +4,7 @@ Tasks
 - DONE - Propulsion Particle Effect
 - Turn Animation
 - DONE - Add error headers from a past project
-- Add Err Check in CoreConfig and CoreFileINI
+- DONE - Add Err Check in CoreConfig and CoreFileINI
 - Consider automatically running HGE "PNG Optimizer" "pngopt.exe *.png" in Exec folder after a release build
 
 Next Feature

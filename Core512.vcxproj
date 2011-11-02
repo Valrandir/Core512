@@ -134,7 +134,7 @@
     <ClInclude Include="src\CoreSystem.h" />
     <ClInclude Include="src\CoreTexture.h" />
     <ClInclude Include="src\CoreVector.h" />
-    <ClInclude Include="src\ErrExit.h" />
+    <ClInclude Include="src\CoreErrExit.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core512.cpp" />
@@ -149,7 +149,7 @@
     <ClCompile Include="src\CoreSystem.cpp" />
     <ClCompile Include="src\CoreTexture.cpp" />
     <ClCompile Include="src\CoreVector.cpp" />
-    <ClCompile Include="src\ErrExit.cpp" />
+    <ClCompile Include="src\CoreErrExit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Core512.rc" />
