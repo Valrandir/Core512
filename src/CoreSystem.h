@@ -7,13 +7,13 @@
 #include "CoreTexture.h"
 #include "CoreRotBody.h"
 
+#define CoreSys (*CoreSystem::Self)
 typedef bool (*CoreSystemFunc)();
 
 class CoreSystem
 {
-	friend CoreSystem* CoreSystemCreate(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc);
-
-	HGE* Hge;
+	friend void CoreSystemCreate(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc);
+	friend void CoreSystemDestroy();
 
 	const CoreSystemFunc RenderFunc;
 	void InitLogFile(const char* Title) const;
@@ -23,8 +23,10 @@ class CoreSystem
 	CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc);
 
 	public:
+	static CoreSystem* Self;
 	CoreConfig* Config;
 	CoreResource* Vault;
+	HGE* Hge;
 
 	~CoreSystem();
 

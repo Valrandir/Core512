@@ -7,8 +7,8 @@ Tasks
 - DONE - Add Err Check in CoreConfig and CoreFileINI
 
 Code Improvement
-- Make CoreSystem into a singleton instead of the current "extern CoreSystem*" and "extern HGE*" stuff.
-  - A public accessor function or const reference will point to the private static reference of the unique instance.
+- DONE -- Make CoreSystem into a singleton instead of the current "extern CoreSystem*" and "extern HGE*" stuff.
+           - A public accessor function or const reference will point to the private static reference of the unique instance.
 - Having class Constructors doing all the init often force the use of class pointers and reduce flexibility with inheritance
     because of being forced to know the how the parent class is to be initialized all the way down to the first class.
     Consider fixing this with more Init member functions, relating the next task.

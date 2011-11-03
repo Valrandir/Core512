@@ -3,19 +3,25 @@
 #include "CoreErrExit.h"
 #include "CoreSystem.h"
 
-HGE* CoreGlobalHge = NULL;
-
-//Needed for static OnRender
-namespace{CoreSystem* CoreGlobalSystem;}
-
 void CalculateAppSize(int& Width, int& Height);
+CoreSystem* CoreSystem::Self = NULL;
 
-CoreSystem* CoreSystemCreate(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc)
+void CoreSystemCreate(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc)
 {
-	Stackit;
-	CoreSystem* CoreGlobalSystem;
-	Try(CoreGlobalSystem = new CoreSystem(Title, UpdateFunc, RenderFunc));
-	return CoreGlobalSystem;
+	static bool created = false;
+
+	if(!created)
+	{
+		Stackit;
+		//Call CoreSystemDestroy to unallocate
+		Try(new CoreSystem(Title, UpdateFunc, RenderFunc));
+		created = true;
+	}
+}
+
+void CoreSystemDestroy()
+{
+	delete CoreSystem::Self;
 }
 
 void CoreSystem::InitLogFile(const char* Title) const
@@ -30,12 +36,15 @@ void CoreSystem::InitLogFile(const char* Title) const
 
 bool CoreSystem::OnRender()
 {
+	Stackit;
 	bool RetVal;
-	HGE* hge = ::CoreGlobalSystem->Hge;
-	TryH(hge->Gfx_BeginScene());
-	hge->Gfx_Clear(::CoreGlobalSystem->Config->BackGroundColor);
-	RetVal = ::CoreGlobalSystem->RenderFunc();
-	hge->Gfx_EndScene();
+
+	TryH(CoreSys.Hge->Gfx_BeginScene());
+
+	CoreSys.Hge->Gfx_Clear(CoreSys.Config->BackGroundColor);
+	RetVal = CoreSys.RenderFunc();
+	CoreSys.Hge->Gfx_EndScene();
+
 	return RetVal;
 }
 
@@ -52,14 +61,11 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 {
 	Stackit;
 
-	Try(Config = new CoreConfig());
-	Try(Vault = new CoreResource());
-
-	::CoreGlobalSystem = this;
+	Self = this;
 	Try(Hge = hgeCreate(HGE_VERSION));
-	CoreGlobalHge = Hge;
 	Set_ErrExitHge_HgePtr(Hge);
 
+	Try(Config = new CoreConfig());
 	ReadConfig();
 
 	Hge->System_SetState(HGE_TITLE, Title);
@@ -80,6 +86,7 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 	InitLogFile(Title);
 
 	TryH(Hge->System_Initiate());
+	Try(Vault = new CoreResource());
 }
 
 CoreSystem::~CoreSystem()

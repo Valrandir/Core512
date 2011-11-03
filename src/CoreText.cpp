@@ -3,14 +3,11 @@
 #include "CoreErrExit.h"
 #include "CoreText.h"
 
-extern HGE* CoreGlobalHge;
-extern CoreSystem* CoreGlobalSystem;
-
 CoreText::CoreText()
 {
 	Stackit;
 	Try(Font = new hgeFont("Res/HgeFont.fnt"));
-	Font->SetColor(CoreGlobalSystem->Config->TextColor);
+	Font->SetColor(CoreSys.Config->TextColor);
 }
 
 CoreText::~CoreText()
@@ -25,6 +22,6 @@ void CoreText::Render(const CoreVector& Point, const char* Text) const
 
 void CoreText::RenderFPS(const CoreVector& Point) const
 {
-	int FPS = 1 + CoreGlobalHge->Timer_GetFPS();
+	int FPS = 1 + CoreSys.Hge->Timer_GetFPS();
 	Font->printf(Point.x, Point.y, HGETEXT_LEFT, "FPS : %d", FPS);
 }

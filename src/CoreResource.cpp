@@ -1,8 +1,6 @@
 #include "CoreSystem.h"
 #include "CoreResource.h"
 
-extern CoreSystem* CoreGlobalSystem;
-
 CoreResource::~CoreResource()
 {
 	for(auto it = vSilo.begin(); it != vSilo.end(); ++it)
@@ -20,7 +18,7 @@ CoreTexture* CoreResource::LinkTexture(const char* ResPath)
 		lpCoreTexture = (CoreTexture*)Value;
 	else
 	{
-		lpCoreTexture = CoreGlobalSystem->CoreTextureCreate(ResPath);
+		lpCoreTexture = CoreSys.CoreTextureCreate(ResPath);
 		vSilo.insert(ResMapPair(ResPath, (void*)lpCoreTexture));
 	}
 

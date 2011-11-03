@@ -1,8 +1,6 @@
 #include "CoreSystem.h"
 #include "Ship.h"
 
-extern CoreSystem* CoreGlobalSystem;
-
 Ship::Ship(const CoreVector& Center, const CoreTexture& Texture) : CoreRotBody(Center, CoreVector(0.0f, -1.0f), Texture)
 {
 	EngineForce = 100.0f;
@@ -31,6 +29,6 @@ void Ship::Render()
 
 void Ship::CenterScreen()
 {
-	CoreBody::Move(CoreVector(CoreGlobalSystem->Config->Width / 2.0f, CoreGlobalSystem->Config->Height / 2.0f));
+	CoreBody::Move(CoreVector(CoreSys.Config->Width / 2.0f, CoreSys.Config->Height / 2.0f));
 	CoreDynBody::HardStop();
 }

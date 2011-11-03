@@ -1,4 +1,5 @@
 #pragma once
+#include "CoreSystem.h"
 
 #define DeleteNull(ptr)if(ptr){delete (ptr);ptr=0;}
 

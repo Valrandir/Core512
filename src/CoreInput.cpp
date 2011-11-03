@@ -1,9 +1,7 @@
 #include "CoreSystem.h"
 #include "CoreInput.h"
 
-#define Key(KeyCode)CoreGlobalSystem->KeyState(KeyCode)
-
-extern CoreSystem* CoreGlobalSystem;
+#define Key(KeyCode)CoreSys.KeyState(KeyCode)
 
 CoreInputEnum CoreInput::Command()
 {

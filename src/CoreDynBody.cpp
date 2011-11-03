@@ -1,8 +1,6 @@
 #include "CoreDefs.h"
 #include "CoreDynBody.h"
 
-extern HGE* CoreGlobalHge;
-
 float CoreDynBody::GlobalFriction = 0.97f;
 
 CoreDynBody::CoreDynBody(const CoreVector& Center, const CoreTexture& Texture) : CoreBody(Center, Texture)

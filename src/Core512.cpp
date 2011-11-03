@@ -11,7 +11,6 @@ void UpdateInput(float Delta);
 bool Update();
 bool Render();
 
-CoreSystem* CoreGlobalSystem = NULL;
 CoreTexture* lpCoreTexture = NULL;
 CoreDynBody* lpCoreDynBody = NULL;
 
@@ -37,14 +36,14 @@ void Load()
 {
 	Stackit;
 
-	CoreGlobalSystem = CoreSystemCreate("Corification", Update, Render);
+	CoreSystemCreate("Corification", Update, Render);
 
-	lpCoreTexture = CoreGlobalSystem->Vault->LinkTexture("Res/Block.png");
-	lpCoreDynBody = CoreGlobalSystem->CoreDynBodyCreate(CoreVector(), *lpCoreTexture);
+	lpCoreTexture = CoreSys.Vault->LinkTexture("Res/Block.png");
+	lpCoreDynBody = CoreSys.CoreDynBodyCreate(CoreVector(), *lpCoreTexture);
 
 	Try(lpHelp = new HelpText());
 
-	lpCoreTexture = CoreGlobalSystem->Vault->LinkTexture("Res/Ship.png");
+	lpCoreTexture = CoreSys.Vault->LinkTexture("Res/Ship.png");
 	Try(lpShip = new Ship(CoreVector(), *lpCoreTexture));
 }
 
@@ -61,7 +60,7 @@ void Init()
 void Execute()
 {
 	Stackit;
-	CoreGlobalSystem->Execute();
+	CoreSys.Execute();
 }
 
 void Unload()
@@ -70,7 +69,7 @@ void Unload()
 	DeleteNull(lpShip);
 	DeleteNull(lpHelp);
 	DeleteNull(lpCoreDynBody)
-	DeleteNull(CoreGlobalSystem)
+	CoreSystemDestroy();
 }
 
 void UpdateInput(float Delta)
@@ -96,10 +95,10 @@ bool Update()
 	Stackit;
 	float Delta;
 
-	if(CoreGlobalSystem->KeyState(HGEK_ESCAPE))
+	if(CoreSys.KeyState(HGEK_ESCAPE))
 		return true;
 
-	Delta = CoreGlobalSystem->Delta();
+	Delta = CoreSys.Delta();
 	UpdateInput(Delta);
 
 	lpCoreDynBody->Update(Delta);
