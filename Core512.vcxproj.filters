@@ -34,6 +34,9 @@
     <Filter Include="src\Current">
       <UniqueIdentifier>{5af6c829-ceb1-43de-9bf2-7a623284f866}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Core\FileEnum">
+      <UniqueIdentifier>{8447fa7c-d709-4e01-8a00-05ab72420689}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Core512.ico" />
@@ -130,6 +133,9 @@
     <ClInclude Include="src\Ship.h">
       <Filter>src\Current</Filter>
     </ClInclude>
+    <ClInclude Include="src\CoreFileEnum.h">
+      <Filter>src\Core\FileEnum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreBody.cpp">
@@ -179,6 +185,9 @@
     </ClCompile>
     <ClCompile Include="src\Ship.cpp">
       <Filter>src\Current</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreFileEnum.cpp">
+      <Filter>src\Core\FileEnum</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
