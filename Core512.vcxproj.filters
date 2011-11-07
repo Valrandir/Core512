@@ -37,6 +37,9 @@
     <Filter Include="src\Core\FileEnum">
       <UniqueIdentifier>{8447fa7c-d709-4e01-8a00-05ab72420689}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Core\Background">
+      <UniqueIdentifier>{1dd53fd7-036d-4f3a-a077-6b6a5ec82187}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Core512.ico" />
@@ -136,6 +139,9 @@
     <ClInclude Include="src\CoreFileEnum.h">
       <Filter>src\Core\FileEnum</Filter>
     </ClInclude>
+    <ClInclude Include="src\CoreBackground.h">
+      <Filter>src\Core\Background</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreBody.cpp">
@@ -188,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="src\CoreFileEnum.cpp">
       <Filter>src\Core\FileEnum</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreBackground.cpp">
+      <Filter>src\Core\Background</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,9 @@ CoreInputEnum CoreInput::Command()
 	if(Key(HGEK_SPACE))
 		return CoreInput_ShipReset;
 
+	if(Key(HGEK_T))
+		return CoreInput_Background_Toggle;
+
 	return CoreInput_None;
 }
 

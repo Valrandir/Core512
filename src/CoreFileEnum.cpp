@@ -2,17 +2,23 @@
 #include <windows.h>
 #include "CoreFileEnum.h"
 
-int CoreFileEnum::FileList(CoreFileEnumVec* vFiles, const char* FileName)
+int CoreFileEnum::FileList(CoreFileEnumVec* vFiles, const char* FileName, const char* Prefix)
 {
 	HANDLE hFind;
 	WIN32_FIND_DATA FindData;
+	std::string* FilePath;
 
 	vFiles->clear();
 	hFind = FindFirstFile(FileName, &FindData);
 
 	if(hFind != INVALID_HANDLE_VALUE)
 	{
-		do vFiles->push_back(new std::string(FindData.cFileName));
+		do
+		{
+			FilePath = new std::string(FindData.cFileName);
+			FilePath->insert(0, Prefix);
+			vFiles->push_back(FilePath);
+		}
 		while(FindNextFile(hFind, &FindData));
 		FindClose(hFind);
 	}

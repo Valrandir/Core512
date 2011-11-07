@@ -7,5 +7,5 @@ typedef std::vector<std::string*> CoreFileEnumVec;
 class CoreFileEnum
 {
 	public:
-	static int FileList(CoreFileEnumVec* vFiles, const char* FileName);
+	static int FileList(CoreFileEnumVec* vFiles, const char* FileName, const char* Prefix);
 };
