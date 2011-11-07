@@ -47,9 +47,7 @@ void Load()
 	lpCoreDynBody = CoreSys.CoreDynBodyCreate(CoreVector(), *lpCoreTexture);
 
 	Try(lpHelp = new HelpText());
-
-	lpCoreTexture = CoreSys.Vault->LinkTexture("Res/Ship.png");
-	Try(lpShip = new Ship(CoreVector(), *lpCoreTexture));
+	Try(lpShip = new Ship());
 }
 
 void Init()

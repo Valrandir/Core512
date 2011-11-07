@@ -1,8 +1,11 @@
 #include "CoreSystem.h"
 #include "Ship.h"
 
-Ship::Ship(const CoreVector& Center, const CoreTexture& Texture) : CoreRotBody(Center, CoreVector(0.0f, -1.0f), Texture)
+Ship::Ship()
 {
+	Stackit;
+	CoreTexture* Texture = CoreSys.Vault->LinkTexture("Res/Ship.png");
+	CoreRotBody::Initialize(CoreVector(), CoreVector(0.0f, -1.0f), *Texture);
 	EngineForce = 100.0f;
 	TurnSpeed = 10.0f;
 }
