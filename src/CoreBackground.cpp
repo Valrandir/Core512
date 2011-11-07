@@ -4,16 +4,17 @@
 
 CoreBackground::CoreBackground()
 {
-	CoreFileEnumVec vFiles;
+	CoreFileEnum FileEnum;
+	CoreFileEnumVec* vFiles;
 	CoreTexture* Texture;
 	hgeSprite* spr;
 
 	ScrWidth = (float)CoreSys.Config->Width;
 	ScrHeight = (float)CoreSys.Config->Height;
 
-	CoreFileEnum::FileList(&vFiles, "Res/Background*.png", "Res/");
+	vFiles = FileEnum.FileList("Res/Background*.png", "Res/");
 
-	for(auto it = vFiles.begin(); it != vFiles.end(); ++it)
+	for(auto it = vFiles->begin(); it != vFiles->end(); ++it)
 	{
 		Texture = CoreSys.Vault->LinkTexture((**it).c_str());
 		spr = new hgeSprite(Texture->TextureHandle, 0, 0, Texture->WidthF, Texture->HeightF);

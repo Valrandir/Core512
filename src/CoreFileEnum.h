@@ -6,6 +6,10 @@ typedef std::vector<std::string*> CoreFileEnumVec;
 
 class CoreFileEnum
 {
+	CoreFileEnumVec vFiles;
+	void Clear();
+
 	public:
-	static int FileList(CoreFileEnumVec* vFiles, const char* FileName, const char* Prefix);
+	~CoreFileEnum();
+	CoreFileEnumVec* FileList(const char* FileName, const char* Prefix);
 };
