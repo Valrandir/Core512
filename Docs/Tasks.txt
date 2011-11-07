@@ -1,19 +1,19 @@
 Tasks
+- Turn Animation
 - DONE - Create INI file
 - DONE - Ship Direction Vertex
 - DONE - Propulsion Particle Effect
-- Turn Animation
 - DONE - Add error headers from a past project
 - DONE - Add Err Check in CoreConfig and CoreFileINI
 
 Code Improvement
+- Add Comment headers to each code file (Purpose, Author, see what is used thought open source projects)
 - DONE -- Make CoreSystem into a singleton instead of the current "extern CoreSystem*" and "extern HGE*" stuff.
            - A public accessor function or const reference will point to the private static reference of the unique instance.
-- Having class Constructors doing all the init often force the use of class pointers and reduce flexibility with inheritance
+- DONE -- Having class Constructors doing all the init often force the use of class pointers and reduce flexibility with inheritance
     because of being forced to know the how the parent class is to be initialized all the way down to the first class.
     Consider fixing this with more Init member functions, relating the next task.
-- Make CoreBody and its childs loadable using either a texture or a background color, instead of forcing a texture
-- Add Comment headers to each code file (Purpose, Author, see what is used thought open source projects)
+- DONE -- Make CoreBody and its childs loadable using either a texture or a background color, instead of forcing a texture
 - DONE - Consider passing structs as const reference instead of by value
 - DONE - Apply const correctness
 - DONE - Add Operators to Vertex
