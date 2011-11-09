@@ -1,5 +1,5 @@
 - pass class/struct using const reference
-- ensure const correcness
+- ensure const correctness
 - use public const references as public read-only properties
 - Call inherited stuff using full path: CoreBody::CoreRect::Center
 - Use ErrExit.h Try/Trn/Stackit
