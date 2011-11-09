@@ -9,9 +9,12 @@ CoreConfig::CoreConfig()
 	BackGroundColor = 0xFF000000;
 	TextColor = 0xFFFFFFFF;
 
-	//[WindowSize]
+	//[Resolution]
 	Width = 0;
 	Height = 0;
+
+	//[Debug]
+	DrawRect = 0;
 }
 
 void CoreConfig::ReadFileINI()
@@ -24,7 +27,10 @@ void CoreConfig::ReadFileINI()
 	BackGroundColor = FileINI.GetHex("Core512", "BackGroundColor", BackGroundColor);
 	TextColor = FileINI.GetHex("Core512", "TextColor", TextColor);
 
-	//[WindowSize]
+	//[Resolution]
 	Width = FileINI.GetInt("Resolution", "Width", Width);
 	Height = FileINI.GetInt("Resolution", "Height", Height);
+
+	//[Debug]
+	DrawRect = FileINI.GetInt("Debug", "DrawRect", DrawRect);
 }

@@ -19,7 +19,7 @@ void CoreBody::Initialize(const CoreVector& Center, const CoreTexture& Texture)
 	CoreVector Size(Texture.WidthF, Texture.HeightF);
 
 	Try(lpSprite = new hgeSprite(Texture.TextureHandle, 0.0f, 0.0f, Size.x, Size.y));
-	lpSprite->SetHotSpot(floor(Size.x / 2.0f), floor(Size.x / 2.0f));
+	lpSprite->SetHotSpot(floor(Size.x / 2.0f), floor(Size.y / 2.0f));
 
 	CoreRect::SetByCenter(Center, Size);
 
@@ -68,6 +68,14 @@ void CoreBody::Render()
 {
 	Stackit;
 	Try(Initialized);
+
+	if(CoreSys.Config->DrawRect)
+	{
+		CoreSys.Hge->Gfx_RenderLine(xy1.x, xy1.y, xy2.x, xy1.y);
+		CoreSys.Hge->Gfx_RenderLine(xy2.x, xy1.y, xy2.x, xy2.y);
+		CoreSys.Hge->Gfx_RenderLine(xy2.x, xy2.y, xy1.x, xy2.y);
+		CoreSys.Hge->Gfx_RenderLine(xy1.x, xy2.y, xy1.x, xy1.y);
+	}
 
 	if(_RotationRadian)
 		lpSprite->RenderEx(CoreRect::Center.x, CoreRect::Center.y, _RotationRadian);

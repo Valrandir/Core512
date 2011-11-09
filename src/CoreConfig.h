@@ -9,6 +9,7 @@ struct CoreConfig
 
 	int Width;
 	int Height;
+	BOOL DrawRect;
 
 	CoreConfig();
 	void ReadFileINI();
