@@ -7,10 +7,9 @@ ShipParticle::ShipParticle()
 	hgeParticleSystemInfo psi = {0};
 
 	Texture = CoreSys.Vault->LinkTexture("Res/Particle.png");
-	lpSprite = new hgeSprite(Texture->TextureHandle, 0, 0, Texture->WidthF, Texture->HeightF);
-	lpSprite->SetHotSpot(floor(Texture->WidthF / 2), floor(Texture->HeightF / 2));
+	Sprite = CoreSys.CoreSpriteCreate(*Texture);
 
-	psi.sprite = lpSprite;
+	psi.sprite = Sprite->Sprite;
 	psi.nEmission = 200;
 	psi.fLifetime = -1.0f;
 	psi.fParticleLifeMin = 1.5f;
@@ -42,7 +41,7 @@ ShipParticle::~ShipParticle()
 {
 	lpSys->Stop();
 	DeleteNull(lpSys);
-	DeleteNull(lpSprite);
+	DeleteNull(Sprite);
 }
 
 void ShipParticle::Update(const CoreVector& Position, float DirectionRad)

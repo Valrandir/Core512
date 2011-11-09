@@ -133,6 +133,7 @@
     <ClInclude Include="src\CoreRect.h" />
     <ClInclude Include="src\CoreResource.h" />
     <ClInclude Include="src\CoreRotBody.h" />
+    <ClInclude Include="src\CoreSprite.h" />
     <ClInclude Include="src\CoreSystem.h" />
     <ClInclude Include="src\CoreText.h" />
     <ClInclude Include="src\CoreTexture.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="src\CoreRect.cpp" />
     <ClCompile Include="src\CoreResource.cpp" />
     <ClCompile Include="src\CoreRotBody.cpp" />
+    <ClCompile Include="src\CoreSprite.cpp" />
     <ClCompile Include="src\CoreSystem.cpp" />
     <ClCompile Include="src\CoreText.cpp" />
     <ClCompile Include="src\CoreTexture.cpp" />

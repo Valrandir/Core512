@@ -1,13 +1,13 @@
 #pragma once
-#include <hgesprite.h>
 #include "CoreRect.h"
 #include "CoreTexture.h"
+#include "CoreSprite.h"
 
 class CoreBody : public CoreRect
 {
 	BOOL Initialized;
 	float _RotationRadian;
-	hgeSprite* lpSprite;
+	CoreSprite* Sprite;
 
 	public:
 	const float& RotationRadian;

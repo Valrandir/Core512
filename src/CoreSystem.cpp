@@ -41,7 +41,7 @@ bool CoreSystem::OnRender()
 
 	TryH(CoreSys.Hge->Gfx_BeginScene());
 
-	CoreSys.Hge->Gfx_Clear(CoreSys.Config->BackGroundColor);
+	CoreSys.ClearScreen();
 	RetVal = CoreSys.RenderFunc();
 	CoreSys.Hge->Gfx_EndScene();
 
@@ -108,12 +108,25 @@ float CoreSystem::Delta() const
 	return Hge->Timer_GetDelta();
 }
 
+void CoreSystem::ClearScreen() const
+{
+	Hge->Gfx_Clear(CoreSys.Config->BackGroundColor);
+}
+
 CoreTexture* CoreSystem::CoreTextureCreate(const char* ResPath) const
 {
 	Stackit;
-	CoreTexture* Tex;
-	Try(Tex = new CoreTexture(ResPath));
-	return Tex;
+	CoreTexture* Texture;
+	Try(Texture = new CoreTexture(ResPath));
+	return Texture;
+}
+
+CoreSprite* CoreSystem::CoreSpriteCreate(const CoreTexture& Texture, bool CenterHotSpot) const
+{
+	Stackit;
+	CoreSprite* Sprite;
+	Try(Sprite = new CoreSprite(Texture, CenterHotSpot));
+	return Sprite;
 }
 
 CoreDynBody* CoreSystem::CoreDynBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const

@@ -145,6 +145,9 @@
     <ClInclude Include="src\ShipParticle.h">
       <Filter>src\Current</Filter>
     </ClInclude>
+    <ClInclude Include="src\CoreSprite.h">
+      <Filter>src\Core\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreBody.cpp">
@@ -203,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="src\ShipParticle.cpp">
       <Filter>src\Current</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreSprite.cpp">
+      <Filter>src\Core\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

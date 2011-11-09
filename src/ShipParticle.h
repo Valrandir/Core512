@@ -1,11 +1,12 @@
 #pragma once
-#include <hgesprite.h>
 #include <hgeparticle.h>
-#include "CoreVector.h"
+
+class CoreVector;
+class CoreSprite;
 
 class ShipParticle
 {
-	hgeSprite* lpSprite;
+	CoreSprite* Sprite;
 	hgeParticleSystem* lpSys;
 
 	public:

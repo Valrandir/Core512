@@ -1,16 +1,15 @@
 #pragma once
 
 #include <vector>
-#include <hge.h>
-#include <hgesprite.h>
 #include "CoreVector.h"
+#include "CoreSprite.h"
 
 class CoreBackground
 {
-	std::vector<hgeSprite*> vSprites;
-	std::vector<hgeSprite*>::iterator vSpritesIndex;
+	std::vector<CoreSprite*> vSprites;
+	std::vector<CoreSprite*>::iterator vSpritesIndex;
 	int TickLastToggle;
-	float ScrWidth, ScrHeight;
+	CoreVector ScreenSize;
 
 	public:
 	CoreBackground();

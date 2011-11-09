@@ -5,6 +5,7 @@
 #include "CoreConfig.h"
 #include "CoreResource.h"
 #include "CoreTexture.h"
+#include "CoreSprite.h"
 #include "CoreRotBody.h"
 
 #define CoreSys (*CoreSystem::Self)
@@ -32,7 +33,9 @@ class CoreSystem
 
 	void Execute() const;
 	float Delta() const;
+	void ClearScreen() const;
 	CoreTexture* CoreTextureCreate(const char* ResPath) const;
+	CoreSprite* CoreSpriteCreate(const CoreTexture& Texture, bool CenterHotSpot = true) const;
 	CoreDynBody* CoreDynBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const;
 	CoreRotBody* CoreRotBodyCreate(const CoreVector& Center, const CoreVector& Alignment, const CoreTexture& Texture) const;
 	bool KeyState(int Key) const;

@@ -7,18 +7,18 @@ CoreBackground::CoreBackground()
 	CoreFileEnum FileEnum;
 	CoreFileEnumVec* vFiles;
 	CoreTexture* Texture;
-	hgeSprite* spr;
+	CoreSprite* Sprite;
 
-	ScrWidth = (float)CoreSys.Config->Width;
-	ScrHeight = (float)CoreSys.Config->Height;
+	ScreenSize.x = (float)CoreSys.Config->Width;
+	ScreenSize.y = (float)CoreSys.Config->Height;
 
 	vFiles = FileEnum.FileList("Res/Background*.png", "Res/");
 
 	for(auto it = vFiles->begin(); it != vFiles->end(); ++it)
 	{
 		Texture = CoreSys.Vault->LinkTexture((**it).c_str());
-		spr = new hgeSprite(Texture->TextureHandle, 0, 0, Texture->WidthF, Texture->HeightF);
-		vSprites.push_back(spr);
+		Sprite = CoreSys.CoreSpriteCreate(*Texture, false);
+		vSprites.push_back(Sprite);
 	}
 
 	vSpritesIndex = vSprites.end();
@@ -49,7 +49,7 @@ void CoreBackground::Toggle()
 
 void CoreBackground::Clear() const
 {
-	CoreSys.Hge->Gfx_Clear(CoreSys.Config->BackGroundColor);
+	CoreSys.ClearScreen();
 }
 
 void CoreBackground::Render() const
@@ -58,14 +58,14 @@ void CoreBackground::Render() const
 		Clear();
 	else
 	{
-		(**vSpritesIndex).RenderStretch(0.0f, 0.0f, ScrWidth, ScrHeight);
+		(**vSpritesIndex).RenderStretch(CoreVector(), ScreenSize);
 	}
 }
 
 void CoreBackground::RenderMosaic(const CoreVector& Offset) const
 {
 	CoreVector tex, max, i;
-	hgeSprite* spr;
+	CoreSprite* Sprite;
 
 	if(vSpritesIndex == vSprites.end())
 	{
@@ -73,11 +73,9 @@ void CoreBackground::RenderMosaic(const CoreVector& Offset) const
 		return;
 	}
 
-	spr = *vSpritesIndex;
-	tex.x = spr->GetWidth();
-	tex.y = spr->GetHeight();
-	max.x = ScrWidth;
-	max.y = ScrHeight;
+	Sprite = *vSpritesIndex;
+	tex = Sprite->GetSize();
+	max = ScreenSize;
 
 	Offset.x = float((int)Offset.x % (int)tex.x);
 	Offset.y = float((int)Offset.y % (int)tex.y);
@@ -87,5 +85,5 @@ void CoreBackground::RenderMosaic(const CoreVector& Offset) const
 
 	for(i.y = 0; i.y < max.y; i.y += tex.y)
 		for(i.x = 0; i.x < max.x; i.x += tex.x)
-			spr->Render(i.x - Offset.x, i.y - Offset.y);
+			Sprite->Render(i - Offset);
 }

@@ -18,9 +18,7 @@ void CoreBody::Initialize(const CoreVector& Center, const CoreTexture& Texture)
 	Trn(Initialized);
 	CoreVector Size(Texture.WidthF, Texture.HeightF);
 
-	Try(lpSprite = new hgeSprite(Texture.TextureHandle, 0.0f, 0.0f, Size.x, Size.y));
-	lpSprite->SetHotSpot(floor(Size.x / 2.0f), floor(Size.y / 2.0f));
-
+	Sprite = CoreSys.CoreSpriteCreate(Texture);
 	CoreRect::SetByCenter(Center, Size);
 
 	Initialized = TRUE;
@@ -28,7 +26,7 @@ void CoreBody::Initialize(const CoreVector& Center, const CoreTexture& Texture)
 
 CoreBody::~CoreBody()
 {
-	DeleteNull(lpSprite)
+	DeleteNull(Sprite)
 }
 
 void CoreBody::RotationSet(float RotationRadian)
@@ -78,7 +76,7 @@ void CoreBody::Render()
 	}
 
 	if(_RotationRadian)
-		lpSprite->RenderEx(CoreRect::Center.x, CoreRect::Center.y, _RotationRadian);
+		Sprite->RenderEx(CoreRect::Center, _RotationRadian);
 	else
-		lpSprite->Render(CoreRect::Center.x, CoreRect::Center.y);
+		Sprite->Render(CoreRect::Center);
 }
