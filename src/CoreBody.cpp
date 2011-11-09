@@ -16,11 +16,12 @@ void CoreBody::Initialize(const CoreVector& Center, const CoreTexture& Texture)
 {
 	Stackit;
 	Trn(Initialized);
+	CoreVector Size(Texture.WidthF, Texture.HeightF);
 
-	Try(lpSprite = new hgeSprite(Texture.TextureHandle, 0.0f, 0.0f, Texture.WidthF, Texture.HeightF));
-	lpSprite->SetHotSpot(Texture.WidthF / 2.0f, Texture.HeightF / 2.0f);
+	Try(lpSprite = new hgeSprite(Texture.TextureHandle, 0.0f, 0.0f, Size.x, Size.y));
+	lpSprite->SetHotSpot(floor(Size.x / 2.0f), floor(Size.x / 2.0f));
 
-	CoreRect::SetByCenter(Center, CoreVector(Texture.WidthF, Texture.HeightF));
+	CoreRect::SetByCenter(Center, Size);
 
 	Initialized = TRUE;
 }

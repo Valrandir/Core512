@@ -140,6 +140,7 @@
     <ClInclude Include="src\CoreErrExit.h" />
     <ClInclude Include="src\HelpText.h" />
     <ClInclude Include="src\Ship.h" />
+    <ClInclude Include="src\ShipParticle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core512.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="src\CoreErrExit.cpp" />
     <ClCompile Include="src\HelpText.cpp" />
     <ClCompile Include="src\Ship.cpp" />
+    <ClCompile Include="src\ShipParticle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Core512.rc" />

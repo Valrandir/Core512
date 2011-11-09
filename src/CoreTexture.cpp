@@ -19,3 +19,11 @@ CoreTexture::~CoreTexture()
 	if(hTexture)
 		CoreSys.Hge->Texture_Free(hTexture);
 }
+
+void CoreTexture::UseOriginalSize()
+{
+	w = CoreSys.Hge->Texture_GetWidth(hTexture, true);
+	h = CoreSys.Hge->Texture_GetHeight(hTexture, true);
+	wf = (float)w;
+	hf = (float)h;
+}

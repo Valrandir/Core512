@@ -14,5 +14,6 @@ class CoreTexture
 
 	CoreTexture(const char* ResPath);
 	~CoreTexture();
+	void UseOriginalSize();
 };
 

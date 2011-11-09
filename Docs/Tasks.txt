@@ -7,6 +7,8 @@ Tasks
 - DONE - Add Err Check in CoreConfig and CoreFileINI
 
 Code Improvement
+- Consider adding CoreSprite and adding more HGE wrappage in CoreSystem (Example: gfx_clear)
+  hgeSprite would be used in CoreSprite and nowhere else
 - Add Comment headers to each code file (Purpose, Author, see what is used thought open source projects)
 - DONE -- Make CoreSystem into a singleton instead of the current "extern CoreSystem*" and "extern HGE*" stuff.
            - A public accessor function or const reference will point to the private static reference of the unique instance.
