@@ -3,6 +3,7 @@
 #include "CoreSystem.h"
 #include "CoreInput.h"
 #include "CoreBackground.h"
+#include "CoreFlareList.h"
 
 void Load();
 void Init();
@@ -15,6 +16,7 @@ bool Render();
 CoreTexture* lpCoreTexture = NULL;
 CoreDynBody* lpCoreDynBody = NULL;
 CoreBackground* lpCoreBackground = NULL;
+CoreFlareList* lpCoreFlareList = NULL;
 
 #include "HelpText.h"
 #include "Ship.h"
@@ -48,6 +50,7 @@ void Load()
 
 	Try(lpHelp = new HelpText());
 	Try(lpShip = new Ship());
+	lpCoreFlareList = new CoreFlareList();
 }
 
 void Init()
@@ -56,7 +59,6 @@ void Init()
 
 	CoreVector Force(500.0f, 250.0f);
 	lpCoreDynBody->ApplyForce(Force);
-
 	lpShip->CenterScreen();
 }
 
@@ -73,6 +75,7 @@ void Unload()
 	DeleteNull(lpHelp);
 	DeleteNull(lpCoreDynBody)
 	DeleteNull(lpCoreBackground);
+	DeleteNull(lpCoreFlareList);
 	CoreSystemDestroy();
 }
 
@@ -95,6 +98,9 @@ void UpdateInput(float Delta)
 
 	if(Command == CoreInput_Background_Toggle)
 		lpCoreBackground->Toggle();
+
+	if(Command == CoreInput_Explode)
+		lpCoreFlareList->Add(lpShip->Center, "Res/Explosion.png", 5, 5);
 }
 
 bool Update()
@@ -114,6 +120,8 @@ bool Update()
 	ScrollOffset.x = lpShip->CoreBody::Center.x - (float)(CoreSys.Config->Width >> 1);
 	ScrollOffset.y = lpShip->CoreBody::Center.y - (float)(CoreSys.Config->Height >> 1);
 
+	lpCoreFlareList->Update(Delta);
+
 	return false;
 }
 
@@ -123,6 +131,7 @@ bool Render()
 	lpCoreBackground->RenderMosaic(ScrollOffset);
 	lpCoreDynBody->Render();
 	lpShip->Render();
+	lpCoreFlareList->Render();
 	lpHelp->Render();
 	return false;
 }

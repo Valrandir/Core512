@@ -40,6 +40,9 @@
     <Filter Include="src\Core\Background">
       <UniqueIdentifier>{1dd53fd7-036d-4f3a-a077-6b6a5ec82187}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Core\Flare">
+      <UniqueIdentifier>{ece47c1a-714b-463f-b99a-f41f5fa1d984}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Core512.ico" />
@@ -148,6 +151,12 @@
     <ClInclude Include="src\CoreSprite.h">
       <Filter>src\Core\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="src\CoreFlareList.h">
+      <Filter>src\Core\Flare</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreFlare.h">
+      <Filter>src\Core\Flare</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreBody.cpp">
@@ -209,6 +218,12 @@
     </ClCompile>
     <ClCompile Include="src\CoreSprite.cpp">
       <Filter>src\Core\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreFlareList.cpp">
+      <Filter>src\Core\Flare</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreFlare.cpp">
+      <Filter>src\Core\Flare</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

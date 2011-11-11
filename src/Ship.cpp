@@ -5,10 +5,9 @@ Ship::Ship()
 {
 	Stackit;
 	CoreTexture* Texture = CoreSys.Vault->LinkTexture("Res/Ship.png");
-	//CoreRotBody::Initialize(CoreVector(), CoreVector(0.0f, -1.0f), *Texture, CoreVector(85, 118));
 	Texture->UseOriginalSize();
 	CoreRotBody::Initialize(CoreVector(), CoreVector(0.0f, -1.0f), *Texture);
-	EngineForce = 100.0f;
+	EngineForce = 25.0f;
 	TurnSpeed = 10.0f;
 	lpParticle[0] = new ShipParticle();
 	lpParticle[1] = new ShipParticle();

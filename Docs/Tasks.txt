@@ -1,5 +1,7 @@
 Tasks
 - Turn Animation
+- FullScreen / Windowed
+- Add ship speed to an ini file, possibly a different ini file to seperate config from design settings
 - DONE - Create INI file
 - DONE - Ship Direction Vertex
 - DONE - Propulsion Particle Effect
@@ -7,7 +9,9 @@ Tasks
 - DONE - Add Err Check in CoreConfig and CoreFileINI
 
 Code Improvement
+- Create CoreAnimation
 - Add Comment headers to each code file (Purpose, Author, see what is used thought open source projects)
+- Consider using forward class declaration (class CoreVector;) in Header files instead of adding the #include for it
 - DONE - Consider adding CoreSprite and adding more HGE wrappage in CoreSystem (Example: gfx_clear)
          hgeSprite would be used in CoreSprite and nowhere else
 - DONE -- Make CoreSystem into a singleton instead of the current "extern CoreSystem*" and "extern HGE*" stuff.

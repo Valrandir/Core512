@@ -129,6 +129,8 @@
     <ClInclude Include="src\CoreDynBody.h" />
     <ClInclude Include="src\CoreFileEnum.h" />
     <ClInclude Include="src\CoreFileINI.h" />
+    <ClInclude Include="src\CoreFlare.h" />
+    <ClInclude Include="src\CoreFlareList.h" />
     <ClInclude Include="src\CoreInput.h" />
     <ClInclude Include="src\CoreRect.h" />
     <ClInclude Include="src\CoreResource.h" />
@@ -151,6 +153,8 @@
     <ClCompile Include="src\CoreDynBody.cpp" />
     <ClCompile Include="src\CoreFileEnum.cpp" />
     <ClCompile Include="src\CoreFileINI.cpp" />
+    <ClCompile Include="src\CoreFlare.cpp" />
+    <ClCompile Include="src\CoreFlareList.cpp" />
     <ClCompile Include="src\CoreInput.cpp" />
     <ClCompile Include="src\CoreRect.cpp" />
     <ClCompile Include="src\CoreResource.cpp" />
