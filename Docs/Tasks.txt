@@ -29,6 +29,7 @@ Code Improvement
 Next Feature
 - Expand the world past the visible window rectangle
 - Scroll only when the ship is about to move outside of a center rectangle sized at 50% of screen size.
+- Add a zoom function.
 - Give some HitPoints to the ship and display them on screen as a % value
 - Make the ship explode when HP are <= 0, reset the ship after the explosion animation.
 - Add two border zones to the world.
