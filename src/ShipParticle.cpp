@@ -54,7 +54,13 @@ void ShipParticle::Update(const CoreVector& Position, float DirectionRad)
 	lpSys->Update(Delta);
 }
 
-void ShipParticle::Render()
+void ShipParticle::Render() const
 {
+	lpSys->Render();
+}
+
+void ShipParticle::Render(const CoreVector& Offset) const
+{
+	lpSys->Transpose(Offset.x, Offset.y);
 	lpSys->Render();
 }

@@ -54,15 +54,24 @@ void Ship::Update(float Delta)
 	UpdateParticle();
 }
 
-void Ship::Render()
+void Ship::CenterScreen()
 {
+	CoreBody::Move(CoreVector(CoreSys.Config->Width / 2.0f, CoreSys.Config->Height / 2.0f));
+	CoreDynBody::HardStop();
+}
+
+void Ship::Render() const
+{
+	Stackit;
 	CoreBody::Render();
 	lpParticle[0]->Render();
 	lpParticle[1]->Render();
 }
 
-void Ship::CenterScreen()
+void Ship::Render(const CoreVector& Offset) const
 {
-	CoreBody::Move(CoreVector(CoreSys.Config->Width / 2.0f, CoreSys.Config->Height / 2.0f));
-	CoreDynBody::HardStop();
+	Stackit;
+	CoreBody::Render(Offset);
+	lpParticle[0]->Render(Offset);
+	lpParticle[1]->Render(Offset);
 }

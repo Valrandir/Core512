@@ -13,5 +13,6 @@ class ShipParticle
 	ShipParticle();
 	~ShipParticle();
 	void Update(const CoreVector& Position, float DirectionRad);
-	void Render();
+	void Render() const;
+	void Render(const CoreVector& Offset) const;
 };

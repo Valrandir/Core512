@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClInclude Include="src\CoreBackground.h" />
     <ClInclude Include="src\CoreBody.h" />
+    <ClInclude Include="src\CoreBodyList.h" />
     <ClInclude Include="src\CoreConfig.h" />
     <ClInclude Include="src\CoreDefs.h" />
     <ClInclude Include="src\CoreDynBody.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="src\CoreTexture.h" />
     <ClInclude Include="src\CoreVector.h" />
     <ClInclude Include="src\CoreErrExit.h" />
+    <ClInclude Include="src\CoreZone.h" />
     <ClInclude Include="src\HelpText.h" />
     <ClInclude Include="src\Ship.h" />
     <ClInclude Include="src\ShipParticle.h" />
@@ -149,6 +151,7 @@
     <ClCompile Include="src\Core512.cpp" />
     <ClCompile Include="src\CoreBackground.cpp" />
     <ClCompile Include="src\CoreBody.cpp" />
+    <ClCompile Include="src\CoreBodyList.cpp" />
     <ClCompile Include="src\CoreConfig.cpp" />
     <ClCompile Include="src\CoreDynBody.cpp" />
     <ClCompile Include="src\CoreFileEnum.cpp" />
@@ -165,6 +168,7 @@
     <ClCompile Include="src\CoreTexture.cpp" />
     <ClCompile Include="src\CoreVector.cpp" />
     <ClCompile Include="src\CoreErrExit.cpp" />
+    <ClCompile Include="src\CoreZone.cpp" />
     <ClCompile Include="src\HelpText.cpp" />
     <ClCompile Include="src\Ship.cpp" />
     <ClCompile Include="src\ShipParticle.cpp" />

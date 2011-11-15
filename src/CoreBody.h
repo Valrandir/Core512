@@ -20,6 +20,8 @@ class CoreBody : public CoreRect
 	virtual void RotationSet(float RotationRadian);
 	virtual void RotationOffset(float OffsetRadian);
 	virtual void Move(const CoreVector& Center);
-	virtual void Render();
+	virtual void Update(float Delta) = 0;
+	virtual void Render() const;
+	virtual void Render(const CoreVector& Offset) const;
 };
 

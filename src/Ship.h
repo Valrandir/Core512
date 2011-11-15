@@ -16,6 +16,7 @@ class Ship : public CoreRotBody
 	void Turn(int RotateDirection, float Delta);
 	void Thrust(int ForceDirection);
 	void Update(float Delta);
-	void Render();
 	void CenterScreen();
+	void Render() const;
+	void Render(const CoreVector& Offset) const;
 };

@@ -4,6 +4,8 @@
 
 void CoreFileEnum::Clear()
 {
+	for(auto it = vFiles.begin(); it != vFiles.end(); ++it)
+		delete *it;
 	vFiles.clear();
 }
 

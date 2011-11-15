@@ -157,6 +157,12 @@
     <ClInclude Include="src\CoreFlare.h">
       <Filter>src\Core\Flare</Filter>
     </ClInclude>
+    <ClInclude Include="src\CoreZone.h">
+      <Filter>src\Current</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreBodyList.h">
+      <Filter>src\Core\Entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreBody.cpp">
@@ -224,6 +230,12 @@
     </ClCompile>
     <ClCompile Include="src\CoreFlare.cpp">
       <Filter>src\Core\Flare</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreZone.cpp">
+      <Filter>src\Current</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreBodyList.cpp">
+      <Filter>src\Core\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

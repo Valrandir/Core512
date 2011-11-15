@@ -2,8 +2,10 @@
 #include <windows.h>
 #include "CoreSystem.h"
 #include "CoreInput.h"
-#include "CoreBackground.h"
 #include "CoreFlareList.h"
+#include "CoreZone.h"
+#include "HelpText.h"
+#include "Ship.h"
 
 void Load();
 void Init();
@@ -15,11 +17,8 @@ bool Render();
 
 CoreTexture* lpCoreTexture = NULL;
 CoreDynBody* lpCoreDynBody = NULL;
-CoreBackground* lpCoreBackground = NULL;
 CoreFlareList* lpCoreFlareList = NULL;
-
-#include "HelpText.h"
-#include "Ship.h"
+CoreZone* lpCoreZone = NULL;
 
 HelpText* lpHelp;
 Ship* lpShip = NULL;
@@ -43,14 +42,15 @@ void Load()
 
 	CoreSystemCreate("Corification", Update, Render);
 
-	lpCoreBackground = new CoreBackground();
-
 	lpCoreTexture = CoreSys.Vault->LinkTexture("Res/Block.png");
 	lpCoreDynBody = CoreSys.CoreDynBodyCreate(CoreVector(), *lpCoreTexture);
 
 	Try(lpHelp = new HelpText());
 	Try(lpShip = new Ship());
+	Try(lpCoreZone = new CoreZone());
+
 	lpCoreFlareList = new CoreFlareList();
+	Try(lpCoreFlareList);
 }
 
 void Init()
@@ -60,6 +60,8 @@ void Init()
 	CoreVector Force(500.0f, 250.0f);
 	lpCoreDynBody->ApplyForce(Force);
 	lpShip->CenterScreen();
+
+	lpCoreZone->Add(*lpShip);
 }
 
 void Execute()
@@ -71,11 +73,10 @@ void Execute()
 void Unload()
 {
 	Stackit;
-	DeleteNull(lpShip);
 	DeleteNull(lpHelp);
 	DeleteNull(lpCoreDynBody)
-	DeleteNull(lpCoreBackground);
 	DeleteNull(lpCoreFlareList);
+	DeleteNull(lpCoreZone);
 	CoreSystemDestroy();
 }
 
@@ -97,7 +98,7 @@ void UpdateInput(float Delta)
 		lpShip->CenterScreen();
 
 	if(Command == CoreInput_Background_Toggle)
-		lpCoreBackground->Toggle();
+		lpCoreZone->ToggleBG();
 
 	if(Command == CoreInput_Explode)
 		lpCoreFlareList->Add(lpShip->Center, "Res/Explosion.png", 5, 5);
@@ -115,7 +116,7 @@ bool Update()
 	UpdateInput(Delta);
 
 	lpCoreDynBody->Update(Delta);
-	lpShip->Update(Delta);
+	lpCoreZone->Update(Delta);
 
 	ScrollOffset.x = lpShip->CoreBody::Center.x - (float)(CoreSys.Config->Width >> 1);
 	ScrollOffset.y = lpShip->CoreBody::Center.y - (float)(CoreSys.Config->Height >> 1);
@@ -128,9 +129,8 @@ bool Update()
 bool Render()
 {
 	Stackit;
-	lpCoreBackground->RenderMosaic(ScrollOffset);
 	lpCoreDynBody->Render();
-	lpShip->Render();
+	lpCoreZone->Render(ScrollOffset);
 	lpCoreFlareList->Render();
 	lpHelp->Render();
 	return false;

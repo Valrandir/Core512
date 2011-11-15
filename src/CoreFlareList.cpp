@@ -3,6 +3,8 @@
 
 CoreFlareList::~CoreFlareList()
 {
+	for(auto it = vFlare.begin(); it != vFlare.end(); ++it)
+		delete *it;
 	vFlare.clear();
 }
 
@@ -35,6 +37,6 @@ void CoreFlareList::Update(float Delta)
 void CoreFlareList::Render() const
 {
 	Stackit;
-	for(auto it = vFlare.begin(); it != vFlare.end(); ++it)
+	for(auto it = vFlare.rbegin(); it != vFlare.rend(); ++it)
 		(*it)->Render();
 }

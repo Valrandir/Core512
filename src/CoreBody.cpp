@@ -62,21 +62,30 @@ void CoreBody::Move(const CoreVector& Center)
 	CoreRect::Move(Center);
 }
 
-void CoreBody::Render()
+void CoreBody::Render() const
+{
+	Stackit;
+	Render(CoreVector());
+}
+
+void CoreBody::Render(const CoreVector& Offset) const
 {
 	Stackit;
 	Try(Initialized);
 
 	if(CoreSys.Config->DrawRect)
 	{
-		CoreSys.Hge->Gfx_RenderLine(xy1.x, xy1.y, xy2.x, xy1.y);
-		CoreSys.Hge->Gfx_RenderLine(xy2.x, xy1.y, xy2.x, xy2.y);
-		CoreSys.Hge->Gfx_RenderLine(xy2.x, xy2.y, xy1.x, xy2.y);
-		CoreSys.Hge->Gfx_RenderLine(xy1.x, xy2.y, xy1.x, xy1.y);
+		CoreRect Rect = (*this);
+		Rect.Offset(Offset);
+		CoreSys.Hge->Gfx_RenderLine(Rect.xy1.x, Rect.xy1.y, Rect.xy2.x, Rect.xy1.y);
+		CoreSys.Hge->Gfx_RenderLine(Rect.xy2.x, Rect.xy1.y, Rect.xy2.x, Rect.xy2.y);
+		CoreSys.Hge->Gfx_RenderLine(Rect.xy2.x, Rect.xy2.y, Rect.xy1.x, Rect.xy2.y);
+		CoreSys.Hge->Gfx_RenderLine(Rect.xy1.x, Rect.xy2.y, Rect.xy1.x, Rect.xy1.y);
 	}
 
 	if(_RotationRadian)
-		Sprite->RenderEx(CoreRect::Center, _RotationRadian);
+		Sprite->RenderEx(CoreRect::Center + Offset, _RotationRadian);
 	else
-		Sprite->Render(CoreRect::Center);
+		Sprite->Render(CoreRect::Center + Offset);
 }
+
