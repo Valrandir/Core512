@@ -5,13 +5,17 @@
 
 class CoreZone : public CoreRect, public CoreBodyList
 {
+	CoreVector ZoneToScrVec;
 	CoreVector ViewOffset;
 	CoreBackground* lpCoreBG;
+	CoreBody* lpTrackBody;
 
 	public:
 	CoreZone();
 	virtual ~CoreZone();
 	CoreVector GetViewOffset() const;
+	void TrackBody(CoreBody& lpBody);
 	void ToggleBG();
-	void Render(const CoreVector& Offset) const;
+	void Update(float Delta);
+	void Render() const;
 };

@@ -1,3 +1,6 @@
+Investigate how const references works versus const pointers
+	because that (const CoreVector& Offset) can still have its members modified
+
 Tasks
 - Turn Animation
 - FullScreen / Windowed

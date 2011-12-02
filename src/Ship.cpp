@@ -56,7 +56,7 @@ void Ship::Update(float Delta)
 
 void Ship::CenterScreen()
 {
-	CoreBody::Move(CoreVector(CoreSys.Config->Width / 2.0f, CoreSys.Config->Height / 2.0f));
+	CoreBody::Move(CoreVector());
 	CoreDynBody::HardStop();
 }
 

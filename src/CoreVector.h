@@ -32,6 +32,7 @@ class CoreVector
 	CoreVector const operator/(const CoreVector& v) const;
 	CoreVector const operator/(float v) const;
 
+	void Set(float x, float y);
 	void Rotate(float Radian);
 	void Normalize();
 	void StabilizeEpsilon();

@@ -129,6 +129,14 @@ CoreSprite* CoreSystem::CoreSpriteCreate(const CoreTexture& Texture, bool Center
 	return Sprite;
 }
 
+CoreBody* CoreSystem::CoreBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const
+{
+	Stackit;
+	CoreBody* Body;
+	Try(Body = new CoreBody(Center, Texture));
+	return Body;
+}
+
 CoreDynBody* CoreSystem::CoreDynBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const
 {
 	Stackit;

@@ -36,6 +36,7 @@ class CoreSystem
 	void ClearScreen() const;
 	CoreTexture* CoreTextureCreate(const char* ResPath) const;
 	CoreSprite* CoreSpriteCreate(const CoreTexture& Texture, bool CenterHotSpot = true) const;
+	CoreBody* CoreBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const;
 	CoreDynBody* CoreDynBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const;
 	CoreRotBody* CoreRotBodyCreate(const CoreVector& Center, const CoreVector& Alignment, const CoreTexture& Texture) const;
 	bool KeyState(int Key) const;

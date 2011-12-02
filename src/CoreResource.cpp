@@ -5,6 +5,7 @@ CoreResource::~CoreResource()
 {
 	for(auto it = vSilo.begin(); it != vSilo.end(); ++it)
 		delete it->second;
+	vSilo.clear();
 }
 
 CoreTexture* CoreResource::LinkTexture(const char* ResPath)

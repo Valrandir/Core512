@@ -12,4 +12,7 @@ class CoreRect
 	void SetByPoints(const CoreVector& xy1, const CoreVector& xy2);
 	void Move(const CoreVector& Center);
 	void CoreRect::Offset(const CoreVector& Vec);
+
+	bool PointIsInside(const CoreVector& Point) const;
+	bool CoreRect::PointOffset(const CoreVector& Point, CoreVector& Offset) const;
 };

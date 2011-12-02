@@ -122,6 +122,12 @@ const CoreVector CoreVector::operator/(float v) const
 	return CoreVector(*this) /= v;
 }
 
+void CoreVector::Set(float x, float y)
+{
+	this->x = x;
+	this->y = y;
+}
+
 void CoreVector::Rotate(float Radian)
 {
 	Vec.Rotate(Radian);

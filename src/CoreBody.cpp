@@ -62,9 +62,25 @@ void CoreBody::Move(const CoreVector& Center)
 	CoreRect::Move(Center);
 }
 
+void CoreBody::Update(float Delta)
+{
+}
+
+void CoreBody::DrawRect(const CoreRect& Rect) const
+{
+	CoreSys.Hge->Gfx_RenderLine(Rect.xy1.x, Rect.xy1.y, Rect.xy2.x, Rect.xy1.y);
+	CoreSys.Hge->Gfx_RenderLine(Rect.xy2.x, Rect.xy1.y, Rect.xy2.x, Rect.xy2.y);
+	CoreSys.Hge->Gfx_RenderLine(Rect.xy2.x, Rect.xy2.y, Rect.xy1.x, Rect.xy2.y);
+	CoreSys.Hge->Gfx_RenderLine(Rect.xy1.x, Rect.xy2.y, Rect.xy1.x, Rect.xy1.y);
+}
+
 void CoreBody::Render() const
 {
 	Stackit;
+
+	if(CoreSys.Config->DrawRect)
+		DrawRect(*this);
+
 	Render(CoreVector());
 }
 
@@ -77,10 +93,7 @@ void CoreBody::Render(const CoreVector& Offset) const
 	{
 		CoreRect Rect = (*this);
 		Rect.Offset(Offset);
-		CoreSys.Hge->Gfx_RenderLine(Rect.xy1.x, Rect.xy1.y, Rect.xy2.x, Rect.xy1.y);
-		CoreSys.Hge->Gfx_RenderLine(Rect.xy2.x, Rect.xy1.y, Rect.xy2.x, Rect.xy2.y);
-		CoreSys.Hge->Gfx_RenderLine(Rect.xy2.x, Rect.xy2.y, Rect.xy1.x, Rect.xy2.y);
-		CoreSys.Hge->Gfx_RenderLine(Rect.xy1.x, Rect.xy2.y, Rect.xy1.x, Rect.xy1.y);
+		DrawRect(Rect);
 	}
 
 	if(_RotationRadian)

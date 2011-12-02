@@ -15,14 +15,12 @@ void UpdateInput(float Delta);
 bool Update();
 bool Render();
 
-CoreTexture* lpCoreTexture = NULL;
-CoreDynBody* lpCoreDynBody = NULL;
+CoreBody* lpCoreBody[3];
 CoreFlareList* lpCoreFlareList = NULL;
 CoreZone* lpCoreZone = NULL;
 
 HelpText* lpHelp;
 Ship* lpShip = NULL;
-CoreVector ScrollOffset;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
@@ -39,11 +37,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 void Load()
 {
 	Stackit;
+	CoreTexture* lpCoreTexture = NULL;
 
 	CoreSystemCreate("Corification", Update, Render);
 
 	lpCoreTexture = CoreSys.Vault->LinkTexture("Res/Block.png");
-	lpCoreDynBody = CoreSys.CoreDynBodyCreate(CoreVector(), *lpCoreTexture);
+	lpCoreBody[0] = CoreSys.CoreBodyCreate(CoreVector(-100.0f, 50.0f), *lpCoreTexture);
+	lpCoreBody[1] = CoreSys.CoreBodyCreate(CoreVector(-50.0f, -50.0f), *lpCoreTexture);
+	lpCoreBody[2] = CoreSys.CoreBodyCreate(CoreVector(100.0f, 50.0f), *lpCoreTexture);
 
 	Try(lpHelp = new HelpText());
 	Try(lpShip = new Ship());
@@ -57,11 +58,11 @@ void Init()
 {
 	Stackit;
 
-	CoreVector Force(500.0f, 250.0f);
-	lpCoreDynBody->ApplyForce(Force);
-	lpShip->CenterScreen();
-
+	lpCoreZone->Add(*lpCoreBody[0]);
+	lpCoreZone->Add(*lpCoreBody[1]);
+	lpCoreZone->Add(*lpCoreBody[2]);
 	lpCoreZone->Add(*lpShip);
+	lpCoreZone->TrackBody(*lpShip);
 }
 
 void Execute()
@@ -74,7 +75,6 @@ void Unload()
 {
 	Stackit;
 	DeleteNull(lpHelp);
-	DeleteNull(lpCoreDynBody)
 	DeleteNull(lpCoreFlareList);
 	DeleteNull(lpCoreZone);
 	CoreSystemDestroy();
@@ -95,7 +95,10 @@ void UpdateInput(float Delta)
 		lpShip->Thrust(ForceDirection);
 
 	if(Command == CoreInput_ShipReset)
+	{
 		lpShip->CenterScreen();
+		lpCoreZone->TrackBody(*lpShip);
+	}
 
 	if(Command == CoreInput_Background_Toggle)
 		lpCoreZone->ToggleBG();
@@ -115,11 +118,7 @@ bool Update()
 	Delta = CoreSys.Delta();
 	UpdateInput(Delta);
 
-	lpCoreDynBody->Update(Delta);
 	lpCoreZone->Update(Delta);
-
-	ScrollOffset.x = lpShip->CoreBody::Center.x - (float)(CoreSys.Config->Width >> 1);
-	ScrollOffset.y = lpShip->CoreBody::Center.y - (float)(CoreSys.Config->Height >> 1);
 
 	lpCoreFlareList->Update(Delta);
 
@@ -129,8 +128,7 @@ bool Update()
 bool Render()
 {
 	Stackit;
-	lpCoreDynBody->Render();
-	lpCoreZone->Render(ScrollOffset);
+	lpCoreZone->Render();
 	lpCoreFlareList->Render();
 	lpHelp->Render();
 	return false;
