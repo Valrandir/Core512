@@ -7,6 +7,8 @@ class CoreZone : public CoreRect, public CoreBodyList
 {
 	CoreVector ZoneToScrVec;
 	CoreVector ViewOffset;
+	CoreRect NoScrollRect;
+
 	CoreBackground* lpCoreBG;
 	CoreBody* lpTrackBody;
 

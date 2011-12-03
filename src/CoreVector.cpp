@@ -122,10 +122,16 @@ const CoreVector CoreVector::operator/(float v) const
 	return CoreVector(*this) /= v;
 }
 
+void CoreVector::Set(const CoreVector& v)
+{
+	Vec.x = v.x;
+	Vec.y = v.y;
+}
+
 void CoreVector::Set(float x, float y)
 {
-	this->x = x;
-	this->y = y;
+	Vec.x = x;
+	Vec.y = y;
 }
 
 void CoreVector::Rotate(float Radian)

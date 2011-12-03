@@ -4,12 +4,12 @@
 CoreZone::CoreZone() : lpCoreBG(NULL), lpTrackBody(NULL)
 {
 	Stackit;
-	float Width = (float)CoreSys.Config->Width * 10;
-	float Height = (float)CoreSys.Config->Height * 10;
+	CoreVector ScrSize((float)CoreSys.Config->Width, (float)CoreSys.Config->Height);
 
-	CoreRect::SetByCenter(CoreVector(), CoreVector(Width, Height));
+	CoreRect::SetByCenter(CoreVector(), ScrSize * 10);
 
-	ZoneToScrVec.Set(CoreSys.Config->Width / 2.0f, CoreSys.Config->Height / 2.0f);
+	ZoneToScrVec.Set(ScrSize / 2);
+	NoScrollRect.SetByCenter(ViewOffset, ScrSize / 1.25);
 
 	Try(lpCoreBG = new CoreBackground());
 }
@@ -40,14 +40,12 @@ void CoreZone::Update(float Delta)
 {
 	CoreBodyList::Update(Delta);
 
-	//TODO Integrate this into CoreZone
 	if(lpTrackBody)
 	{
-		CoreRect cr;
-		cr.SetByCenter(ViewOffset, CoreVector(384, 384));
-
 		CoreVector cros;
-		if(cr.PointOffset(lpTrackBody->Center, cros))
+
+		NoScrollRect.Move(ViewOffset);
+		if(NoScrollRect.PointOffset(lpTrackBody->Center, cros))
 			ViewOffset += cros;
 	}
 	else
