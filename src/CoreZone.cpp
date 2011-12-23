@@ -4,12 +4,12 @@
 CoreZone::CoreZone() : lpCoreBG(NULL), lpTrackBody(NULL)
 {
 	Stackit;
-	CoreVector ScrSize((float)CoreSys.Config->Width, (float)CoreSys.Config->Height);
+	const int WorldSizeMultiplier = 10;
 
-	CoreRect::SetByCenter(CoreVector(), ScrSize * 10);
-
-	ZoneToScrVec.Set(ScrSize / 2);
-	NoScrollRect.SetByCenter(ViewOffset, ScrSize / 1.25);
+	CoreSys.GetScreenSize(ScreenSize);
+	CoreRect::SetByCenter(CoreVector(), ScreenSize * WorldSizeMultiplier);
+	ZoneToScrVec.Set(ScreenSize / 2);
+	NoScrollRect.SetByCenter(ViewOffset, ScreenSize / 1.25);
 
 	Try(lpCoreBG = new CoreBackground());
 }
@@ -52,8 +52,23 @@ void CoreZone::Update(float Delta)
 		ViewOffset = 0;
 }
 
+void CoreZone::DoStuff() const
+{
+	const int DeathZoneLength = 1024;
+	float y = ViewOffset.y - ZoneToScrVec.y;
+	float top = xy1.y + DeathZoneLength;
+	if(y < top)
+	{
+		y = top - y;
+		float worldtop = xy1.y - ViewOffset.y + ZoneToScrVec.y;
+		CoreSys.Draw->RenderRect(0, worldtop, ScreenSize.x, y, 0xFF0000FF);
+		CoreSys.Draw->RenderLine(ZoneToScrVec.x, 0, ZoneToScrVec.x, y, 0xFF00FF00);
+	}
+}
+
 void CoreZone::Render() const
 {
 	lpCoreBG->RenderMosaic(ViewOffset);
+	DoStuff();
 	CoreBodyList::Render(ZoneToScrVec - ViewOffset);
 }

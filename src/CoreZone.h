@@ -5,6 +5,7 @@
 
 class CoreZone : public CoreRect, public CoreBodyList
 {
+	CoreVector ScreenSize;
 	CoreVector ZoneToScrVec;
 	CoreVector ViewOffset;
 	CoreRect NoScrollRect;
@@ -19,5 +20,6 @@ class CoreZone : public CoreRect, public CoreBodyList
 	void TrackBody(CoreBody& lpBody);
 	void ToggleBG();
 	void Update(float Delta);
+	void DoStuff() const;
 	void Render() const;
 };

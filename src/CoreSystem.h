@@ -7,6 +7,7 @@
 #include "CoreTexture.h"
 #include "CoreSprite.h"
 #include "CoreRotBody.h"
+#include "CorePrimitive.h"
 
 #define CoreSys (*CoreSystem::Self)
 typedef bool (*CoreSystemFunc)();
@@ -27,6 +28,7 @@ class CoreSystem
 	static CoreSystem* Self;
 	CoreConfig* Config;
 	CoreResource* Vault;
+	CorePrimitive* Draw;
 	HGE* Hge;
 
 	~CoreSystem();
@@ -34,6 +36,7 @@ class CoreSystem
 	void Execute() const;
 	float Delta() const;
 	void ClearScreen() const;
+	void GetScreenSize(CoreVector& ScrSize);
 	CoreTexture* CoreTextureCreate(const char* ResPath) const;
 	CoreSprite* CoreSpriteCreate(const CoreTexture& Texture, bool CenterHotSpot = true) const;
 	CoreBody* CoreBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const;

@@ -128,6 +128,7 @@ bool Update()
 bool Render()
 {
 	Stackit;
+	CoreSys.ClearScreen();
 	lpCoreZone->Render();
 	lpCoreFlareList->Render();
 	lpHelp->Render();

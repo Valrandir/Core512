@@ -133,6 +133,7 @@
     <ClInclude Include="src\CoreFlare.h" />
     <ClInclude Include="src\CoreFlareList.h" />
     <ClInclude Include="src\CoreInput.h" />
+    <ClInclude Include="src\CorePrimitive.h" />
     <ClInclude Include="src\CoreRect.h" />
     <ClInclude Include="src\CoreResource.h" />
     <ClInclude Include="src\CoreRotBody.h" />
@@ -159,6 +160,7 @@
     <ClCompile Include="src\CoreFlare.cpp" />
     <ClCompile Include="src\CoreFlareList.cpp" />
     <ClCompile Include="src\CoreInput.cpp" />
+    <ClCompile Include="src\CorePrimitive.cpp" />
     <ClCompile Include="src\CoreRect.cpp" />
     <ClCompile Include="src\CoreResource.cpp" />
     <ClCompile Include="src\CoreRotBody.cpp" />

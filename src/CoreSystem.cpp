@@ -41,7 +41,6 @@ bool CoreSystem::OnRender()
 
 	TryH(CoreSys.Hge->Gfx_BeginScene());
 
-	CoreSys.ClearScreen();
 	RetVal = CoreSys.RenderFunc();
 	CoreSys.Hge->Gfx_EndScene();
 
@@ -87,6 +86,8 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 
 	TryH(Hge->System_Initiate());
 	Try(Vault = new CoreResource());
+
+	Try(Draw = new CorePrimitive(Hge));
 }
 
 CoreSystem::~CoreSystem()
@@ -111,6 +112,13 @@ float CoreSystem::Delta() const
 void CoreSystem::ClearScreen() const
 {
 	Hge->Gfx_Clear(CoreSys.Config->BackGroundColor);
+}
+
+void CoreSystem::GetScreenSize(CoreVector& ScrSize)
+{
+	float w = (float)Hge->System_GetState(HGE_SCREENWIDTH);
+	float h = (float)Hge->System_GetState(HGE_SCREENHEIGHT);
+	ScrSize.Set(w, h);
 }
 
 CoreTexture* CoreSystem::CoreTextureCreate(const char* ResPath) const

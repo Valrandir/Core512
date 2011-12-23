@@ -9,8 +9,7 @@ CoreBackground::CoreBackground() : TickLastToggle(0)
 	CoreTexture* Texture;
 	CoreSprite* Sprite;
 
-	ScreenSize.x = (float)CoreSys.Config->Width;
-	ScreenSize.y = (float)CoreSys.Config->Height;
+	CoreSys.GetScreenSize(ScreenSize);
 
 	vFiles = FileEnum.FileList("Res/Background*.png", "Res/");
 

@@ -68,10 +68,10 @@ void CoreBody::Update(float Delta)
 
 void CoreBody::DrawRect(const CoreRect& Rect) const
 {
-	CoreSys.Hge->Gfx_RenderLine(Rect.xy1.x, Rect.xy1.y, Rect.xy2.x, Rect.xy1.y);
-	CoreSys.Hge->Gfx_RenderLine(Rect.xy2.x, Rect.xy1.y, Rect.xy2.x, Rect.xy2.y);
-	CoreSys.Hge->Gfx_RenderLine(Rect.xy2.x, Rect.xy2.y, Rect.xy1.x, Rect.xy2.y);
-	CoreSys.Hge->Gfx_RenderLine(Rect.xy1.x, Rect.xy2.y, Rect.xy1.x, Rect.xy1.y);
+	CoreSys.Draw->RenderLine(Rect.xy1.x, Rect.xy1.y, Rect.xy2.x, Rect.xy1.y);
+	CoreSys.Draw->RenderLine(Rect.xy2.x, Rect.xy1.y, Rect.xy2.x, Rect.xy2.y);
+	CoreSys.Draw->RenderLine(Rect.xy2.x, Rect.xy2.y, Rect.xy1.x, Rect.xy2.y);
+	CoreSys.Draw->RenderLine(Rect.xy1.x, Rect.xy2.y, Rect.xy1.x, Rect.xy1.y);
 }
 
 void CoreBody::Render() const
