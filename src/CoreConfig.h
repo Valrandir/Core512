@@ -6,6 +6,7 @@ struct CoreConfig
 	BOOL HideTexture;
 	DWORD BackGroundColor;
 	DWORD TextColor;
+	BOOL ShipParticle;
 
 	int Width;
 	int Height;

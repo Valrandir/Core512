@@ -6,6 +6,9 @@ ShipParticle::ShipParticle()
 	CoreTexture* Texture;
 	hgeParticleSystemInfo psi = {0};
 
+	ShipParticleEnabled = CoreSys.Config->ShipParticle;
+	if(!ShipParticleEnabled) return;
+
 	Texture = CoreSys.Vault->LinkTexture("Res/Particle.png");
 	Sprite = CoreSys.CoreSpriteCreate(*Texture);
 
@@ -39,6 +42,7 @@ ShipParticle::ShipParticle()
 
 ShipParticle::~ShipParticle()
 {
+	if(!ShipParticleEnabled) return;
 	lpSys->Stop();
 	DeleteNull(lpSys);
 	DeleteNull(Sprite);
@@ -46,8 +50,11 @@ ShipParticle::~ShipParticle()
 
 void ShipParticle::Update(const CoreVector& Position, float DirectionRad)
 {
-	float Delta = CoreSys.Delta();
+	float Delta;
 
+	if(!ShipParticleEnabled) return;
+
+	Delta = CoreSys.Delta();
 	lpSys->info.fDirection = DirectionRad;
 	lpSys->FireAt(Position.x, Position.y);
 
@@ -56,11 +63,13 @@ void ShipParticle::Update(const CoreVector& Position, float DirectionRad)
 
 void ShipParticle::Render() const
 {
+	if(!ShipParticleEnabled) return;
 	lpSys->Render();
 }
 
 void ShipParticle::Render(const CoreVector& Offset) const
 {
+	if(!ShipParticleEnabled) return;
 	lpSys->Transpose(Offset.x, Offset.y);
 	lpSys->Render();
 }

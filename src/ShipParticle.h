@@ -8,6 +8,7 @@ class ShipParticle
 {
 	CoreSprite* Sprite;
 	hgeParticleSystem* lpSys;
+	BOOL ShipParticleEnabled;
 
 	public:
 	ShipParticle();

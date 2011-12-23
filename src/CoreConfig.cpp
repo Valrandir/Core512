@@ -8,6 +8,7 @@ CoreConfig::CoreConfig()
 	HideTexture = false;
 	BackGroundColor = 0xFF000000;
 	TextColor = 0xFFFFFFFF;
+	ShipParticle = true;
 
 	//[Resolution]
 	Width = 0;
@@ -23,9 +24,9 @@ void CoreConfig::ReadFileINI()
 	CoreFileINI FileINI("Core512.ini");
 
 	//[Core512]
-	HideTexture = FileINI.GetInt("Core512", "HideTexture", HideTexture);
 	BackGroundColor = FileINI.GetHex("Core512", "BackGroundColor", BackGroundColor);
 	TextColor = FileINI.GetHex("Core512", "TextColor", TextColor);
+	ShipParticle = FileINI.GetInt("Core512", "ShipParticle", ShipParticle);
 
 	//[Resolution]
 	Width = FileINI.GetInt("Resolution", "Width", Width);
