@@ -12,6 +12,9 @@ class CoreVector
 	CoreVector(const CoreVector& v);
 	CoreVector(float x, float y);
 
+	bool operator==(const CoreVector& v) const;
+	bool operator!=(const CoreVector& v) const;
+
 	CoreVector& operator=(const CoreVector& v);
 	CoreVector& operator=(float v);
 	CoreVector& operator+=(const CoreVector& v);

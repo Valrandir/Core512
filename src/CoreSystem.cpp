@@ -88,6 +88,7 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 	Try(Vault = new CoreResource());
 
 	Try(Draw = new CorePrimitive(Hge));
+	IsClipping = false;
 }
 
 CoreSystem::~CoreSystem()
@@ -112,6 +113,11 @@ float CoreSystem::Delta() const
 void CoreSystem::ClearScreen() const
 {
 	Hge->Gfx_Clear(CoreSys.Config->BackGroundColor);
+}
+
+void CoreSystem::ClearScreen(DWORD Color) const
+{
+	Hge->Gfx_Clear(Color);
 }
 
 void CoreSystem::GetScreenSize(CoreVector& ScrSize)
@@ -159,6 +165,26 @@ CoreRotBody* CoreSystem::CoreRotBodyCreate(const CoreVector& Center, const CoreV
 	CoreRotBody* RotBody;
 	Try(RotBody = new CoreRotBody(Center, Alignment, Texture));
 	return RotBody;
+}
+
+void CoreSystem::ClipReset()
+{
+	if(IsClipping)
+	{
+		Hge->Gfx_SetClipping();
+		IsClipping = false;
+	}
+}
+
+void CoreSystem::Clip(const CoreRect& Rect)
+{
+	if((int)Rect.Size.x == 0)
+		ClipReset();
+	else
+	{
+		Hge->Gfx_SetClipping((int)Rect.xy1.x, (int)Rect.xy1.y, (int)Rect.Size.x, (int)Rect.Size.y);
+		IsClipping = true;
+	}
 }
 
 bool CoreSystem::KeyState(int Key) const

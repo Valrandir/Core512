@@ -13,6 +13,16 @@ CoreVector::CoreVector(float x, float y) : x(Vec.x), y(Vec.y), Vec(x, y)
 {
 }
 
+bool CoreVector::operator==(const CoreVector& v) const
+{
+	return Vec.x == v.Vec.x && Vec.y == v.Vec.y;
+}
+
+bool CoreVector::operator!=(const CoreVector& v) const
+{
+	return Vec.x != v.Vec.x || Vec.y != v.Vec.y;
+}
+
 CoreVector& CoreVector::operator=(const CoreVector& v)
 {
 	x = v.x;

@@ -16,6 +16,9 @@ CoreZone::CoreZone(const CoreVector& ZoneSize) : lpCoreBG(NULL), lpTrackBody(NUL
 	//Init NoScrollRect
 	NoScrollRect.SetByCenter(ScreenSize / 1.25);
 
+	//Init ZoneToScr
+	ZoneToScr = ScreenRect.Size / 2;
+
 	//Init CoreBackground
 	Try(lpCoreBG = new CoreBackground());
 }
@@ -54,6 +57,36 @@ void CoreZone::UpdateScreenRect()
 		ScreenRect.Move(Center);
 		NoScrollRect.Move(Center);
 	}
+
+	RenderOffset = ZoneToScr - ScreenRect.Center;
+}
+
+//Set Clipping if the outside of the zone is on screen
+void CoreZone::ClipToZone() const
+{
+	CoreRect Mix;
+	if(Intersect(ScreenRect, Mix) && ScreenRect.Size != Mix.Size)
+	{
+		CoreSys.ClearScreen(0xFF808080);
+		Mix.Offset(RenderOffset);
+		CoreSys.Clip(Mix);
+	}
+	else
+		CoreSys.ClipReset();
+}
+
+void CoreZone::DoStuff() const
+{
+	CoreRect TopCenter;
+	CoreRect Mix;
+
+	//TopCenter Test
+	TopCenter.SetByPoints(xy1, CoreVector(xy2.x, xy1.y + 512));
+	if(ScreenRect.Intersect(TopCenter))
+	{
+		TopCenter.Offset(RenderOffset);
+		CoreSys.Draw->RenderRect(TopCenter);
+	}
 }
 
 void CoreZone::Update(float Delta)
@@ -62,25 +95,10 @@ void CoreZone::Update(float Delta)
 	UpdateScreenRect();
 }
 
-/*
-void CoreZone::DoStuff() const
-{
-	const int DeathZoneLength = 1024;
-	float y = ViewOffset.y - ZoneToScrVec.y;
-	float top = xy1.y + DeathZoneLength;
-	if(y < top)
-	{
-		y = top - y;
-		float worldtop = xy1.y - ViewOffset.y + ZoneToScrVec.y;
-		CoreSys.Draw->RenderRect(0, worldtop, ScreenSize.x, y, 0xFF0000FF);
-		CoreSys.Draw->RenderLine(ZoneToScrVec.x, 0, ZoneToScrVec.x, y, 0xFF00FF00);
-	}
-}
-*/
-
 void CoreZone::Render() const
 {
+	ClipToZone();
 	lpCoreBG->RenderMosaic(ScreenRect.Center);
-	//DoStuff();
-	CoreBodyList::Render(ScreenRect.Size / 2 - ScreenRect.Center);
+	DoStuff();
+	CoreBodyList::Render(RenderOffset);
 }

@@ -1,5 +1,8 @@
 #include "CoreRect.h"
 
+#define Min(a,b)((a) < (b) ? (a) : (b))
+#define Max(a,b)((a) > (b) ? (a) : (b))
+
 CoreRect::CoreRect() {}
 
 void CoreRect::SetByCenter(const CoreVector& Size)
@@ -39,9 +42,32 @@ void CoreRect::Offset(const CoreVector& Vec)
 }
 
 //Return true is the specified point is inside this rectangle
-bool CoreRect::PointIsInside(const CoreVector& Point) const
+bool CoreRect::IsInside(const CoreVector& Point) const
 {
 	return Point.x >= xy1.x && Point.x <= xy2.x && Point.y >= xy1.y && Point.y <= xy2.y;
+}
+
+bool CoreRect::Intersect(const CoreRect& Rect) const
+{
+	auto x = (Center.x < Rect.Center.x ? xy2.x < Rect.xy1.x : Rect.xy2.x < xy1.x);
+	auto y = (Center.y < Rect.Center.y ? xy2.y < Rect.xy1.y : Rect.xy2.y < xy1.y);
+	return !x & !y;
+}
+
+bool CoreRect::Intersect(const CoreRect& Rect, CoreRect& Intersection) const
+{
+	bool Intersected = Intersect(Rect);
+
+	if(Intersected)
+	{
+		CoreVector xy1(Max(xy1.x, Rect.xy1.x), Max(xy1.y, Rect.xy1.y));
+		CoreVector xy2(Min(xy2.x, Rect.xy2.x), Min(xy2.y, Rect.xy2.y));
+		Intersection.SetByPoints(xy1, xy2);
+	}
+	else
+		Intersection.SetByCenter(CoreVector());
+
+	return Intersected;
 }
 
 //Get the CoreVector of the xy distance between the specified point

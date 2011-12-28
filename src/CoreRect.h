@@ -14,6 +14,8 @@ class CoreRect
 	void Move(const CoreVector& Center);
 	void CoreRect::Offset(const CoreVector& Vec);
 
-	bool PointIsInside(const CoreVector& Point) const;
-	bool CoreRect::PointOffset(const CoreVector& Point, CoreVector& Offset) const;
+	bool IsInside(const CoreVector& Point) const;
+	bool Intersect(const CoreRect& Rect) const;
+	bool Intersect(const CoreRect& Rect, CoreRect& Intersection) const;
+	bool PointOffset(const CoreVector& Point, CoreVector& Offset) const;
 };

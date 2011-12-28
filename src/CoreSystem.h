@@ -21,6 +21,7 @@ class CoreSystem
 	void InitLogFile(const char* Title) const;
 	static bool OnRender();
 	void ReadConfig();
+	bool IsClipping;
 
 	CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc);
 
@@ -36,11 +37,14 @@ class CoreSystem
 	void Execute() const;
 	float Delta() const;
 	void ClearScreen() const;
+	void ClearScreen(DWORD Color) const;
 	void GetScreenSize(CoreVector& ScrSize);
 	CoreTexture* CoreTextureCreate(const char* ResPath) const;
 	CoreSprite* CoreSpriteCreate(const CoreTexture& Texture, bool CenterHotSpot = true) const;
 	CoreBody* CoreBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const;
 	CoreDynBody* CoreDynBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const;
 	CoreRotBody* CoreRotBodyCreate(const CoreVector& Center, const CoreVector& Alignment, const CoreTexture& Texture) const;
+	void ClipReset();
+	void Clip(const CoreRect& Rect);
 	bool KeyState(int Key) const;
 };
