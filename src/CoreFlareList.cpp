@@ -14,7 +14,7 @@ void CoreFlareList::Add(const CoreVector& Position, const char* ResPath, int Spr
 	CoreFlare* Flare;
 
 	Flare = new CoreFlare(Position, ResPath, SpritePerX, SpritePerY);
-	Trn(Flare == NULL);
+	Try(Flare);
 
 	vFlare.push_back(Flare);
 

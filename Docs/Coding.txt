@@ -1,5 +1,6 @@
-- pass class/struct using const reference
-- ensure const correctness
-- use public const references as public read-only properties
+- Pass class/struct using const reference
+- Ensure const correctness
+- Use public const references as public read-only properties
+    Non const references at the end of the chain are still not const even if the parent accessor is.
 - Call inherited stuff using full path: CoreBody::CoreRect::Center
 - Use ErrExit.h Try/Trn/Stackit

@@ -30,7 +30,7 @@ void CoreFlare::Initialize(const CoreVector& Position, const char* ResPath, int 
 	fps = 50.5f;
 
 	lpAnimation = new hgeAnimation(Texture->TextureHandle, nFrames, fps, 0.0f, 0.0f, w, h);
-	Trn(lpAnimation == NULL);
+	Try(lpAnimation);
 	lpAnimation->SetMode(HGEANIM_FWD | HGEANIM_NOLOOP);
 	lpAnimation->SetHotSpot(Texture->WidthF / 2 / SpritePerX, Texture->HeightF / 2 / SpritePerY);
 

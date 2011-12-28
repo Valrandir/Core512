@@ -4,7 +4,7 @@
 CorePrimitive::CorePrimitive(HGE* lpHge) : Hge(lpHge)
 {
 	Stackit;
-	Trn(Hge == NULL);
+	Try(Hge);
 }
 
 void CorePrimitive::RenderLine(const CoreVector& xy1, const CoreVector& xy2, DWORD Color) const

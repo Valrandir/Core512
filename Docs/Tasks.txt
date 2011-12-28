@@ -1,5 +1,7 @@
 Investigate how const references works versus const pointers
-	because that (const CoreVector& Offset) can still have its members modified
+because that (const CoreVector& Offset) can still have its members modified
+DONE: (const CoreVector& Offset) can still have its members modified because x and y in CoreVector
+are references, which skip the const limitation.
 
 Tasks
 - Turn Animation

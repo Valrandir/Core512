@@ -22,7 +22,7 @@ void CoreSprite::Initialize(const CoreTexture& Texture, bool CenterHotSpot)
 	Trn(Initialized);
 
 	Sprite = new hgeSprite(Texture.TextureHandle, 0.0f, 0.0f, Texture.WidthF, Texture.HeightF);
-	Trn(Sprite == NULL);
+	Try(Sprite);
 	if(CenterHotSpot)
 		Sprite->SetHotSpot(floor(Texture.WidthF / 2), floor(Texture.HeightF / 2));
 
