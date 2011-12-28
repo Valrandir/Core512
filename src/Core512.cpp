@@ -48,7 +48,7 @@ void Load()
 
 	Try(lpHelp = new HelpText());
 	Try(lpShip = new Ship());
-	Try(lpCoreZone = new CoreZone(CoreVector(0x1800, 0x1800)));
+	Try(lpCoreZone = new CoreZone(CoreVector(0x1000, 0x1000)));
 
 	lpCoreFlareList = new CoreFlareList();
 	Try(lpCoreFlareList);

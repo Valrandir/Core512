@@ -5,40 +5,65 @@
 
 CoreRect::CoreRect() {}
 
-void CoreRect::SetByCenter(const CoreVector& Size)
+CoreRect& CoreRect::SetByCenter(const CoreVector& Size)
 {
 	this->Center = 0;
 	this->Size = Size;
 	xy1 = Center - Size / 2;
 	xy2 = xy1 + Size;
+	return *this;
 }
 
-void CoreRect::SetByCenter(const CoreVector& Center, const CoreVector& Size)
+CoreRect& CoreRect::SetByCenter(const CoreVector& Center, const CoreVector& Size)
 {
 	this->Center = Center;
 	this->Size = Size;
 	xy1 = Center - Size / 2;
 	xy2 = xy1 + Size;
+	return *this;
 }
 
-void CoreRect::SetByPoints(const CoreVector& xy1, const CoreVector& xy2)
+CoreRect& CoreRect::SetByPoints(const CoreVector& xy1, const CoreVector& xy2)
 {
 	this->xy1 = xy1;
 	this->xy2 = xy2;
 	Size = xy2 - xy1;
 	Center = xy1 + Size / 2;
+	return *this;
 }
 
-void CoreRect::Move(const CoreVector& Center)
+CoreRect& CoreRect::SetByPoints(float x1, float y1, float x2, float y2)
+{
+	return SetByPoints(CoreVector(x1, y1), CoreVector(x2, y2));
+}
+
+CoreRect& CoreRect::Clone(CoreRect& Specimen) const
+{
+	Specimen.SetByCenter(Center, Size);
+	return Specimen;
+}
+
+CoreRect& CoreRect::Move(const CoreVector& Center)
 {
 	SetByCenter(Center, Size);
+	return *this;
 }
 
-void CoreRect::Offset(const CoreVector& Vec)
+CoreRect& CoreRect::Offset(const CoreVector& Vec)
 {
 	xy1 += Vec;
 	xy2 += Vec;
 	Center += Vec;
+	return *this;
+}
+
+CoreRect& CoreRect::RoundToPixel()
+{
+	xy1.x = (float)(int)xy1.x;
+	xy1.y = (float)(int)xy1.y;
+	xy2.x = (float)(int)xy2.x;
+	xy2.y = (float)(int)xy2.y;
+	return *this;
 }
 
 //Return true is the specified point is inside this rectangle
