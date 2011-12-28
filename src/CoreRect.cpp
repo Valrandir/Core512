@@ -2,6 +2,14 @@
 
 CoreRect::CoreRect() {}
 
+void CoreRect::SetByCenter(const CoreVector& Size)
+{
+	this->Center = 0;
+	this->Size = Size;
+	xy1 = Center - Size / 2;
+	xy2 = xy1 + Size;
+}
+
 void CoreRect::SetByCenter(const CoreVector& Center, const CoreVector& Size)
 {
 	this->Center = Center;
@@ -28,7 +36,6 @@ void CoreRect::Offset(const CoreVector& Vec)
 	xy1 += Vec;
 	xy2 += Vec;
 	Center += Vec;
-	Size += Vec;
 }
 
 //Return true is the specified point is inside this rectangle

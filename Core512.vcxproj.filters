@@ -163,6 +163,9 @@
     <ClInclude Include="src\CoreBodyList.h">
       <Filter>src\Core\Entity</Filter>
     </ClInclude>
+    <ClInclude Include="src\CorePrimitive.h">
+      <Filter>src\Core\Output</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreBody.cpp">
@@ -236,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="src\CoreBodyList.cpp">
       <Filter>src\Core\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CorePrimitive.cpp">
+      <Filter>src\Core\Output</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

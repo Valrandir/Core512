@@ -5,20 +5,25 @@
 
 class CoreZone : public CoreRect, public CoreBodyList
 {
-	CoreVector ScreenSize;
-	CoreVector ZoneToScrVec;
-	CoreVector ViewOffset;
+	//The screen rectangle within the zone
+	CoreRect ScreenRect;
+
+	//The rectangle within ScreenRect where no scrolling occurs
 	CoreRect NoScrollRect;
 
+	//To draw the background tiles
 	CoreBackground* lpCoreBG;
+
+	//Camera Focus
+	//The ScreenRect is moved to display this body within NoScrollRect
 	CoreBody* lpTrackBody;
 
 	public:
-	CoreZone();
+	CoreZone(const CoreVector& ZoneSize);
 	virtual ~CoreZone();
-	CoreVector GetViewOffset() const;
 	void TrackBody(CoreBody& lpBody);
 	void ToggleBG();
+	void UpdateScreenRect();
 	void Update(float Delta);
 	void DoStuff() const;
 	void Render() const;
