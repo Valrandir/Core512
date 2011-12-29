@@ -65,13 +65,11 @@ void CoreFlare::Update(float Delta)
 	lpAnimation->Update(Delta);
 }
 
-void CoreFlare::Render() const
+void CoreFlare::Render(const CoreVector& Offset) const
 {
 	Stackit;
 	Try(Initialized);
 
 	if(IsPlaying())
-		lpAnimation->Render(Position.x, Position.y);
-	//lpAnimation->RenderStretch(x - Width, y - Height, x + Width, y + Width);
+		lpAnimation->Render(Position.x + Offset.x, Position.y + Offset.y);
 }
-

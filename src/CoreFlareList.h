@@ -13,5 +13,5 @@ class CoreFlareList
 	~CoreFlareList();
 	void Add(const CoreVector& Position, const char* ResPath, int SpritePerX, int SpritePerY);
 	void Update(float Delta);
-	void Render() const;
+	void Render(const CoreVector& Offset) const;
 };

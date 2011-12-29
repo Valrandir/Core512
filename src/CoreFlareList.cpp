@@ -34,9 +34,9 @@ void CoreFlareList::Update(float Delta)
 	}
 }
 
-void CoreFlareList::Render() const
+void CoreFlareList::Render(const CoreVector& Offset) const
 {
 	Stackit;
 	for(auto it = vFlare.rbegin(); it != vFlare.rend(); ++it)
-		(*it)->Render();
+		(*it)->Render(Offset);
 }

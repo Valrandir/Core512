@@ -63,7 +63,10 @@ void CoreZone::TrackBody(CoreBody& lpBody)
 {
 	lpTrackBody = &lpBody;
 	if(lpTrackBody)
+	{
 		ScreenRect.Move(lpTrackBody->Center);
+		NoScrollRect.Move(Center);
+	}
 }
 
 void CoreZone::ToggleBG()
@@ -169,4 +172,9 @@ void CoreZone::Render() const
 	}
 	else
 		CoreSys.ClearScreen(DeniedBackColor);
+}
+
+CoreVector const& CoreZone::GetOffset()
+{
+	return RenderOffset;
 }

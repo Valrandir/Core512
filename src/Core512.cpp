@@ -129,7 +129,7 @@ bool Render()
 {
 	Stackit;
 	lpCoreZone->Render();
-	lpCoreFlareList->Render();
+	lpCoreFlareList->Render(lpCoreZone->GetOffset());
 	lpHelp->Render();
 	return false;
 }

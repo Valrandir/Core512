@@ -17,5 +17,5 @@ class CoreFlare
 	void Play();
 	bool IsPlaying() const;
 	void Update(float Delta);
-	void Render() const;
+	void Render(const CoreVector& Offset) const;
 };

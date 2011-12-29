@@ -39,4 +39,5 @@ class CoreZone : public CoreRect, public CoreBodyList
 	public:
 	void Update(float Delta);
 	void Render() const;
+	CoreVector const& GetOffset();
 };
