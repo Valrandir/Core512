@@ -15,6 +15,7 @@ class CoreRotBody : public CoreDynBody
 	void Initialize(const CoreVector& Center, const CoreVector& Alignment, const CoreTexture& Texture);
 	virtual ~CoreRotBody();
 
+	virtual const CoreVector& GetAlignment() const;
 	virtual void Turn(float RotationRadian);
 	virtual void Thrust(float Force);
 	virtual void Update(float Delta);

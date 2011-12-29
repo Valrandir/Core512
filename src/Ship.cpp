@@ -1,13 +1,15 @@
 #include "CoreSystem.h"
+#include "CoreZone.h"
+#include "Bullet.h"
 #include "Ship.h"
 
-Ship::Ship()
+Ship::Ship(CoreZone& CoreZoneRef) : CoreZoneRef(CoreZoneRef)
 {
 	Stackit;
 	CoreTexture* Texture = CoreSys.Vault->LinkTexture("Res/Ship.png");
 	Texture->UseOriginalSize();
 	CoreRotBody::Initialize(CoreVector(), CoreVector(0.0f, -1.0f), *Texture);
-	EngineForce = 75.0f;
+	EngineForce = (float)CoreSys.Config->ShipEngineForce;
 	TurnSpeed = 10.0f;
 	lpParticle[0] = new ShipParticle();
 	lpParticle[1] = new ShipParticle();
@@ -24,9 +26,19 @@ void Ship::Turn(int RotateDirection, float Delta)
 	CoreRotBody::Turn(RotateDirection * TurnSpeed * Delta);
 }
 
+//Force Direction to be either + or -
 void Ship::Thrust(int ForceDirection)
 {
 	CoreRotBody::Thrust(ForceDirection * EngineForce);
+}
+
+void Ship::Shoot()
+{
+	Stackit;
+	Bullet* lpBullet;
+
+	Try(lpBullet = new Bullet(Center, GetAlignment()));
+	CoreZoneRef.Add(*lpBullet);
 }
 
 void Ship::UpdateParticle()

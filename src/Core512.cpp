@@ -39,8 +39,12 @@ void Load()
 {
 	Stackit;
 	CoreTexture* lpCoreTexture = NULL;
+	float ZoneSize;
 
 	CoreSystemCreate("Corification", Update, Render);
+
+	ZoneSize = (float)CoreSys.Config->ZoneSize;
+	Try(lpCoreZone = new CoreZone(CoreVector(ZoneSize, ZoneSize)));
 
 	lpCoreTexture = CoreSys.Vault->LinkTexture("Res/Block.png");
 	lpCoreBody[0] = CoreSys.CreateCoreBody(CoreVector(-100.0f, 50.0f), *lpCoreTexture);
@@ -48,8 +52,7 @@ void Load()
 	lpCoreBody[2] = CoreSys.CreateCoreBody(CoreVector(100.0f, 50.0f), *lpCoreTexture);
 
 	Try(lpHelp = new HelpText());
-	Try(lpShip = new Ship());
-	Try(lpCoreZone = new CoreZone(CoreVector(0x1000, 0x1000)));
+	Try(lpShip = new Ship(*lpCoreZone));
 	Try(lpCoreFlareList = new CoreFlareList());
 
 	Try(lpCoreMusic = new CoreMusic());
@@ -85,6 +88,7 @@ void Unload()
 
 void UpdateInput(float Delta)
 {
+	Stackit;
 	int ForceDirection, RotateDirection;
 	int Command;
 
@@ -96,6 +100,9 @@ void UpdateInput(float Delta)
 
 	if(ForceDirection)
 		lpShip->Thrust(ForceDirection);
+
+	if(Command == CoreInput_Shoot)
+		lpShip->Shoot();
 
 	if(Command == CoreInput_ShipReset)
 	{

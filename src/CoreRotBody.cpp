@@ -32,6 +32,11 @@ CoreRotBody::~CoreRotBody()
 {
 }
 
+const CoreVector& CoreRotBody::GetAlignment() const
+{
+	return Alignment;
+}
+
 void CoreRotBody::Turn(float RotationRadian)
 {
 	Stackit;

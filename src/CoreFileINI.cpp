@@ -20,9 +20,8 @@ CoreFileINI::CoreFileINI(LPCTSTR IniFileName)
 
 int CoreFileINI::GetInt(LPCTSTR Section, LPCTSTR Key, int Default)
 {
-	Stackit;
 	DWORD Ret;
-	Try(Ret = GetPrivateProfileString(Section, Key, NULL, Buffer, BufferSize, FileINI));
+	Ret = GetPrivateProfileString(Section, Key, NULL, Buffer, BufferSize, FileINI);
 	if(Ret)
 		return _ttoi(Buffer);
 	return Default;
@@ -30,9 +29,8 @@ int CoreFileINI::GetInt(LPCTSTR Section, LPCTSTR Key, int Default)
 
 float CoreFileINI::GetFloat(LPCTSTR Section, LPCTSTR Key, float Default)
 {
-	Stackit;
 	DWORD Ret;
-	Try(Ret = GetPrivateProfileString(Section, Key, NULL, Buffer, BufferSize, FileINI));
+	Ret = GetPrivateProfileString(Section, Key, NULL, Buffer, BufferSize, FileINI);
 	if(Ret)
 		return (float)_ttof(Buffer);
 	return Default;
@@ -40,9 +38,8 @@ float CoreFileINI::GetFloat(LPCTSTR Section, LPCTSTR Key, float Default)
 
 LPCTSTR CoreFileINI::GetString(LPCTSTR Section, LPCTSTR Key, LPCTSTR Default)
 {
-	Stackit;
 	DWORD Ret;
-	Try(Ret = GetPrivateProfileString(Section, Key, NULL, Buffer, BufferSize, FileINI));
+	Ret = GetPrivateProfileString(Section, Key, NULL, Buffer, BufferSize, FileINI);
 	if(Ret)
 		return Buffer;
 	return Default;
@@ -50,9 +47,8 @@ LPCTSTR CoreFileINI::GetString(LPCTSTR Section, LPCTSTR Key, LPCTSTR Default)
 
 DWORD CoreFileINI::GetHex(LPCTSTR Section, LPCTSTR Key, DWORD Default)
 {
-	Stackit;
 	DWORD Ret;
-	Try(Ret = GetPrivateProfileString(Section, Key, NULL, Buffer, BufferSize, FileINI));
+	Ret = GetPrivateProfileString(Section, Key, NULL, Buffer, BufferSize, FileINI);
 	if(Ret)
 		return (DWORD)strtoul(Buffer, NULL, 16);
 	return Default;

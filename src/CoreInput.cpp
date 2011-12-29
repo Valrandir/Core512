@@ -6,6 +6,9 @@
 CoreInputEnum CoreInput::Command()
 {
 	if(Key(HGEK_SPACE))
+		return CoreInput_Shoot;
+
+	if(Key(HGEK_R))
 		return CoreInput_ShipReset;
 
 	if(Key(HGEK_T))

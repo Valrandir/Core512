@@ -1,10 +1,11 @@
 #pragma once
+#include <string>
 #include "CoreVector.h"
 #include "CoreText.h"
 
 class HelpText
 {
-	const char* HelpTextContent;
+	std::string TextStr;
 	CoreText Text;
 
 	public:

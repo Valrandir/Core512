@@ -178,6 +178,9 @@
     <ClInclude Include="src\CoreFile.h">
       <Filter>src\Core\Input</Filter>
     </ClInclude>
+    <ClInclude Include="src\Bullet.h">
+      <Filter>src\Current</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreBody.cpp">
@@ -263,6 +266,9 @@
     </ClCompile>
     <ClCompile Include="src\CoreFile.cpp">
       <Filter>src\Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bullet.cpp">
+      <Filter>src\Current</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

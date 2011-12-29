@@ -76,7 +76,7 @@ void CoreZone::ToggleBG()
 
 void CoreZone::InitBorders()
 {
-	const float BorderSize = 512.0f;
+	float BorderSize = (float)CoreSys.Config->ZoneBorderSize;
 	DWORD Color = 0xFFFFFFFF;
 
 	//Set Borders
@@ -147,6 +147,7 @@ void CoreZone::RenderVisibleBorders() const
 void CoreZone::Update(float Delta)
 {
 	CoreBodyList::Update(Delta);
+	CoreBodyList::RemoveOutsideRect(*this, lpTrackBody);
 	UpdateScreenRect();
 }
 

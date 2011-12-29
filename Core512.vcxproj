@@ -127,6 +127,7 @@
     <None Include="Res\Ship.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Bullet.h" />
     <ClInclude Include="src\CoreBackground.h" />
     <ClInclude Include="src\CoreBody.h" />
     <ClInclude Include="src\CoreBodyList.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="src\ShipParticle.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\Core512.cpp" />
     <ClCompile Include="src\CoreBackground.cpp" />
     <ClCompile Include="src\CoreBody.cpp" />
