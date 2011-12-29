@@ -19,11 +19,29 @@ CoreTexture* CoreResource::LinkTexture(const char* ResPath)
 		lpCoreTexture = (CoreTexture*)Value;
 	else
 	{
-		lpCoreTexture = CoreSys.CoreTextureCreate(ResPath);
+		lpCoreTexture = CoreSys.CreateCoreTexture(ResPath);
 		vSilo.insert(ResMapPair(ResPath, (void*)lpCoreTexture));
 	}
 
 	return lpCoreTexture;
+}
+
+CoreStream* CoreResource::LinkStream(const char* ResPath)
+{
+	Stackit;
+
+	void* Value;
+	CoreStream* lpCoreStream;
+
+	if(Link(ResPath, Value))
+		lpCoreStream = (CoreStream*)Value;
+	else
+	{
+		lpCoreStream = CoreSys.CreateCoreStream(ResPath);
+		vSilo.insert(ResMapPair(ResPath, (void*)lpCoreStream));
+	}
+
+	return lpCoreStream;
 }
 
 bool CoreResource::Link(const char* ResPath, void*& Value)

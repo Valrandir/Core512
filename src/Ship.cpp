@@ -7,7 +7,7 @@ Ship::Ship()
 	CoreTexture* Texture = CoreSys.Vault->LinkTexture("Res/Ship.png");
 	Texture->UseOriginalSize();
 	CoreRotBody::Initialize(CoreVector(), CoreVector(0.0f, -1.0f), *Texture);
-	EngineForce = 25.0f;
+	EngineForce = 75.0f;
 	TurnSpeed = 10.0f;
 	lpParticle[0] = new ShipParticle();
 	lpParticle[1] = new ShipParticle();

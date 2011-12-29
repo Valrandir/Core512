@@ -10,7 +10,7 @@ ShipParticle::ShipParticle()
 	if(!ShipParticleEnabled) return;
 
 	Texture = CoreSys.Vault->LinkTexture("Res/Particle.png");
-	Sprite = CoreSys.CoreSpriteCreate(*Texture);
+	Sprite = CoreSys.CreateCoreSprite(*Texture);
 
 	psi.sprite = Sprite->Sprite;
 	psi.nEmission = 200;
@@ -32,8 +32,8 @@ ShipParticle::ShipParticle()
 	psi.fSpinStart = 0.0f;
 	psi.fSpinEnd = CoreRad1;
 	psi.fSpinVar = 1.0f;
-	psi.colColorStart = 0xA0FF4000;
-	psi.colColorEnd = 0x25000000;
+	psi.colColorStart = 0xFF801040;
+	psi.colColorEnd = 0x80000000;
 	psi.fColorVar = 0.125;
 	psi.fAlphaVar = 0.125;
 

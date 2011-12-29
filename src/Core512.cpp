@@ -18,6 +18,7 @@ bool Render();
 CoreBody* lpCoreBody[3];
 CoreFlareList* lpCoreFlareList = NULL;
 CoreZone* lpCoreZone = NULL;
+CoreMusic* lpCoreMusic = NULL;
 
 HelpText* lpHelp;
 Ship* lpShip = NULL;
@@ -42,16 +43,17 @@ void Load()
 	CoreSystemCreate("Corification", Update, Render);
 
 	lpCoreTexture = CoreSys.Vault->LinkTexture("Res/Block.png");
-	lpCoreBody[0] = CoreSys.CoreBodyCreate(CoreVector(-100.0f, 50.0f), *lpCoreTexture);
-	lpCoreBody[1] = CoreSys.CoreBodyCreate(CoreVector(-50.0f, -50.0f), *lpCoreTexture);
-	lpCoreBody[2] = CoreSys.CoreBodyCreate(CoreVector(100.0f, 50.0f), *lpCoreTexture);
+	lpCoreBody[0] = CoreSys.CreateCoreBody(CoreVector(-100.0f, 50.0f), *lpCoreTexture);
+	lpCoreBody[1] = CoreSys.CreateCoreBody(CoreVector(-50.0f, -50.0f), *lpCoreTexture);
+	lpCoreBody[2] = CoreSys.CreateCoreBody(CoreVector(100.0f, 50.0f), *lpCoreTexture);
 
 	Try(lpHelp = new HelpText());
 	Try(lpShip = new Ship());
 	Try(lpCoreZone = new CoreZone(CoreVector(0x1000, 0x1000)));
+	Try(lpCoreFlareList = new CoreFlareList());
 
-	lpCoreFlareList = new CoreFlareList();
-	Try(lpCoreFlareList);
+	Try(lpCoreMusic = new CoreMusic());
+	lpCoreMusic->Play();
 }
 
 void Init()
@@ -77,6 +79,7 @@ void Unload()
 	DeleteNull(lpHelp);
 	DeleteNull(lpCoreFlareList);
 	DeleteNull(lpCoreZone);
+	DeleteNull(lpCoreMusic);
 	CoreSystemDestroy();
 }
 
@@ -102,6 +105,9 @@ void UpdateInput(float Delta)
 
 	if(Command == CoreInput_Background_Toggle)
 		lpCoreZone->ToggleBG();
+
+	if(Command == CoreInput_Music_Toggle)
+		lpCoreMusic->Toggle();
 
 	if(Command == CoreInput_Explode)
 		lpCoreFlareList->Add(lpShip->Center, "Res/Explosion.png", 5, 5);

@@ -9,6 +9,7 @@ CoreConfig::CoreConfig()
 	BackGroundColor = 0xFF000000;
 	TextColor = 0xFFFFFFFF;
 	ShipParticle = true;
+	UseMusic = true;
 
 	//[Resolution]
 	Width = 0;
@@ -27,6 +28,7 @@ void CoreConfig::ReadFileINI()
 	BackGroundColor = FileINI.GetHex("Core512", "BackGroundColor", BackGroundColor);
 	TextColor = FileINI.GetHex("Core512", "TextColor", TextColor);
 	ShipParticle = FileINI.GetInt("Core512", "ShipParticle", ShipParticle);
+	UseMusic = FileINI.GetInt("Core512", "UseMusic", UseMusic);
 
 	//[Resolution]
 	Width = FileINI.GetInt("Resolution", "Width", Width);

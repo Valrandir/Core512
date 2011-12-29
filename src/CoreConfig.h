@@ -7,6 +7,7 @@ struct CoreConfig
 	DWORD BackGroundColor;
 	DWORD TextColor;
 	BOOL ShipParticle;
+	BOOL UseMusic;
 
 	int Width;
 	int Height;

@@ -70,7 +70,7 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 	Hge->System_SetState(HGE_TITLE, Title);
 	Hge->System_SetState(HGE_HIDEMOUSE, false);
 	Hge->System_SetState(HGE_SHOWSPLASH, false);
-	Hge->System_SetState(HGE_USESOUND, false);
+	Hge->System_SetState(HGE_USESOUND, true);
 	Hge->System_SetState(HGE_ICON, MAKEINTRESOURCE(100));
 
 	Hge->System_SetState(HGE_WINDOWED, true);
@@ -127,7 +127,7 @@ void CoreSystem::GetScreenSize(CoreVector& ScrSize)
 	ScrSize.Set(w, h);
 }
 
-CoreTexture* CoreSystem::CoreTextureCreate(const char* ResPath) const
+CoreTexture* CoreSystem::CreateCoreTexture(const char* ResPath) const
 {
 	Stackit;
 	CoreTexture* Texture;
@@ -135,7 +135,15 @@ CoreTexture* CoreSystem::CoreTextureCreate(const char* ResPath) const
 	return Texture;
 }
 
-CoreSprite* CoreSystem::CoreSpriteCreate(const CoreTexture& Texture, bool CenterHotSpot) const
+CoreStream* CoreSystem::CreateCoreStream(const char* ResPath) const
+{
+	Stackit;
+	CoreStream* Stream;
+	Try(Stream = new CoreStream(ResPath));
+	return Stream;
+}
+
+CoreSprite* CoreSystem::CreateCoreSprite(const CoreTexture& Texture, bool CenterHotSpot) const
 {
 	Stackit;
 	CoreSprite* Sprite;
@@ -143,7 +151,7 @@ CoreSprite* CoreSystem::CoreSpriteCreate(const CoreTexture& Texture, bool Center
 	return Sprite;
 }
 
-CoreBody* CoreSystem::CoreBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const
+CoreBody* CoreSystem::CreateCoreBody(const CoreVector& Center, const CoreTexture& Texture) const
 {
 	Stackit;
 	CoreBody* Body;
@@ -151,7 +159,7 @@ CoreBody* CoreSystem::CoreBodyCreate(const CoreVector& Center, const CoreTexture
 	return Body;
 }
 
-CoreDynBody* CoreSystem::CoreDynBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const
+CoreDynBody* CoreSystem::CreateCoreDynBody(const CoreVector& Center, const CoreTexture& Texture) const
 {
 	Stackit;
 	CoreDynBody* DynBody;
@@ -159,7 +167,7 @@ CoreDynBody* CoreSystem::CoreDynBodyCreate(const CoreVector& Center, const CoreT
 	return DynBody;
 }
 
-CoreRotBody* CoreSystem::CoreRotBodyCreate(const CoreVector& Center, const CoreVector& Alignment, const CoreTexture& Texture) const
+CoreRotBody* CoreSystem::CreateCoreRotBody(const CoreVector& Center, const CoreVector& Alignment, const CoreTexture& Texture) const
 {
 	Stackit;
 	CoreRotBody* RotBody;

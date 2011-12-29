@@ -18,7 +18,7 @@ void CoreBody::Initialize(const CoreVector& Center, const CoreTexture& Texture)
 	Trn(Initialized);
 	CoreVector Size(Texture.WidthF, Texture.HeightF);
 
-	Sprite = CoreSys.CoreSpriteCreate(Texture);
+	Sprite = CoreSys.CreateCoreSprite(Texture);
 	CoreRect::SetByCenter(Center, Size);
 
 	Initialized = TRUE;

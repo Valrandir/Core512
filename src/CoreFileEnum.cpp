@@ -37,11 +37,3 @@ CoreFileEnumVec* CoreFileEnum::FileList(const char* FileName, const char* Prefix
 
 	return &vFiles;
 }
-
-/*
-	CoreFileEnumVec vFiles;
-	int s = CoreFileEnum::FileList(&vFiles, "Res/Background*.png");
-
-	for(auto it = vFiles.begin(); it != vFiles.end(); ++it)
-		MessageBox(HWND_DESKTOP, (*it)->c_str(), "", MB_OK);
-*/

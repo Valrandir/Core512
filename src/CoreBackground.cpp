@@ -16,7 +16,7 @@ CoreBackground::CoreBackground() : TickLastToggle(0)
 	for(auto it = vFiles->begin(); it != vFiles->end(); ++it)
 	{
 		Texture = CoreSys.Vault->LinkTexture((**it).c_str());
-		Sprite = CoreSys.CoreSpriteCreate(*Texture, false);
+		Sprite = CoreSys.CreateCoreSprite(*Texture, false);
 		vSprites.push_back(Sprite);
 	}
 

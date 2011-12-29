@@ -5,6 +5,8 @@
 #include "CoreConfig.h"
 #include "CoreResource.h"
 #include "CoreTexture.h"
+#include "CoreStream.h"
+#include "CoreMusic.h"
 #include "CoreSprite.h"
 #include "CoreRotBody.h"
 #include "CorePrimitive.h"
@@ -39,11 +41,12 @@ class CoreSystem
 	void ClearScreen() const;
 	void ClearScreen(DWORD Color) const;
 	void GetScreenSize(CoreVector& ScrSize);
-	CoreTexture* CoreTextureCreate(const char* ResPath) const;
-	CoreSprite* CoreSpriteCreate(const CoreTexture& Texture, bool CenterHotSpot = true) const;
-	CoreBody* CoreBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const;
-	CoreDynBody* CoreDynBodyCreate(const CoreVector& Center, const CoreTexture& Texture) const;
-	CoreRotBody* CoreRotBodyCreate(const CoreVector& Center, const CoreVector& Alignment, const CoreTexture& Texture) const;
+	CoreTexture* CreateCoreTexture(const char* ResPath) const;
+	CoreStream* CreateCoreStream(const char* ResPath) const;
+	CoreSprite* CreateCoreSprite(const CoreTexture& Texture, bool CenterHotSpot = true) const;
+	CoreBody* CreateCoreBody(const CoreVector& Center, const CoreTexture& Texture) const;
+	CoreDynBody* CreateCoreDynBody(const CoreVector& Center, const CoreTexture& Texture) const;
+	CoreRotBody* CreateCoreRotBody(const CoreVector& Center, const CoreVector& Alignment, const CoreTexture& Texture) const;
 	void ClipReset();
 	void Clip(const CoreRect& Rect);
 	bool KeyState(int Key) const;

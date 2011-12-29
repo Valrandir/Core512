@@ -11,6 +11,9 @@ CoreInputEnum CoreInput::Command()
 	if(Key(HGEK_T))
 		return CoreInput_Background_Toggle;
 
+	if(Key(HGEK_M))
+		return CoreInput_Music_Toggle;
+
 	if(Key(HGEK_X))
 		return CoreInput_Explode;
 
