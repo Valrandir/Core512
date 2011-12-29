@@ -150,6 +150,7 @@
     <ClInclude Include="src\CoreSystem.h" />
     <ClInclude Include="src\CoreText.h" />
     <ClInclude Include="src\CoreTexture.h" />
+    <ClInclude Include="src\CoreTimer.h" />
     <ClInclude Include="src\CoreVector.h" />
     <ClInclude Include="src\CoreErrExit.h" />
     <ClInclude Include="src\CoreZone.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="src\CoreSystem.cpp" />
     <ClCompile Include="src\CoreText.cpp" />
     <ClCompile Include="src\CoreTexture.cpp" />
+    <ClCompile Include="src\CoreTimer.cpp" />
     <ClCompile Include="src\CoreVector.cpp" />
     <ClCompile Include="src\CoreErrExit.cpp" />
     <ClCompile Include="src\CoreZone.cpp" />

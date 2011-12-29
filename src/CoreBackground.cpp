@@ -2,7 +2,7 @@
 #include "CoreFileEnum.h"
 #include "CoreBackground.h"
 
-CoreBackground::CoreBackground() : TickLastToggle(0)
+CoreBackground::CoreBackground()
 {
 	CoreFileEnum FileEnum;
 	CoreFileEnumVec* vFiles;
@@ -32,18 +32,15 @@ CoreBackground::~CoreBackground()
 
 void CoreBackground::Toggle()
 {
-	int Tick = GetTickCount();
-
-	if(TickLastToggle)
-		if(Tick - TickLastToggle < 125)
-			return;
-
-	TickLastToggle = Tick;
+	if(!Timer.Finished())
+		return;
 
 	if(vSpritesIndex == vSprites.end())
 		vSpritesIndex = vSprites.begin();
 	else
 		++vSpritesIndex;
+
+	Timer.Launch(125);
 }
 
 void CoreBackground::Clear() const

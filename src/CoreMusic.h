@@ -1,6 +1,6 @@
 #pragma once
-#include "CoreStream.h"
-#include "CoreFileEnum.h"
+#include "CoreTimer.h"
+class CoreStream;
 
 class CoreMusic
 {
@@ -8,7 +8,7 @@ class CoreMusic
 	CoreStream* lpCoreStream;
 	void Load();
 	bool IsPlaying;
-	int TickLastToggle;
+	CoreTimer Timer;
 
 	public:
 	CoreMusic();

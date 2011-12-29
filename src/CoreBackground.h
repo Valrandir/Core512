@@ -3,13 +3,14 @@
 #include <vector>
 #include "CoreVector.h"
 #include "CoreSprite.h"
+#include "CoreTimer.h"
 
 class CoreBackground
 {
 	std::vector<CoreSprite*> vSprites;
 	std::vector<CoreSprite*>::iterator vSpritesIndex;
-	int TickLastToggle;
 	CoreVector ScreenSize;
+	CoreTimer Timer;
 
 	public:
 	CoreBackground();

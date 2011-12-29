@@ -181,6 +181,9 @@
     <ClInclude Include="src\Bullet.h">
       <Filter>src\Current</Filter>
     </ClInclude>
+    <ClInclude Include="src\CoreTimer.h">
+      <Filter>src\Core\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreBody.cpp">
@@ -269,6 +272,9 @@
     </ClCompile>
     <ClCompile Include="src\Bullet.cpp">
       <Filter>src\Current</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreTimer.cpp">
+      <Filter>src\Core\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

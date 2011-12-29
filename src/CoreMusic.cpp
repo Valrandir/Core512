@@ -2,7 +2,7 @@
 #include "CoreMusic.h"
 #include "CoreFile.h"
 
-CoreMusic::CoreMusic() : lpCoreStream(NULL), IsPlaying(false), TickLastToggle(0)
+CoreMusic::CoreMusic() : lpCoreStream(NULL), IsPlaying(false)
 {
 }
 
@@ -39,12 +39,13 @@ void CoreMusic::Stop()
 
 void CoreMusic::Toggle()
 {
-	int Tick = GetTickCount();
-	if(TickLastToggle && Tick - TickLastToggle < 250) return;
-	TickLastToggle = Tick;
+	if(!Timer.Finished())
+		return;
 
 	if(IsPlaying)
 		Stop();
 	else
 		Play();
+
+	Timer.Launch(250);
 }

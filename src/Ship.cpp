@@ -37,8 +37,12 @@ void Ship::Shoot()
 	Stackit;
 	Bullet* lpBullet;
 
-	Try(lpBullet = new Bullet(Center, GetAlignment()));
-	CoreZoneRef.Add(*lpBullet);
+	if(Timer.Finished())
+	{
+		Try(lpBullet = new Bullet(Center, GetAlignment()));
+		CoreZoneRef.Add(*lpBullet);
+		Timer.Launch(250);
+	}
 }
 
 void Ship::UpdateParticle()

@@ -1,6 +1,8 @@
 #pragma once
 #include "CoreRotBody.h"
+#include "CoreTimer.h"
 #include "ShipParticle.h"
+
 class CoreZone;
 
 class Ship : public CoreRotBody
@@ -8,6 +10,7 @@ class Ship : public CoreRotBody
 	CoreZone& CoreZoneRef;
 	float EngineForce;
 	float TurnSpeed;
+	CoreTimer Timer;
 	ShipParticle* lpParticle[2];
 
 	void UpdateParticle();
