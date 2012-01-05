@@ -41,10 +41,11 @@ void Load()
 	CoreTexture* lpCoreTexture = NULL;
 	float ZoneSize;
 
-	CoreSystemCreate("Corification", Update, Render);
+	CoreSystemCreate("v0.011", Update, Render);
 
 	ZoneSize = (float)CoreSys.Config->ZoneSize;
 	Try(lpCoreZone = new CoreZone(CoreVector(ZoneSize, ZoneSize)));
+	CoreSys.ActiveZoneSet(lpCoreZone);
 
 	lpCoreTexture = CoreSys.Vault->LinkTexture("Res/Block.png");
 	lpCoreBody[0] = CoreSys.CreateCoreBody(CoreVector(-100.0f, 50.0f), *lpCoreTexture);
@@ -52,7 +53,7 @@ void Load()
 	lpCoreBody[2] = CoreSys.CreateCoreBody(CoreVector(100.0f, 50.0f), *lpCoreTexture);
 
 	Try(lpHelp = new HelpText());
-	Try(lpShip = new Ship(*lpCoreZone));
+	Try(lpShip = new Ship());
 	Try(lpCoreFlareList = new CoreFlareList());
 
 	Try(lpCoreMusic = new CoreMusic());

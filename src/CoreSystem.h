@@ -10,6 +10,7 @@
 #include "CoreSprite.h"
 #include "CoreRotBody.h"
 #include "CorePrimitive.h"
+#include "CoreZone.h"
 
 #define CoreSys (*CoreSystem::Self)
 typedef bool (*CoreSystemFunc)();
@@ -18,12 +19,13 @@ class CoreSystem
 {
 	friend void CoreSystemCreate(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc);
 	friend void CoreSystemDestroy();
-
 	const CoreSystemFunc RenderFunc;
 	void InitLogFile(const char* Title) const;
 	static bool OnRender();
 	void ReadConfig();
+
 	bool IsClipping;
+	CoreZone* lpActiveZone;
 
 	CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const CoreSystemFunc RenderFunc);
 
@@ -50,4 +52,6 @@ class CoreSystem
 	void ClipReset();
 	void Clip(const CoreRect& Rect);
 	bool KeyState(int Key) const;
+	CoreZone* ActiveZoneGet();
+	void ActiveZoneSet(CoreZone* lpCoreZone);
 };

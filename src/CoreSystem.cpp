@@ -89,6 +89,7 @@ CoreSystem::CoreSystem(const char* Title, const CoreSystemFunc UpdateFunc, const
 
 	Try(Draw = new CorePrimitive(Hge));
 	IsClipping = false;
+	lpActiveZone = NULL;
 }
 
 CoreSystem::~CoreSystem()
@@ -198,6 +199,18 @@ void CoreSystem::Clip(const CoreRect& Rect)
 bool CoreSystem::KeyState(int Key) const
 {
 	return Hge->Input_GetKeyState(Key);
+}
+
+CoreZone* CoreSystem::ActiveZoneGet()
+{
+	Stackit;
+	Try(lpActiveZone != NULL);
+	return lpActiveZone;
+}
+
+void CoreSystem::ActiveZoneSet(CoreZone* lpCoreZone)
+{
+	lpActiveZone = lpCoreZone;
 }
 
 void CalculateAppSize(int& Width, int& Height)

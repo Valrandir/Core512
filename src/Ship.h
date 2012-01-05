@@ -7,7 +7,6 @@ class CoreZone;
 
 class Ship : public CoreRotBody
 {
-	CoreZone& CoreZoneRef;
 	float EngineForce;
 	float TurnSpeed;
 	CoreTimer Timer;
@@ -16,7 +15,7 @@ class Ship : public CoreRotBody
 	void UpdateParticle();
 
 	public:
-	Ship(CoreZone& CoreZoneRef);
+	Ship();
 	~Ship();
 	void Turn(int RotateDirection, float Delta);
 	void Thrust(int ForceDirection);

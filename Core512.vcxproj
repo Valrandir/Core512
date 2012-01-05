@@ -127,6 +127,7 @@
     <None Include="Res\Ship.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Asteroid.h" />
     <ClInclude Include="src\Bullet.h" />
     <ClInclude Include="src\CoreBackground.h" />
     <ClInclude Include="src\CoreBody.h" />
@@ -154,11 +155,13 @@
     <ClInclude Include="src\CoreVector.h" />
     <ClInclude Include="src\CoreErrExit.h" />
     <ClInclude Include="src\CoreZone.h" />
+    <ClInclude Include="src\CoreZoneEntity.h" />
     <ClInclude Include="src\HelpText.h" />
     <ClInclude Include="src\Ship.h" />
     <ClInclude Include="src\ShipParticle.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Asteroid.cpp" />
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\Core512.cpp" />
     <ClCompile Include="src\CoreBackground.cpp" />
@@ -186,6 +189,7 @@
     <ClCompile Include="src\CoreVector.cpp" />
     <ClCompile Include="src\CoreErrExit.cpp" />
     <ClCompile Include="src\CoreZone.cpp" />
+    <ClCompile Include="src\CoreZoneEntity.cpp" />
     <ClCompile Include="src\HelpText.cpp" />
     <ClCompile Include="src\Ship.cpp" />
     <ClCompile Include="src\ShipParticle.cpp" />

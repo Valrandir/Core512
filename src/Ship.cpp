@@ -3,7 +3,7 @@
 #include "Bullet.h"
 #include "Ship.h"
 
-Ship::Ship(CoreZone& CoreZoneRef) : CoreZoneRef(CoreZoneRef)
+Ship::Ship()
 {
 	Stackit;
 	CoreTexture* Texture = CoreSys.Vault->LinkTexture("Res/Ship.png");
@@ -40,7 +40,7 @@ void Ship::Shoot()
 	if(Timer.Finished())
 	{
 		Try(lpBullet = new Bullet(Center, GetAlignment()));
-		CoreZoneRef.Add(*lpBullet);
+		CoreSys.ActiveZoneGet()->Add(*lpBullet);
 		Timer.Launch(250);
 	}
 }
