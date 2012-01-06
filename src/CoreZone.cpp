@@ -54,19 +54,14 @@ CoreZone::CoreZone(const CoreVector& ZoneSize) : lpCoreBG(NULL), lpTrackBody(NUL
 	Try(lpCoreBG = new CoreBackground());
 
 	//Init GridMap
-	Try((int)ZoneSize.x % GridMapSquareSize == 0);
-	Try((int)ZoneSize.y % GridMapSquareSize == 0);
-	GridMapSquareCount = ZoneSize / (float)GridMapSquareSize;
-	GridMapLineByteSize = sizeof(CoreZoneEntity*) * (int)GridMapSquareCount.x;
-	GridMapByteSize = GridMapLineByteSize * (int)GridMapSquareCount.y;
-	Try(GridMap = (CoreZoneEntity**)malloc(GridMapByteSize));
-	memset(GridMap, 0, GridMapByteSize);
+	MapSquareSize.Set(16, 16);
+	Try(lpMap = new CoreMap(ZoneSize, MapSquareSize));
 }
 
 CoreZone::~CoreZone()
 {
 	DeleteNull(lpCoreBG);
-	free(GridMap);
+	delete lpMap;
 }
 
 void CoreZone::TrackBody(CoreBody& lpBody)
@@ -82,6 +77,11 @@ void CoreZone::TrackBody(CoreBody& lpBody)
 void CoreZone::ToggleBG()
 {
 	lpCoreBG->Toggle();
+}
+
+const CoreVecInt& CoreZone::MapSquareSizeGet() const
+{
+	return MapSquareSize;
 }
 
 void CoreZone::InitBorders()
@@ -108,16 +108,6 @@ void CoreZone::InitBorders()
 	vBorderRect[5].SetColors(SETA(Color, 0x00), SETA(Color, 0x00), SETA(Color, 0xFF), SETA(Color, 0xFF));
 	vBorderRect[6].SetColors(SETA(Color, 0xFF), SETA(Color, 0x00), SETA(Color, 0xFF), SETA(Color, 0xFF));
 	vBorderRect[7].SetColors(SETA(Color, 0xFF), SETA(Color, 0x00), SETA(Color, 0x00), SETA(Color, 0xFF));
-
-	////Colorfull Gradient for debugging
-	//vBorderRect[0].SetColors(0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF000000);
-	//vBorderRect[1].SetColors(0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF000000);
-	//vBorderRect[2].SetColors(0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF000000);
-	//vBorderRect[3].SetColors(0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF000000);
-	//vBorderRect[4].SetColors(0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF000000);
-	//vBorderRect[5].SetColors(0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF000000);
-	//vBorderRect[6].SetColors(0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF000000);
-	//vBorderRect[7].SetColors(0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF000000);
 }
 
 void CoreZone::UpdateScreenRect()
@@ -154,18 +144,9 @@ void CoreZone::RenderVisibleBorders() const
 		}
 }
 
-void CoreZone::GridMapSet(const CoreVector& Start, const CoreVector& Size, CoreZoneEntity*const Entity)
+void CoreZone::MapSet(const CoreVecInt& TopLeft, const CoreVecInt& Size, CoreZoneEntity*const Entity)
 {
-	int y, x;
-	CoreZoneEntity** ptr;
-
-	ptr = GridMap + (int)GridMapSquareCount.x * (int)Start.y + (int)Start.x;
-	for(y = 0; y < (int)Size.y; ++y)
-	{
-		for(x = 0; x < (int)Size.x; ++x, ++ptr)
-			*ptr = Entity;
-		ptr += (int)GridMapSquareCount.y - (int)Size.x;
-	}
+	lpMap->SetArea(TopLeft, Size, Entity);
 }
 
 void CoreZone::Update(float Delta)
@@ -175,29 +156,25 @@ void CoreZone::Update(float Delta)
 	UpdateScreenRect();
 }
 
-//For a quick test all squares are checked instead of only those visible.
+BOOL CoreZone::RenderEntityPart(const CoreVecInt& MapPosition, CoreZoneEntity* Entity, const void* const Param)
+{
+	CoreZone* Self = (CoreZone*)Param;
+	Entity->Render(MapPosition, Self->RenderOffset);
+	return FALSE;
+}
+
 void CoreZone::RenderGridMap() const
 {
-	int y, x;
-	CoreZoneEntity* ptr;
+	CoreVecInt TopLeft;
+	CoreVecInt Size;
 
-	int offset;
-	int c = 0;
+	TopLeft = ((ScreenRect.xy1 + ScreenRect.Size / 2) + RenderOffset) / MapSquareSize;
+	Size = ScreenRect.Size / MapSquareSize;
 
-	for(y = 0; y < (int)GridMapSquareCount.y; ++y)
-	{
-		for(x = 0; x < (int)GridMapSquareCount.x; ++x)
-		{
-			offset = y * (int)GridMapSquareCount.x + x;
-			ptr = GridMap[offset];
-			if(ptr)
-			{
-				ptr->Render(CoreVector((float)x, (float)y), RenderOffset);
-				++c;
-			}
-		}
-		c = 0;
-	}
+	lpMap->Scanner(TopLeft, Size, &CoreZone::RenderEntityPart, this);
+
+	//For a quick test all squares are checked instead of only those visible.
+	//lpMap->Scanner(CoreVecInt(), CoreVecInt(lpMap->GetMapSize()), &CoreZone::RenderEntityPart, this);
 }
 
 void CoreZone::RenderSimple() const

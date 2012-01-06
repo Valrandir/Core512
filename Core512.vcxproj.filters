@@ -40,14 +40,14 @@
     <Filter Include="src\Core\Sound">
       <UniqueIdentifier>{711ee389-b881-4a67-bc8d-ceeb0e06c90f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Core\Files">
-      <UniqueIdentifier>{8447fa7c-d709-4e01-8a00-05ab72420689}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Current">
       <UniqueIdentifier>{5af6c829-ceb1-43de-9bf2-7a623284f866}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Design">
       <UniqueIdentifier>{9bbb7619-2b8a-4828-8de9-2178b5b62aab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core\Flare\Files">
+      <UniqueIdentifier>{8447fa7c-d709-4e01-8a00-05ab72420689}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -140,7 +140,7 @@
       <Filter>src\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\CoreFileEnum.h">
-      <Filter>src\Core\Files</Filter>
+      <Filter>src\Core\Flare\Files</Filter>
     </ClInclude>
     <ClInclude Include="src\CoreBackground.h">
       <Filter>src\Core\Background</Filter>
@@ -193,6 +193,12 @@
     <ClInclude Include="src\CoreZoneEntity.h">
       <Filter>src\Current</Filter>
     </ClInclude>
+    <ClInclude Include="src\CoreMap.h">
+      <Filter>src\Current</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CoreVecInt.h">
+      <Filter>src\Core\Entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreBody.cpp">
@@ -238,7 +244,7 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\CoreFileEnum.cpp">
-      <Filter>src\Core\Files</Filter>
+      <Filter>src\Core\Flare\Files</Filter>
     </ClCompile>
     <ClCompile Include="src\CoreBackground.cpp">
       <Filter>src\Core\Background</Filter>
@@ -290,6 +296,12 @@
     </ClCompile>
     <ClCompile Include="src\CoreZoneEntity.cpp">
       <Filter>src\Current</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreMap.cpp">
+      <Filter>src\Current</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreVecInt.cpp">
+      <Filter>src\Core\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

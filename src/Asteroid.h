@@ -5,11 +5,12 @@
 class Asteroid : public CoreZoneEntity
 {
 	CoreSprite *Sprite;
-	CoreVector ZoneGridPos;
+	CoreVecInt ZoneMapPos; //TopLeft position where this Entity start in CoreZone CoreMap
+	CoreVecInt SquareSize; //Pixel size of one square
+	CoreVecInt SquareCount; //Number of squares
 
 	public:
-	Asteroid(CoreVector const & ZoneGridTopLeft);
+	Asteroid(CoreVecInt const & ZoneMapPos, CoreVecInt const & SquareSize);
 	~Asteroid();
-	void Render() const;
-	void Render(const CoreVector& ZoneGridPos, const CoreVector& Offset) const;
+	void Render(const CoreVecInt& ZoneGridPos, const CoreVecInt& Offset) const;
 };

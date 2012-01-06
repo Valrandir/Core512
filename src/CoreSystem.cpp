@@ -204,7 +204,7 @@ bool CoreSystem::KeyState(int Key) const
 CoreZone* CoreSystem::ActiveZoneGet()
 {
 	Stackit;
-	Try(lpActiveZone != NULL);
+	Try(lpActiveZone);
 	return lpActiveZone;
 }
 

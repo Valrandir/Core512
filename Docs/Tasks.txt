@@ -10,6 +10,7 @@ Tasks
 - Turn Animation
 - FullScreen / Windowed
 - Important (System) keypress should be captured at in the wndfunc messages as well to respond better in heavy cpu usage situations
+- Revise #include strategy
 
 Code Improvement
 - Create CoreAnimation

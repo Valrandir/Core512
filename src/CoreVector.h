@@ -1,5 +1,6 @@
 #pragma once
 #include <hgevector.h>
+class CoreVecInt;
 
 class CoreVector
 {
@@ -10,6 +11,7 @@ class CoreVector
 
 	CoreVector();
 	CoreVector(const CoreVector& v);
+	CoreVector(const CoreVecInt& v);
 	CoreVector(float x, float y);
 
 	bool operator==(const CoreVector& v) const;

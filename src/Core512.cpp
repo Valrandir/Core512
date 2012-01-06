@@ -16,6 +16,8 @@ void UpdateInput(float Delta);
 bool Update();
 bool Render();
 
+bool DoNotCallRenderBeforeUpdate = true;
+
 CoreBody* lpCoreBody[3];
 CoreFlareList* lpCoreFlareList = NULL;
 CoreZone* lpCoreZone = NULL;
@@ -61,7 +63,8 @@ void Load()
 	Try(lpCoreMusic = new CoreMusic());
 	lpCoreMusic->Play();
 
-	Try(lpRoid = new Asteroid(CoreVector(64, 32)));
+	lpRoid = new Asteroid(CoreVecInt(64, 32), lpCoreZone->MapSquareSizeGet());
+	Try(lpRoid);
 }
 
 void Init()
@@ -141,12 +144,17 @@ bool Update()
 
 	lpCoreFlareList->Update(Delta);
 
+	DoNotCallRenderBeforeUpdate = false;
 	return false;
 }
 
 bool Render()
 {
 	Stackit;
+
+	if(DoNotCallRenderBeforeUpdate)
+		return false;
+
 	lpCoreZone->Render();
 	lpCoreFlareList->Render(lpCoreZone->GetOffset());
 	lpHelp->Render();

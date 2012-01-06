@@ -1,17 +1,10 @@
 #include "CoreDefs.h"
 #include "CoreVector.h"
 
-CoreVector::CoreVector() : x(Vec.x), y(Vec.y)
-{
-}
-
-CoreVector::CoreVector(const CoreVector& v) : x(Vec.x), y(Vec.y), Vec(v.x, v.y)
-{
-}
-
-CoreVector::CoreVector(float x, float y) : x(Vec.x), y(Vec.y), Vec(x, y)
-{
-}
+CoreVector::CoreVector() : x(Vec.x), y(Vec.y) {}
+CoreVector::CoreVector(const CoreVector& v) : x(Vec.x), y(Vec.y), Vec(v.x, v.y) {}
+CoreVector::CoreVector(const CoreVecInt& v) : x(Vec.x), y(Vec.y), Vec((float)v.x, (float)v.y) {}
+CoreVector::CoreVector(float x, float y) : x(Vec.x), y(Vec.y), Vec(x, y) {}
 
 bool CoreVector::operator==(const CoreVector& v) const
 {

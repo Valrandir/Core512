@@ -3,6 +3,8 @@
 #include "CoreBodyList.h"
 #include "CoreBackground.h"
 #include "CoreZoneEntity.h"
+#include "CoreMap.h"
+class CoreVecInt;
 
 class CoreZone : public CoreRect, public CoreBodyList
 {
@@ -26,18 +28,16 @@ class CoreZone : public CoreRect, public CoreBodyList
 	//The ScreenRect is moved to display this body within NoScrollRect
 	CoreBody* lpTrackBody; //Camera Focus
 
-	//The Square Grid of 16x16 mapping
-	static const int GridMapSquareSize = 16;
-	CoreVector GridMapSquareCount;
-	unsigned int GridMapByteSize;
-	unsigned int GridMapLineByteSize;
-	CoreZoneEntity** GridMap;
+	//The Square Grid of mapping
+	CoreMap* lpMap;
+	CoreVecInt MapSquareSize;
 
 public:
 	CoreZone(const CoreVector& ZoneSize);
 	virtual ~CoreZone();
 	void TrackBody(CoreBody& lpBody);
 	void ToggleBG();
+	const CoreVecInt& MapSquareSizeGet() const;
 
 private:
 	void InitBorders();
@@ -45,10 +45,11 @@ private:
 	void RenderVisibleBorders() const;
 
 public:
-	void GridMapSet(const CoreVector& Start, const CoreVector& Size, CoreZoneEntity*const Entity);
+	void MapSet(const CoreVecInt& TopLeft, const CoreVecInt& Size, CoreZoneEntity*const Entity);
 	void Update(float Delta);
 
 private:
+	static BOOL RenderEntityPart(const CoreVecInt& MapPosition, CoreZoneEntity* Entity, const void* const Param);
 	void RenderGridMap() const;
 	void RenderSimple() const;
 
