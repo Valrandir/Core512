@@ -2,6 +2,7 @@
 #include "CoreRect.h"
 #include "CoreBodyList.h"
 #include "CoreBackground.h"
+#include "CoreZoneEntity.h"
 
 class CoreZone : public CoreRect, public CoreBodyList
 {
@@ -25,19 +26,33 @@ class CoreZone : public CoreRect, public CoreBodyList
 	//The ScreenRect is moved to display this body within NoScrollRect
 	CoreBody* lpTrackBody; //Camera Focus
 
-	public:
+	//The Square Grid of 16x16 mapping
+	static const int GridMapSquareSize = 16;
+	CoreVector GridMapSquareCount;
+	unsigned int GridMapByteSize;
+	unsigned int GridMapLineByteSize;
+	CoreZoneEntity** GridMap;
+
+public:
 	CoreZone(const CoreVector& ZoneSize);
 	virtual ~CoreZone();
 	void TrackBody(CoreBody& lpBody);
 	void ToggleBG();
 
-	private:
+private:
 	void InitBorders();
 	void UpdateScreenRect();
 	void RenderVisibleBorders() const;
 
-	public:
+public:
+	void GridMapSet(const CoreVector& Start, const CoreVector& Size, CoreZoneEntity*const Entity);
 	void Update(float Delta);
+
+private:
+	void RenderGridMap() const;
+	void RenderSimple() const;
+
+public:
 	void Render() const;
 	CoreVector const& GetOffset();
 };

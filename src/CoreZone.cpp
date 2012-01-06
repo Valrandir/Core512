@@ -52,11 +52,21 @@ CoreZone::CoreZone(const CoreVector& ZoneSize) : lpCoreBG(NULL), lpTrackBody(NUL
 
 	//Init CoreBackground
 	Try(lpCoreBG = new CoreBackground());
+
+	//Init GridMap
+	Try((int)ZoneSize.x % GridMapSquareSize == 0);
+	Try((int)ZoneSize.y % GridMapSquareSize == 0);
+	GridMapSquareCount = ZoneSize / (float)GridMapSquareSize;
+	GridMapLineByteSize = sizeof(CoreZoneEntity*) * (int)GridMapSquareCount.x;
+	GridMapByteSize = GridMapLineByteSize * (int)GridMapSquareCount.y;
+	Try(GridMap = (CoreZoneEntity**)malloc(GridMapByteSize));
+	memset(GridMap, 0, GridMapByteSize);
 }
 
 CoreZone::~CoreZone()
 {
 	DeleteNull(lpCoreBG);
+	free(GridMap);
 }
 
 void CoreZone::TrackBody(CoreBody& lpBody)
@@ -144,11 +154,63 @@ void CoreZone::RenderVisibleBorders() const
 		}
 }
 
+void CoreZone::GridMapSet(const CoreVector& Start, const CoreVector& Size, CoreZoneEntity*const Entity)
+{
+	int y, x;
+	CoreZoneEntity** ptr;
+
+	ptr = GridMap + (int)GridMapSquareCount.x * (int)Start.y + (int)Start.x;
+	for(y = 0; y < (int)Size.y; ++y)
+	{
+		for(x = 0; x < (int)Size.x; ++x, ++ptr)
+			*ptr = Entity;
+		ptr += (int)GridMapSquareCount.y - (int)Size.x;
+	}
+}
+
 void CoreZone::Update(float Delta)
 {
 	CoreBodyList::Update(Delta);
 	CoreBodyList::RemoveOutsideRect(*this, lpTrackBody);
 	UpdateScreenRect();
+}
+
+//For a quick test all squares are checked instead of only those visible.
+void CoreZone::RenderGridMap() const
+{
+	int y, x;
+	CoreZoneEntity* ptr;
+
+	int offset;
+	int c = 0;
+
+	for(y = 0; y < (int)GridMapSquareCount.y; ++y)
+	{
+		for(x = 0; x < (int)GridMapSquareCount.x; ++x)
+		{
+			offset = y * (int)GridMapSquareCount.x + x;
+			ptr = GridMap[offset];
+			if(ptr)
+			{
+				ptr->Render(CoreVector((float)x, (float)y));
+				++c;
+			}
+		}
+		c = 0;
+	}
+}
+
+void CoreZone::RenderSimple() const
+{
+	//Background Stuff
+	lpCoreBG->RenderMosaic(ScreenRect.Center);
+	RenderVisibleBorders();
+
+	//Grid Stuff
+	RenderGridMap();
+
+	//All CoreBody
+	CoreBodyList::Render(RenderOffset);
 }
 
 void CoreZone::Render() const
@@ -167,9 +229,7 @@ void CoreZone::Render() const
 		else
 			CoreSys.ClipReset();
 
-		lpCoreBG->RenderMosaic(ScreenRect.Center);
-		RenderVisibleBorders();
-		CoreBodyList::Render(RenderOffset);
+		RenderSimple();
 	}
 	else
 		CoreSys.ClearScreen(DeniedBackColor);

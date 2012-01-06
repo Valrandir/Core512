@@ -6,6 +6,7 @@
 #include "CoreZone.h"
 #include "HelpText.h"
 #include "Ship.h"
+#include "Asteroid.h"
 
 void Load();
 void Init();
@@ -22,6 +23,7 @@ CoreMusic* lpCoreMusic = NULL;
 
 HelpText* lpHelp;
 Ship* lpShip = NULL;
+Asteroid* lpRoid = NULL;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
@@ -58,6 +60,8 @@ void Load()
 
 	Try(lpCoreMusic = new CoreMusic());
 	lpCoreMusic->Play();
+
+	Try(lpRoid = new Asteroid(CoreVector(10, 10)));
 }
 
 void Init()
@@ -80,6 +84,7 @@ void Execute()
 void Unload()
 {
 	Stackit;
+	DeleteNull(lpRoid);
 	DeleteNull(lpHelp);
 	DeleteNull(lpCoreFlareList);
 	DeleteNull(lpCoreZone);
@@ -145,5 +150,6 @@ bool Render()
 	lpCoreZone->Render();
 	lpCoreFlareList->Render(lpCoreZone->GetOffset());
 	lpHelp->Render();
+	//lpRoid->Render();
 	return false;
 }

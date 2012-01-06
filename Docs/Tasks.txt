@@ -1,7 +1,15 @@
+Asteroid use the magic number 16 from CoreZone
+Address GridMap Addressing
+
 Tasks
+- Consider creating an INT CoreVector to avoid casting to (int) all the time in CoreZone GridMap
+- Seperate the GridMap section from CoreZone and put it in its own class, possibly inside of CoreZone.
+- Improve CoreConfig
+  - Make it like Config.Core512.UseMusic instead of Config.UseMusic
+    and Config.Resolution.Width instead of Config.Width
 - Turn Animation
 - FullScreen / Windowed
-- Add ship speed to an ini file, possibly a different ini file to seperate config from design settings
+- Important (System) keypress should be captured at in the wndfunc messages as well to respond better in heavy cpu usage situations
 
 Code Improvement
 - Create CoreAnimation
