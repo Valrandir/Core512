@@ -192,7 +192,7 @@ void CoreZone::RenderGridMap() const
 			ptr = GridMap[offset];
 			if(ptr)
 			{
-				ptr->Render(CoreVector((float)x, (float)y));
+				ptr->Render(CoreVector((float)x, (float)y), RenderOffset);
 				++c;
 			}
 		}

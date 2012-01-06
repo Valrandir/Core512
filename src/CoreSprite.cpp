@@ -33,6 +33,17 @@ CoreVector CoreSprite::GetSize() const
 {
 	return CoreVector(Sprite->GetWidth(), Sprite->GetHeight());
 }
+void CoreSprite::TextureRectClear()
+{
+	float w = Sprite->GetWidth();
+	float h = Sprite->GetHeight();
+	Sprite->SetTextureRect(0, 0, w, h);
+}
+
+void CoreSprite::TextureRectSet(const CoreVector& Position, const CoreVector& Size)
+{
+	Sprite->SetTextureRect(Position.x, Position.y, Size.x, Size.y);
+}
 
 void CoreSprite::Render(const CoreVector& Position) const
 {
@@ -47,10 +58,4 @@ void CoreSprite::RenderEx(const CoreVector& Position, float RotationRadian) cons
 void CoreSprite::RenderStretch(const CoreVector& Position, const CoreVector& Size) const
 {
 	Sprite->RenderStretch(Position.x, Position.y, Size.x, Size.y);
-}
-
-void CoreSprite::RenderRect(const CoreRect& Area)
-{
-	Sprite->SetTextureRect(Area.xy1.x, Area.xy1.y, Area.Size.x, Area.Size.y);
-	//Sprite->Render(Area.Center.x, Area.Center.y);
 }

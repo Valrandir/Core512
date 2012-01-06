@@ -18,8 +18,9 @@ class CoreSprite
 	~CoreSprite();
 	void Initialize(const CoreTexture& Texture, bool CenterHotSpot = true);
 	CoreVector GetSize() const;
+	void TextureRectClear();
+	void TextureRectSet(const CoreVector& Position, const CoreVector& Size);
 	void Render(const CoreVector& Position) const;
 	void RenderEx(const CoreVector& Position, float RotationRadian) const;
 	void RenderStretch(const CoreVector& Position, const CoreVector& Size) const;
-	void RenderRect(const CoreRect& Area);
 };

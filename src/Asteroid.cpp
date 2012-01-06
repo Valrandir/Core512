@@ -26,21 +26,14 @@ void Asteroid::Render() const
 	Sprite->Render(CoreVector(0, 0));
 }
 
-void Asteroid::Render(CoreVector ZoneGridPos) const
+void Asteroid::Render(const CoreVector& ZoneGridPos, const CoreVector& Offset) const
 {
-	CoreRect Area;
-
 	//Translate from ZoneGrid to AsteroidGrid
-	ZoneGridPos -= this->ZoneGridPos;
+	CoreVector Position = ZoneGridPos - this->ZoneGridPos;
 
 	//Translate from Square to Pixels
-	ZoneGridPos *= 16.f;
+	Position *= 16.f;
 
-	Area.SetByPoints(ZoneGridPos, ZoneGridPos + 16.f);
-	Sprite->RenderRect(Area);
-
-	ZoneGridPos += this->ZoneGridPos;
-	Area.SetByPoints(ZoneGridPos, ZoneGridPos + 16.f);
-
-	Sprite->Render(Area.Center);
+	Sprite->TextureRectSet(Position, CoreVector(16.f, 16.f));
+	Sprite->Render(Position + this->ZoneGridPos * 16.f + Offset);
 }

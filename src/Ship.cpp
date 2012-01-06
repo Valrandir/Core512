@@ -41,7 +41,7 @@ void Ship::Shoot()
 	{
 		Try(lpBullet = new Bullet(Center, GetAlignment()));
 		CoreSys.ActiveZoneGet()->Add(*lpBullet);
-		Timer.Launch(250);
+		Timer.Launch(96);
 	}
 }
 

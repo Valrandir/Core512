@@ -61,7 +61,7 @@ void Load()
 	Try(lpCoreMusic = new CoreMusic());
 	lpCoreMusic->Play();
 
-	Try(lpRoid = new Asteroid(CoreVector(10, 10)));
+	Try(lpRoid = new Asteroid(CoreVector(64, 32)));
 }
 
 void Init()

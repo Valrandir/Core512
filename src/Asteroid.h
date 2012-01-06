@@ -11,5 +11,5 @@ class Asteroid : public CoreZoneEntity
 	Asteroid(CoreVector const & ZoneGridTopLeft);
 	~Asteroid();
 	void Render() const;
-	void Render(CoreVector ZoneGridPos) const;
+	void Render(const CoreVector& ZoneGridPos, const CoreVector& Offset) const;
 };

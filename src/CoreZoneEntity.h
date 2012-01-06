@@ -4,6 +4,6 @@ class CoreVector;
 class CoreZoneEntity
 {
 	public:
-	virtual void Render(CoreVector ZoneGridPos) const = 0;
+	virtual void Render(const CoreVector& ZoneGridPos, const CoreVector& Offset) const = 0;
 	virtual ~CoreZoneEntity();
 };
