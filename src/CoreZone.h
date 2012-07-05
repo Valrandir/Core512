@@ -36,7 +36,7 @@ public:
 	CoreZone(const CoreVector& ZoneSize);
 	virtual ~CoreZone();
 	void TrackBody(CoreBody& lpBody);
-	void ToggleBG();
+	void ToggleBG(bool Immediate = false);
 	const CoreVecInt& MapSquareSizeGet() const;
 
 private:

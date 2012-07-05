@@ -36,16 +36,60 @@ void CoreMap::Initialize(const CoreVecInt& Size)
 	memset(Map, 0, ByteSize);
 }
 
+void CoreMap::FixArea(CoreVecInt& TopLeft, CoreVecInt& Size)
+{
+	Stackit;
+
+	if(TopLeft.x < 0)
+	{
+		Size.x += TopLeft.x;
+		TopLeft.x = 0;
+	}
+
+	if(TopLeft.y < 0)
+	{
+		Size.y += TopLeft.y;
+		TopLeft.y = 0;
+	}
+
+	CoreVecInt BottomRight = TopLeft + Size;
+
+	if(BottomRight.x >= MapSize.x)
+	{
+		Size.x -= BottomRight.x - MapSize.x + 1;
+		BottomRight.x = TopLeft.x + Size.x;
+	}
+
+	if(BottomRight.y >= MapSize.y)
+	{
+		Size.y -= BottomRight.y - MapSize.y + 1;
+		BottomRight.y = TopLeft.y + Size.y;
+	}
+
+	//Critical Error if TopLeft is past MapSize
+	if(TopLeft.x > MapSize.x || TopLeft.y > MapSize.y)
+		FinalErrorM("TopLeft is past MapSize");
+
+	//Critical Error if Size is negative
+	if(Size.x < 0 || Size.y < 0)
+		FinalErrorM("Size is less than zero");
+
+	//Critical Error if BottomRight is past MapSize
+	if(BottomRight.x >= MapSize.x || BottomRight.y >= MapSize.y)
+		FinalErrorM("BottomRight is past MapSize");
+}
+
 const CoreVecInt& CoreMap::GetMapSize() const
 {
 	return MapSize;
 }
 
-void CoreMap::SetArea(const CoreVecInt& TopLeft, const CoreVecInt& Size, CoreZoneEntity*const Entity)
+void CoreMap::SetArea(CoreVecInt TopLeft, CoreVecInt Size, CoreZoneEntity*const Entity)
 {
 	Stackit;
 	CoreZoneEntity **py, **px; //Start Address
 	CoreZoneEntity **pym, **pxm; //End Address
+	FixArea(TopLeft, Size);
 	py = MapIndex(TopLeft.x, TopLeft.y);
 	pym = py + Size.y * MapSize.x;
 	for(; py <= pym; py += MapSize.x)
@@ -53,12 +97,12 @@ void CoreMap::SetArea(const CoreVecInt& TopLeft, const CoreVecInt& Size, CoreZon
 			*px = Entity;
 }
 
-void CoreMap::Scanner(const CoreVecInt& TopLeft, const CoreVecInt& Size, MapCallbackFunc Callback, const void* const Param)
+void CoreMap::Scanner(CoreVecInt TopLeft, CoreVecInt Size, MapCallbackFunc Callback, const void* const Param)
 {
 	Stackit;
 	CoreZoneEntity **py, **px; //Start Address
 	CoreVecInt cur;
-
+	FixArea(TopLeft, Size);
 	py = MapIndex(TopLeft.x, TopLeft.y);
 	for(cur.y = 0; cur.y < Size.y; py += MapSize.x, ++cur.y)
 		for(px = py, cur.x = 0; cur.x < Size.x; ++px, ++cur.x)

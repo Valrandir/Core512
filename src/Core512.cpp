@@ -63,7 +63,7 @@ void Load()
 	Try(lpCoreMusic = new CoreMusic());
 	lpCoreMusic->Play();
 
-	lpRoid = new Asteroid(CoreVecInt(64, 32), lpCoreZone->MapSquareSizeGet());
+	lpRoid = new Asteroid(CoreVecInt(80, 80), lpCoreZone->MapSquareSizeGet());
 	Try(lpRoid);
 }
 
@@ -151,6 +151,7 @@ bool Update()
 bool Render()
 {
 	Stackit;
+	//CoreSys.Hge->System_Log("Render");
 
 	if(DoNotCallRenderBeforeUpdate)
 		return false;
@@ -158,6 +159,5 @@ bool Render()
 	lpCoreZone->Render();
 	lpCoreFlareList->Render(lpCoreZone->GetOffset());
 	lpHelp->Render();
-	//lpRoid->Render();
 	return false;
 }

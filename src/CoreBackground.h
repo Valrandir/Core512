@@ -15,7 +15,7 @@ class CoreBackground
 	public:
 	CoreBackground();
 	~CoreBackground();
-	void Toggle();
+	void Toggle(bool Immediate = false);
 	void Clear() const;
 	void Render() const;
 	void RenderMosaic(const CoreVector& Offset) const;

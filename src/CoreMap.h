@@ -16,13 +16,14 @@ class CoreMap
 
 	private:
 	void Initialize(const CoreVecInt& Size);
+	void FixArea(CoreVecInt& TopLeft, CoreVecInt& Size);
 
 	public:
 	const CoreVecInt& GetMapSize() const;
 
 	//Set each Map square in the specified range to Entity
-	void SetArea(const CoreVecInt& TopLeft, const CoreVecInt& Size, CoreZoneEntity* Entity);
+	void SetArea(CoreVecInt TopLeft, CoreVecInt Size, CoreZoneEntity* Entity);
 
 	//For each Map square in the specified range containing an Entity, call MapCallbackFunc
-	void Scanner(const CoreVecInt& TopLeft, const CoreVecInt& Size, MapCallbackFunc Callback, const void* const Param);
+	void Scanner(CoreVecInt TopLeft, CoreVecInt Size, MapCallbackFunc Callback, const void* const Param);
 };

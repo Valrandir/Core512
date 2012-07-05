@@ -30,9 +30,9 @@ CoreBackground::~CoreBackground()
 	vSprites.clear();
 }
 
-void CoreBackground::Toggle()
+void CoreBackground::Toggle(bool Immediate)
 {
-	if(!Timer.Finished())
+	if(!Immediate && !Timer.Finished())
 		return;
 
 	if(vSpritesIndex == vSprites.end())

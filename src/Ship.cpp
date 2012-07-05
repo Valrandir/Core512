@@ -60,8 +60,8 @@ void Ship::UpdateParticle()
 	pp[0] += CoreBody::Center;
 	pp[1] += CoreBody::Center;
 
-	lpParticle[0]->Update(pp[0], RotationRadian + CoreRad4 + CoreRad16);
-	lpParticle[1]->Update(pp[1], RotationRadian + CoreRad4 - CoreRad16);
+	lpParticle[0]->Update(pp[0], RotationRadian + CoreRad4 + CoreRad64);
+	lpParticle[1]->Update(pp[1], RotationRadian + CoreRad4 - CoreRad64);
 }
 
 void Ship::Update(float Delta)

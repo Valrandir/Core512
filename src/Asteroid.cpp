@@ -1,7 +1,7 @@
 #include "CoreDefs.h"
 #include "Asteroid.h"
 
-Asteroid::Asteroid(CoreVecInt const & ZoneMapPos, CoreVecInt const & SquareSize) : ZoneMapPos(ZoneMapPos), SquareSize(SquareSize)
+Asteroid::Asteroid(CoreVecInt const & ZoneMapPos, CoreVecInt const & SquareSize) : CoreZoneEntity(ZoneMapPos, SquareSize)
 {
 	Stackit;
 	CoreTexture* Texture;
@@ -9,7 +9,7 @@ Asteroid::Asteroid(CoreVecInt const & ZoneMapPos, CoreVecInt const & SquareSize)
 	//Load Texture and create Sprite
 	Texture = CoreSys.Vault->LinkTexture("Res/Asteroid.png");
 	Texture->UseOriginalSize();
-	Sprite = CoreSys.CreateCoreSprite(*Texture);
+	Sprite = CoreSys.CreateCoreSprite(*Texture, false);
 
 	//Test Texture Size for power of two.
 	int Mod; //To avoid warning in release build
@@ -17,10 +17,15 @@ Asteroid::Asteroid(CoreVecInt const & ZoneMapPos, CoreVecInt const & SquareSize)
 	Trn(Mod = Texture->Height % SquareSize.y);
 
 	//Set SquareCount
-	SquareCount.Set(Texture->Width / SquareSize.x, Texture->Height / SquareSize.y);
+	int x = Texture->Width / SquareSize.x;
+	int y = Texture->Height / SquareSize.y;
+	SquareCount.Set(x, y);
+
+	CoreZoneEntity::ZoneMapPos.x -= x / 2;
+	CoreZoneEntity::ZoneMapPos.y -= y / 2;
 
 	//Paint the CoreZone CoreMap
-	CoreSys.ActiveZoneGet()->MapSet(ZoneMapPos, SquareCount, this);
+	CoreSys.ActiveZoneGet()->MapSet(CoreZoneEntity::ZoneMapPos, SquareCount, this);
 }
 
 Asteroid::~Asteroid()
@@ -30,15 +35,6 @@ Asteroid::~Asteroid()
 
 void Asteroid::Render(const CoreVecInt& ZoneGridPos, const CoreVecInt& Offset) const
 {
-	//Translate from ZoneGrid to AsteroidGrid
-	CoreVector Position = ZoneGridPos - this->ZoneMapPos;
-
-	//Translate from Square to Pixels
-	Position *= SquareSize;
-
-	//Set texture coordinates to for this square
-	Sprite->TextureRectSet(Position, SquareSize);
-
-	//Render this single square
-	Sprite->Render(Position + this->ZoneMapPos * SquareSize + Offset);
+	//Render common CoreZoneEntity stuff
+	CoreZoneEntity::Render(ZoneGridPos, Offset);
 }

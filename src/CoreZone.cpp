@@ -74,9 +74,9 @@ void CoreZone::TrackBody(CoreBody& lpBody)
 	}
 }
 
-void CoreZone::ToggleBG()
+void CoreZone::ToggleBG(bool Immediate)
 {
-	lpCoreBG->Toggle();
+	lpCoreBG->Toggle(Immediate);
 }
 
 const CoreVecInt& CoreZone::MapSquareSizeGet() const
@@ -156,10 +156,11 @@ void CoreZone::Update(float Delta)
 	UpdateScreenRect();
 }
 
+//This is a static function
 BOOL CoreZone::RenderEntityPart(const CoreVecInt& MapPosition, CoreZoneEntity* Entity, const void* const Param)
 {
 	CoreZone* Self = (CoreZone*)Param;
-	Entity->Render(MapPosition, Self->RenderOffset);
+	Entity->Render(MapPosition, Self->xy2 - Self->RenderOffset);
 	return FALSE;
 }
 
@@ -168,7 +169,8 @@ void CoreZone::RenderGridMap() const
 	CoreVecInt TopLeft;
 	CoreVecInt Size;
 
-	TopLeft = ((ScreenRect.xy1 + ScreenRect.Size / 2) + RenderOffset) / MapSquareSize;
+	//TopLeft = ((ScreenRect.xy1 + ScreenRect.Size / 2) + RenderOffset) / MapSquareSize;
+	TopLeft = (xy2 - RenderOffset) / MapSquareSize;
 	Size = ScreenRect.Size / MapSquareSize;
 
 	lpMap->Scanner(TopLeft, Size, &CoreZone::RenderEntityPart, this);
